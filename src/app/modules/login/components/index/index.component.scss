@@ -1,0 +1,25 @@
+.login{
+    width: 100vw;
+    height: 100vh;
+    background: url('../../../../../assets/images/loginbg.png') no-repeat center;
+    padding-top:20vh;
+    .login-form{
+        background: #fff;
+        margin:0 auto;
+        max-width: 400px;
+        padding:10px 60px;
+        .title{
+            font-size:33px;
+            display: flex;
+            justify-content: center;
+        }
+        .action{
+            margin:0;
+            button{
+                width:100%;
+                background: #22365e;
+            }
+        }
+    }
+    
+}

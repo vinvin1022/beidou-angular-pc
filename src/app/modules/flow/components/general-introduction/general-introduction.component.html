@@ -1,0 +1,8 @@
+<div class="eye-general-introduction">
+  <div class="subgeneral-paration">
+    <app-common-form #commonForm [packagePermissions]="packagePermissions" [isShowContrast]="false" queryPacketUrl="/flow/generalIntroduction/genQueryPacket" (sendQueryData)="getQueryData($event)"></app-common-form>
+  </div>
+  <div class="mar-top20">
+    <app-subgeneral-table [filterData]="filterData" class="subgeneral-table"></app-subgeneral-table>
+  </div>
+</div>

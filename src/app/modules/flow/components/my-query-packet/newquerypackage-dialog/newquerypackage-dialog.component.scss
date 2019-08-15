@@ -1,0 +1,30 @@
+// ::ng-deep .vertical-center-modal {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// ::ng-deep .vertical-center-modal .ant-modal {
+//   top: 0;
+// }
+.newquerypackageDialog {
+  .ant-modal-content{
+    max-height: 600px;
+  }
+  .ant-list-bordered {
+    border-radius: 0;
+  }
+
+  .ant-list-sm .ant-list-item {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .ant-list-bordered.ant-list-sm .ant-list-header{
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+  .ant-spin-container{
+    max-height: 403px;
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="eye-extension-index">
+  <div class="subextension-paration">
+    <app-common-form [packagePermissions]="packagePermissions" queryPacketUrl="/flow/extensionIndex/extQueryPacket" [isShowDimension]="false" (sendQueryData)="getQueryData($event)"></app-common-form>
+  </div>
+  <div class="mar-top20">
+    <app-subextension-table [filterData]="filterData"></app-subextension-table>
+  </div>
+</div>

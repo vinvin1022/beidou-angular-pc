@@ -1,0 +1,49 @@
+<div class="eye-summary-performance">
+  <button class="mar-bot10 mar-right10" nz-button nzType="default" (click)="goback()">返回</button>
+  <button class="mar-bot10" nz-button nzType="primary" *appIsshowbtn="addBtnVal" (click)="showQuerypackageDialog()">新增查询包</button>
+
+  <!-- <button class="mar-bot10" nz-button nzType="primary" (click)="showQuerypackageDialog()">新增查询包</button> -->
+  <app-common-card nztitle="筛选条件">
+    <div name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm($event)">
+        <div nz-row>
+          <nz-form-item>
+            <nz-form-label nzFor="packageName">名称</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="请输入名称" maxlength="20" formControlName="packageName" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzFor="createUser">创建人</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="请输入创建人" maxlength="20" formControlName="createUser" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzFor="typeId">类型</nz-form-label>
+            <nz-form-control>
+              <nz-select id="typeId" style="width: 180px;" formControlName="typeId" nzAllowClear nzPlaceHolder="请选择类型">
+                <nz-option nzValue="0" nzLabel="全部"></nz-option>
+                <nz-option *ngFor="let item of typeIdValOptions" [nzValue]="item.typeId" [nzLabel]="item.typeName"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-row>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="primary">查询</button>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button (click)="resetForm($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </form>
+    </div>
+  </app-common-card>
+  <app-newquerypackage-dialog (createQueryPackage)="refreshTable($event)" #newquerypackageDialog></app-newquerypackage-dialog>
+</div>

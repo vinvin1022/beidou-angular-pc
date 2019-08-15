@@ -1,0 +1,44 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modeltitle" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">模块</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select nzAllowClear id="roleType" formControlName="roleType" (ngModelChange)="roleTypeChange($event)"
+          nzPlaceHolder="请选择模块">
+          <ng-container *ngFor="let item of modulesOptions">
+            <nz-option [nzValue]="item.optionId" [nzLabel]="item.optionName"></nz-option>
+          </ng-container>
+        </nz-select>
+        <nz-form-explain *ngIf="validateForm.get('roleType')?.dirty && validateForm.get('roleType')?.errors">请选择模块！
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">角色名称</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input placeholder="请输入角色名称" formControlName="roleName" nz-input />
+        <nz-form-explain
+          *ngIf="validateForm.get('roleName')?.dirty && validateForm.get('roleName')?.errors && validateForm.get('roleName')?.errors.required">
+          请输入正确的角色名称！
+        </nz-form-explain>
+        <nz-form-explain
+          *ngIf="validateForm.get('roleName')?.dirty && validateForm.get('roleName')?.errors && validateForm.get('roleName')?.errors.length">
+          角色名称长度不能大于20个字符！
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">权限描述</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select (ngModelChange)="resourceIdChange($event)" nzAllowClear id="resourceId" formControlName="resourceId"
+          nzPlaceHolder="请选择权限描述">
+          <ng-container *ngFor="let item of describeOptions[validateForm.get('roleType').value]">
+            <nz-option [nzValue]="item.optionId" [nzLabel]="item.optionName"></nz-option>
+          </ng-container>
+        </nz-select>
+        <nz-form-explain *ngIf="validateForm.get('resourceId')?.dirty && validateForm.get('resourceId')?.errors">
+          请选择权限描述！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

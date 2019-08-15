@@ -1,0 +1,7 @@
+<div class="eye-net-index">
+  <app-front-real-form [isShowDept0]="true" [isShowRangePicker]="false" [isShowAdvertisersTypeList]="true"
+    (sendQueryData)="getFilterData($event)"></app-front-real-form>
+  <div class="mar-top20">
+    <app-subreal-time-table [filterData]="filterData"></app-subreal-time-table>
+  </div>
+</div>

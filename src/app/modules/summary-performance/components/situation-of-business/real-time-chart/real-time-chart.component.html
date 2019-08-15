@@ -1,0 +1,34 @@
+<div class="eye-real-time mar-top20" #realTime>
+  <nz-spin [nzSpinning]=" isSpinning">
+    <app-eye-card nztitle="折线图">
+      <div class="operate">
+        <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm">
+          <app-sx-select class="carrier-select" label="维度" [selectGroup]="validateForm" bdFormControlName="carrier"
+            bdPlaceHolder="请选择维度" [storeOptionsData]="carrierOptions" [bdServerSearch]="false" bdMode="default"
+            [checkBoxRenderX]="false" [bdAllowClear]="false" (selectedValueChange)="carrierChangeEvent($event)">
+          </app-sx-select>
+          <app-sx-select label="组织" [checkBoxRenderX]="false" bdMode="default" [selectGroup]="validateForm"
+            bdFormControlName="dept0" [optionsService]="commonCustomService" methodName="queryPattern"
+            bdPlaceHolder="请选择组织" [isShowAll]="true" (selectedValueChange)="alldept0ChangeEvent($event)">
+          </app-sx-select>
+
+          <!-- <app-sx-select label="推广方式" [selectGroup]="validateForm" bdFormControlName="advertisersTypeList"
+            [checkBoxRenderX]="false" [storeOptionsData]="advertisersTypeListOptions" [bdServerSearch]="false"
+            bdPlaceHolder="请选择推广方式">
+          </app-sx-select> -->
+          <app-sx-select label="推广方式" [selectGroup]="validateForm" bdFormControlName="advertisersTypeList"
+            [storeOptionsData]="advertisersTypeListOptions" [optionsService]="commonCustomService"
+            methodName="getAdvertisersTypeOptions" bdPlaceHolder="请选择推广方式"
+            (selectedValueChange)="advertisersTypeChangeEvent($event)">
+          </app-sx-select>
+        </form>
+      </div>
+      <div class="a">
+        <div #electricTimeCharts id="electric-time-charts" style="height:400px"></div>
+        <!-- <div [hidden]="echartsData.length" style="height:300px; padding-top: 50px">
+          <nz-empty></nz-empty>
+        </div> -->
+      </div>
+    </app-eye-card>
+  </nz-spin>
+</div>

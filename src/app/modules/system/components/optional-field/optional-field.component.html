@@ -1,0 +1,14 @@
+<div class="mitem mar-bot20" *ngFor="let key of keysArray">
+  <div class="parent-checkbox mar-bot10" *ngIf="syllable[key].isShowTitle">
+    <label nz-checkbox [(ngModel)]="syllable[key].allChecked" (ngModelChange)="updateAllChecked(key)"
+      [nzIndeterminate]="syllable[key].indeterminate">
+      {{syllable[key].name}}
+    </label>
+  </div>
+  <div class="sub-checkbox mar-left30">
+    <nz-checkbox-group [(ngModel)]="syllable[key].children" (ngModelChange)="updateSingleChecked(key)">
+    </nz-checkbox-group>
+  </div>
+
+  
+</div>

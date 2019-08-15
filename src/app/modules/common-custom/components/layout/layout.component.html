@@ -1,0 +1,21 @@
+<div class="layout">
+  <nz-layout>
+    <nz-sider>
+      <div class="logo">
+        <img src="./assets/images/whitelogin.png">
+      </div>
+      <div>
+        <app-person-avator class="app-person-avator"></app-person-avator>
+      </div>
+      <app-aside-menu></app-aside-menu>
+    </nz-sider>
+    <nz-layout>
+      <nz-content>
+        <app-bd-breadcrumb style="display:block" class="mar-bot10"></app-bd-breadcrumb>
+        <div class="eagle-eye-main">
+          <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</div>

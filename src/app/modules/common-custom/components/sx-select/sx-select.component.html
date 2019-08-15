@@ -1,0 +1,34 @@
+<ng-container [formGroup]="selectGroup">
+  <nz-form-item>
+    <ng-container *ngIf="label">
+      <nz-form-label [nzRequired]="bdRequired" nzFor="{{label}}">{{label}}
+      </nz-form-label>
+    </ng-container>
+    <nz-form-control>
+      <nz-select [nzMaxTagCount]="1" [nzMaxTagPlaceholder]="tagPlaceHolder" [nzAllowClear]="bdAllowClear"
+        [nzAutoClearSearchValue]="false" [nzDropdownRender]="checkBoxRenderX" [nzServerSearch]="bdServerSearch"
+        (nzOpenChange)="openOptionsChange($event)" (nzOnSearch)="subject.next($event)"
+        (ngModelChange)="optionsChange($event)" [nzDisabled]="bdDisabled" style="width: 180px;"
+        [nzPlaceHolder]="bdPlaceHolder" [formControlName]="bdFormControlName" nzShowSearch nzAllowClear
+        [nzMode]="bdMode">
+        <nz-option *ngIf="isShowAll && !optionsLoading" nzValue="全部" nzLabel="全部"></nz-option>
+        <ng-container *ngFor="let item of storeOptionsData">
+          <nz-option *ngIf="!optionsLoading" [nzValue]="item && item.optionId" [nzLabel]="item && item.optionName">
+          </nz-option>
+        </ng-container>
+        <nz-option *ngIf="optionsLoading" nzDisabled nzCustomContent>
+          <i nz-icon type="loading" class="loading-icon"></i> 加载中...
+        </nz-option>
+      </nz-select>
+      <ng-template #checkBoxRender>
+        <div *ngIf="storeOptionsData && storeOptionsData.length" class="isAllchecked pad-left10 pad-bot5">
+          <label (ngModelChange)="isAllcheckedChange($event)" [ngModelOptions]="{standalone: true}" nz-checkbox
+            [(ngModel)]="isAllchecked">全选</label>
+        </div>
+      </ng-template>
+      <ng-template #tagPlaceHolder let-selectedList>
+        + {{selectedList.length}}
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+</ng-container>

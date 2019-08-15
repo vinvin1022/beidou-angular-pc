@@ -1,0 +1,66 @@
+<nz-modal [(nzVisible)]="isVisible" nzWidth="90%" nzTitle="数据详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+    nzNoResult="暂无数据" [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable [nzData]="displayData"
+    nzBordered [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+    (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+    [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+    <thead>
+      <tr>
+        <th>在线部门/在线咨询师</th>
+        <th>时间</th>
+        <!-- <ng-container *ngFor="let sitem of onlineStatisticsCustomFieldData">
+          <th>{{sitem.label}}</th>
+        </ng-container> -->
+        <ng-container *ngFor="let pitem of fieldKeys">
+          <ng-container *ngFor="let sitem of filterFieldData[pitem].children">
+            <th>{{sitem.label}}</th>
+          </ng-container>
+        </ng-container>
+        <!-- <th>X率(%)</th>
+        <th>在线点击数</th>
+        <th>点击有效数</th>
+        <th>在线名片</th>
+        <th>在线销机</th>
+
+        <th>对话有效率(%)</th>
+        <th>发起到有效数</th>
+        <th>发起到有效率(%)</th>
+        <th>在线转化率(%)</th>
+        <th>在线接通率(%)</th>
+        <th>无控场数</th>
+        <th>无控场率(%)</th> -->
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of groupingTable.data;let idx = index">
+        <td>{{data.deptName}}</td>
+        <td>{{data.periodWid}}</td>
+        <!-- <ng-container *ngFor="let sitem of onlineStatisticsCustomFieldData">
+          <td>{{item[sitem.value]}}</td>
+        </ng-container> -->
+        <ng-container *ngFor="let ppitem of fieldKeys">
+          <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+            <td>{{data[sitem.value]}}</td>
+          </ng-container>
+        </ng-container>
+        <!-- <td>{{item.rateX}}</td>
+        <td>{{item.onlineClick}}</td>
+        <td>{{item.effClick}}</td>
+        <td>{{item.onlflowidAco}}</td>
+        <td>{{item.onlSaleoppAco}}</td>
+
+        <td>{{item.rate1}}</td>
+        <td>{{item.effClickCon}}</td>
+        <td>{{item.rate2}}</td>
+        <td>{{item.rate3}}</td>
+        <td>{{item.rate4}}</td>
+        <td>{{item.lostcroAcc}}</td>
+        <td>{{item.rate5}}</td> -->
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</nz-modal>

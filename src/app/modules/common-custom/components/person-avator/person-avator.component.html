@@ -1,0 +1,16 @@
+<div class="person-avator txtcenter">
+  <nz-avatar [nzSrc]="avatarSrc" [nzSize]="60" nzIcon="user"></nz-avatar>
+  <div class="info mar-top10 mar-bot10">
+    {{userName}} | <span class="logout" (click)="logout()">退出账号</span>
+  </div>
+  <!-- <nz-dropdown>
+      <a nz-dropdown>
+        {{userName}} <i nz-icon type="down"></i>
+      </a>
+      <ul nz-menu nzSelectable >
+        <li nz-menu-item *ngFor="let item of dropdownList" (click)="dropdownEvent(item)">
+          <a>{{item.label}}</a>
+        </li>
+      </ul>
+    </nz-dropdown> -->
+</div>

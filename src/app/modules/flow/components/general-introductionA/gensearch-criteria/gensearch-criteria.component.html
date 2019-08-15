@@ -1,0 +1,232 @@
+<div class="eye-common-gform" [ngClass]="{moreOpen:isShowMore}">
+  <ng-template #formtitle>
+    <span>筛选条件</span>
+    <span class="show-more">
+      <span (click)="handleShowMore()" [ngClass]="{'more-icon': isShowMore}">
+        <ng-container *ngIf="isShowMore; else other">收起</ng-container>
+        <ng-template #other>展开</ng-template>条件<i nz-icon type="double-right" theme="outline" class="mar-left2"></i>
+      </span>
+    </span>
+  </ng-template>
+  <app-common-card [nztitle]="formtitle">
+    <div name="operate" *ngIf="isShowMyQueryPacket">
+      <button nz-button nzType="primary" *appIsshowbtn="packagePermissions" [routerLink]="queryPacketUrl">查询包管理</button>
+    </div>
+    <div [hidden]="!isShowMore" name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div nz-row>
+          <div nz-col>
+
+
+            <app-sx-select label="报名城市" [selectGroup]="validateForm" bdFormControlName="menAreaCode"
+              [optionsService]="gensearchCriteriaService" methodName="getMenAreaCodeOptions" bdPlaceHolder="请选择报名城市">
+            </app-sx-select>
+
+
+
+
+            <app-sx-select label="业务模式" [selectGroup]="validateForm" bdFormControlName="flowDataType"
+              [bdAllowClear]="false" [checkBoxRenderX]="false" bdMode="default" [bdServerSearch]="false"
+              [storeOptionsData]="flowDataTypeOptions" bdPlaceHolder="请选择业务模式"
+              (selectedValueChange)="flowDataTypeChange($event)"></app-sx-select>
+
+
+
+            <app-sx-select label="推广项目" [selectGroup]="validateForm" bdFormControlName="flConsultingProject"
+              [checkBoxRenderX]="false" [optionsService]="gensearchCriteriaService"
+              methodName="getFlConsultingProjectOptions" bdPlaceHolder="请选择推广项目"></app-sx-select>
+
+          </div>
+          <div nz-col>
+            <nz-form-item>
+              <nz-form-label [nzNoColon]="true" class="width85"></nz-form-label>
+              <nz-form-control>
+                <nz-radio-group [nzSize]="size" (ngModelChange)="periodTypeChange($event)" formControlName="periodType">
+                  <label nz-radio-button [nzValue]="'period_wid'">日<span *ngIf="isShowPurview">(范围2周内)</span></label>
+                  <label nz-radio-button [nzValue]="'week_inyear'">周<span *ngIf="isShowPurview">(范围3月内)</span></label>
+                  <label nz-radio-button [nzValue]="'period_month'">月<span *ngIf="isShowPurview">(范围6月内)</span></label>
+                  <label [hidden]="!isShowYear" nz-radio-button [nzValue]="'period_year'">年</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item *ngIf="!isShowPurview">
+              <nz-form-control>
+                <nz-range-picker [nzSize]="size" [nzAllowClear]="false" (ngModelChange)="rangePickerChange()"
+                  [nzDisabledDate]="rangePickerDisabledDate" formControlName="rangePicker"></nz-range-picker>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item *ngIf="isShowPurview">
+              <nz-form-control>
+                <nz-date-picker [nzSize]="size" [nzAllowClear]="false" [nzShowToday]="false"
+                  [nzDisabledDate]="disabledStartDate" formControlName="startTime" nzPlaceHolder="开始日期"
+                  (ngModelChange)="onStartChange($event)">
+                </nz-date-picker>
+                -
+                <nz-date-picker [nzSize]="size" [nzAllowClear]="false" [nzShowToday]="false"
+                  [nzDisabledDate]="disabledEndDate" formControlName="endTime" nzPlaceHolder="结束日期">
+                </nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+
+            <span *ngIf="isShowContrast">
+              <nz-form-item style="margin-right:0">
+                <nz-form-control>
+                  <label [nzDisabled]="!(validateForm.value.rangePicker && validateForm.value.rangePicker.length)"
+                    (ngModelChange)="isContrastChange()" nz-checkbox formControlName="isContrast">对比</label>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-date-picker [nzSize]="size" [nzAllowClear]="false" [nzDisabledDate]="contrastStartTimeDisabled"
+                    [nzDisabled]="!validateForm.value.isContrast" nzPlaceHolder="开始时间"
+                    formControlName="contrastStartTime" (ngModelChange)="contrastStartTimeChange($event)">
+                  </nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-date-picker [nzSize]="size" [nzAllowClear]="false" [nzDisabled]="true" nzPlaceHolder="结束时间"
+                    formControlName="contrastEndTime"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <div nz-row>
+            <nz-divider nzText="流量"></nz-divider>
+            <app-sx-select label="事业部" [selectGroup]="validateForm" bdFormControlName="divisionId"
+              [optionsService]="gensearchCriteriaService" methodName="getDivision" bdPlaceHolder="请选择事业部">
+            </app-sx-select>
+
+
+
+            <app-sx-select label="流量军团" [selectGroup]="validateForm" bdFormControlName="deptId1"
+              [optionsService]="gensearchCriteriaService" methodName="getDeptOptions" [bdServerSearch]="true"
+              bdPlaceHolder="请选择流量军团" (selectedValueChange)="alldeptId1Change($event)"></app-sx-select>
+
+
+
+
+            <app-sx-select label="流量组" [selectGroup]="validateForm" bdFormControlName="deptId2"
+              [optionsService]="gensearchCriteriaService" methodName="getGroupOptions" [requestParams]="paramsAll"
+              bdPlaceHolder="请选择流量组" (selectedValueChange)="alldeptId2Change($event)" [bdServerSearch]="true">
+            </app-sx-select>
+
+
+
+            <app-sx-select label="流量人员" [selectGroup]="validateForm" bdFormControlName="userId"
+              [optionsService]="gensearchCriteriaService" methodName="getUserOptions" [requestParams]="paramsAll"
+              bdPlaceHolder="请选择流量人员" (selectedValueChange)="allUserIdChange($event)" [bdServerSearch]="true">
+            </app-sx-select>
+
+
+
+            <app-sx-select label="推广账户" [selectGroup]="validateForm" bdFormControlName="accountUid"
+              [optionsService]="gensearchCriteriaService" methodName="getQueryAccount" [requestParams]="paramsAll"
+              bdPlaceHolder="请选择推广账户" (selectedValueChange)="allAccountUidChange($event)" [bdServerSearch]="true"
+              [bdDisabled]="accountUidDisabled"></app-sx-select>
+
+
+            <app-sx-select label="推广站点" [selectGroup]="validateForm" bdFormControlName="siteNumber"
+              [optionsService]="gensearchCriteriaService" methodName="getSiteNumberOptions"
+              (selectedValueChange)="allSiteNumberChange($event)" [bdServerSearch]="true" [requestParams]="paramsAll"
+              bdPlaceHolder="请选择推广站点" [bdDisabled]="siteNumberDisabled" [bdServerSearch]="true"></app-sx-select>
+
+
+
+
+            <app-sx-select label="推广账户包" [selectGroup]="validateForm" bdFormControlName="accountUids"
+              [optionsService]="gensearchCriteriaService" methodName="getQueryAccountPackage"
+              (selectedValueChange)="accountUidPackageChange($event)" bdPlaceHolder="请选择推广账户包" [bdServerSearch]="true"
+              [bdDisabled]="accountUidPackageDisabled"></app-sx-select>
+
+
+            <app-sx-select label="推广站点包" [selectGroup]="validateForm" bdFormControlName="siteNumbers"
+              [optionsService]="gensearchCriteriaService" methodName="getQuerySitePackage" bdPlaceHolder="请选择推广站点包"
+              [bdDisabled]="siteNumberPackageDisabled" [bdServerSearch]="true"
+              (selectedValueChange)="siteNumberPackageChange($event)"></app-sx-select>
+
+          </div>
+
+
+          <div nz-row>
+            <nz-divider nzText="渠道"></nz-divider>
+
+            <app-sx-select label="主域名" [selectGroup]="validateForm" bdFormControlName="webUid"
+              [optionsService]="gensearchCriteriaService" methodName="getWebUidOptions" bdPlaceHolder="请选择主域名"
+              [(selectedValue)]="checkAllData['webUid']" [bdServerSearch]="true"></app-sx-select>
+
+
+            <app-sx-select label="推广渠道" [selectGroup]="validateForm" bdFormControlName="code"
+              [optionsService]="gensearchCriteriaService" methodName="getCodeOptions" bdPlaceHolder="请选择推广渠道"
+              [bdServerSearch]="true"></app-sx-select>
+
+
+            <app-sx-select label="推广城市" [selectGroup]="validateForm" bdFormControlName="cityName"
+              [optionsService]="gensearchCriteriaService" methodName="getSpreadCitylist" bdPlaceHolder="请选择推广渠道"
+              [(selectedValue)]="checkAllData['cityName']" [bdServerSearch]="true"></app-sx-select>
+
+
+            <app-sx-select label="推广方式" [selectGroup]="validateForm" bdFormControlName="advertisersType"
+              [isShowAll]="true" [checkBoxRenderX]="false" bdMode="default" [bdAllowClear]="false"
+              [optionsService]="gensearchCriteriaService" methodName="getAdvertisersTypeOptions" bdPlaceHolder="请选择推广方式"
+              [(selectedValue)]="checkAllData['advertisersType']"></app-sx-select>
+
+
+            <app-sx-select label="载体" [selectGroup]="validateForm" bdFormControlName="carrier" bdPlaceHolder="请选择载体"
+              [storeOptionsData]="carrierOptions" [bdServerSearch]="false"></app-sx-select>
+
+            <app-sx-select label="推广来源" [selectGroup]="validateForm" bdFormControlName="source" [isShowAll]="true"
+              [checkBoxRenderX]="false" bdMode="default" [bdAllowClear]="false"
+              [optionsService]="gensearchCriteriaService" methodName="getQuerySourceName" bdPlaceHolder="请选择推广来源">
+            </app-sx-select>
+
+
+          </div>
+        </div>
+
+        <div nz-row *ngIf="isShowDimension">
+          <nz-divider [nzText]="dividerTemplate"></nz-divider>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="queryDimensionChange($event)">
+                <ng-container *ngFor="let item of checkAllData['queryDimension']">
+                  <nz-badge class="bdbadge" [nzCount]="item['num']">
+                    <label [ngModelOptions]="{standalone: true}" nz-checkbox [nzDisabled]="item['disabled']"
+                      [nzValue]="item['value']" [(ngModel)]="item['checked']">
+                      {{item['label']}}
+                    </label>
+                  </nz-badge>
+                </ng-container>
+              </nz-checkbox-wrapper>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-row class="mar-top10">
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="primary" [nzLoading]="loading">查询</button>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" (click)="resetForm($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+      </form>
+
+    </div>
+    <ng-template #dividerTemplate>
+      维度<span style="color:rgba(0, 0, 0, .6); font-size: 12px">(最多选择五个)</span>
+    </ng-template>
+  </app-common-card>
+
+
+</div>

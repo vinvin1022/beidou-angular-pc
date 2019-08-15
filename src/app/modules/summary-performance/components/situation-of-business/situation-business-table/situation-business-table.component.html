@@ -1,0 +1,76 @@
+<div class="eye-subidxnt-table">
+  <ng-template #cardTitle>
+    <span>数据列表</span>
+    <span class="update-time"
+      *ngIf="tableTreeData[0]">更新时间：{{tableTreeData[0]['winsertDt'] | date: 'yyyy/MM/dd HH:mm:ss'}}</span>
+  </ng-template>
+  <app-common-card [nztitle]="cardTitle" [isHideGrayBg]="true" style="margin-bottom:200px">
+    <div name="operate">
+      <nz-anchor [nzAffix]="false" *appIsshowbtn="'b020301'">
+        <nz-link nzHref="#real-time-chart" [nzTitle]="chartIcon"></nz-link>
+      </nz-anchor>
+      <ng-template #chartIcon>
+        <i (click)="initchart()" nz-icon nzType="bar-chart" [theme]="'fill'" style="font-size: 24px; color: #3965B4;"
+          nzTheme="outline"></i>
+      </ng-template>
+
+
+    </div>
+    <div name="middle-conent">
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
+        [nzShowTotal]='totalTemplate' [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)" #nzTableTree
+        nzBordered [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig"
+        [nzShowPagination]="false">
+        <thead (nzSortChange)="sort($event)" nzSingleSort>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <th rowspan="2" nzLeft="0px">部门/人</th>
+            <th rowspan="2" [nzShowSort]="true" nzSortKey="friallAc1">首咨分配数</th>
+            <th rowspan="2">在线名片分配</th>
+            <th rowspan="2">留言名片分配</th>
+            <th rowspan="2"><span nz-tooltip nzTitle="销机(今日首咨分配产生的销机) / 首咨分配数">有效性(%)</span></th>
+            <ng-container *ngFor="let item of fieldKeys">
+              <th *ngIf="filterFieldData[item].children.length !== 0"
+                [attr.colspan]="filterFieldData[item].children.length">{{filterFieldData[item].name}}</th>
+            </ng-container>
+          </tr>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <ng-container *ngFor="let pitem of fieldKeys">
+              <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                <th>{{item.label}}</th>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children"
+                  [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                  <span>{{item.showName || '--'}}</span>
+                </td>
+                <td>{{item.friallAc1}}</td>
+                <td>{{item.friallAc2}}</td>
+                <td>{{item.friallAc3}}</td>
+                <td>{{item.effRate}}%</td>
+                <ng-container *ngFor="let ppitem of fieldKeys">
+                  <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+            </ng-template>
+          </ng-template>
+
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <div id="real-time-chart">
+    <app-real-time-chart *appIsshowbtn="'b020301'"></app-real-time-chart>
+  </div>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

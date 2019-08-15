@@ -1,0 +1,8 @@
+<div class="eye-release-monitoring">
+  <div class="subrelease-paration">
+    <app-common-form [packagePermissions]="packagePermissions" [isShowPurview]="true" [isShowContrast]="false" [isShowRegistCity]="false" [isShowMenAreaName]="false" queryPacketUrl="/flow/releaseMonitoring/releaseQueryPacket" [isShowYear]="false" [isShowDimension]="true" (sendQueryData)="getQueryData($event)"></app-common-form>
+  </div>
+  <div class="mar-top20">
+    <app-subrelease-table [filterData]="filterData"></app-subrelease-table>
+  </div>
+</div>

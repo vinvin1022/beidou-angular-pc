@@ -1,0 +1,49 @@
+<div class="eye-subderivation-table">
+  <app-common-card nztitle="数据列表" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button nzType="info" *appIsshowbtn="'b030601'" [disabled]="!(dataTable && dataTable.length)" (click)="exportSpreadPlanExport()">导出</button>
+    </div>
+    <div name="middle-conent">
+
+      <nz-table #nzTable [nzData]="dataTable" #nzDataTable nzShowSizeChanger nzBordered [nzFrontPagination]="false"
+        [nzLoading]="loading" [nzTotal]="total" [nzShowTotal]='totalTemplate' [nzPageSizeOptions]="pageSizeList"
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageNoChange($event)"
+        (nzPageSizeChange)="pageSizeChange($event)">
+        <thead>
+          <tr *ngIf="dataTable && dataTable.length">
+            <th nzWidth="160px" nzLeft="0px">推广日期</th>
+            <th>渠道名称</th>
+            <th>推广账号</th>
+            <th>计划ID</th>
+
+            <th>计划名称</th>
+            <th>展示量</th>
+            <th>点击量</th>
+            <th>账面消费</th>
+            <th>点击率</th>
+            <th>点击均价</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data">
+            <td nzWidth="160px" nzLeft="0px">{{data.spreadDateStr}}</td>
+            <td>{{data.channelName}}</td>
+            <td>{{data.channelAccount}}</td>
+            <td>{{data.spreadPlanId}}</td>
+
+            <td>{{data.spreadPlanName}}</td>
+            <td>{{data.showNumber}}</td>
+            <td>{{data.click}}</td>
+            <td>{{data.consume}}</td>
+            <td>{{data.clickRate}}</td>
+            <td>{{data.averagePrice}}</td>
+
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

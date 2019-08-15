@@ -1,0 +1,16 @@
+<div class="eye-home-page">
+  <div nz-row nzType="flex" nzJustify="space-around">
+    <app-realtime-kanban nz-col nzSpan="16"></app-realtime-kanban>
+    <app-performance-ranking nz-col nzSpan="8"></app-performance-ranking>
+  </div>
+
+  <div class="mar-top20 row-data" nz-row nzType="flex" nzJustify="space-around">
+    <app-financial-consumption nz-col nzSpan="12" #financialConsumption></app-financial-consumption>
+    <app-electric-time nz-col nzSpan="12" #electrictime></app-electric-time>
+  </div>
+
+  <div class="mar-top20 row-data" nz-row nzType="flex" nzJustify="space-around">
+    <app-appointment-sheet nz-col nzSpan="12" #appointmentSheet></app-appointment-sheet>
+    <app-cost-ratio nz-col nzSpan="12" #costRatio></app-cost-ratio>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="eye-subextension-table">
+  <app-common-card nztitle="推广指标（{{newFlowDataType === '1' ? '电销' : '网销'}}）" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button *appIsshowbtn="'b030201'" nzType="info" [disabled]="!((pageInfo1 && pageInfo1.length) || (pageInfo2 && pageInfo2.length))"
+        (click)="flowExportExportExtension()">导出</button>
+    </div>
+    <div name="middle-conent">
+      <div nz-row nzType="flex" nzJustify="center" nzAlign="top">
+        <div nz-col nzSpan="12" [nzMd]="24" [nzLg]="12">
+          <div class="mar-right5">
+            <nz-table [nzLoadingDelay]="2" nzBordered [nzLoading]="pageInfoLoading" #pageInfo1Table [nzShowPagination]="false"
+              [nzFrontPagination]="false" [nzData]="pageInfo1" [nzScroll]="nz1ScrollData" [nzWidthConfig]="nzWidthConfig1">
+              <thead>
+                <tr>
+                  <ng-container *ngFor="let item of pageInfo1Title; let idx = index">
+                    <th *ngIf="idx == 0;else other_content" nzLeft="0px">{{item}}</th>
+                    <ng-template #other_content>
+                      <th>{{item}}</th>
+                    </ng-template>
+                  </ng-container>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of pageInfo1Table.data">
+                  <ng-container *ngFor="let item of pageInfo1Title; let idx = index;">
+                    <td *ngIf="idx === 0" nzLeft="0px">{{data['a'+idx]}}</td>
+                    <td *ngIf="idx !== 0">{{data['a'+idx]}}</td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div nz-col nzSpan="12" [nzMd]="24" [nzLg]="12">
+          <div class="mar-left5">
+            <nz-table [nzLoadingDelay]="2" nzBordered [nzLoading]="pageInfoLoading" #pageInfo2Table [nzShowPagination]="false"
+              [nzFrontPagination]="false" [nzData]="pageInfo2" [nzScroll]="nz2ScrollData" [nzWidthConfig]="nzWidthConfig2">
+              <thead>
+                <tr>
+                  <ng-container *ngFor="let item of pageInfo2Title; let idx = index">
+                    <th *ngIf="idx == 0;else other_content" nzLeft="0px">{{item}}</th>
+                    <ng-template #other_content>
+                      <th>{{item}}</th>
+                    </ng-template>
+                  </ng-container>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of pageInfo2Table.data">
+                  <ng-container *ngFor="let item of pageInfo2Title; let idx = index;">
+                    <td *ngIf="idx === 0" nzLeft="0px">{{data['a'+idx]}}</td>
+                    <td *ngIf="idx !== 0">{{data['a'+idx]}}</td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </app-common-card>
+</div>

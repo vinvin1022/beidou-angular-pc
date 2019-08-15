@@ -1,0 +1,26 @@
+<div class="eye-net-index">
+  <app-reach-order-tasksform [showSaleCategory]="false" [showTime]="false" (sendQueryData)="getFilterData($event)">
+  </app-reach-order-tasksform>
+  <div class="mar-top20">
+
+
+    <app-sx-table [cardTitle]="cardTitle" [serviceNameClass]="serviceNameClass" [methodName]="methodName"
+      [tableFields]="tableFields" [treeFields]="treeFields" [filterData]="filterData" [exportMethod]="exportMethod">
+
+      <!-- <ng-template #exportsbtn let-tableTreeData>
+        <button nz-button *appIsshowbtn="'b040901'" [disabled]="!(tableTreeData && tableTreeData.length)" nzType="info"
+          (click)="exportsFile()">导出</button>
+      </ng-template> -->
+
+
+
+
+    </app-sx-table>
+
+  </div>
+  <ng-template #cardTitle>
+    <span>数据列表</span>
+    <span class="update-time" *ngIf="filterData">时间：{{filterData['startTime'] | date: 'yyyy/MM/dd'}} -
+      {{filterData['endTime'] | date: 'yyyy/MM/dd'}}</span>
+  </ng-template>
+</div>

@@ -1,0 +1,43 @@
+<div class="eye-subderivation-paration">
+  <app-common-card nztitle="筛选条件">
+    <div name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label nzFor="channelNo">推广渠道</nz-form-label>
+          <nz-form-control>
+            <nz-select [nzServerSearch]="true" (nzOpenChange)="openCodeChange($event)" (nzOnSearch)="getCodeOptions()"
+              id="channelNo" nzMode="multiple" style="width: 180px;" formControlName="channelNoList" nzAllowClear nzPlaceHolder="请选择推广渠道">
+              <!-- <nz-option *ngIf="!optionsLoading" nzValue="全部" nzLabel="全部"></nz-option> -->
+              <ng-container *ngFor="let item of channelNoOptions">
+                <nz-option *ngIf="!optionsLoading" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+              </ng-container>
+              <nz-option *ngIf="optionsLoading" nzDisabled nzCustomContent>
+                <i nz-icon type="loading" class="loading-icon"></i> 加载中...
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item>
+            <nz-form-label>推广日期</nz-form-label>
+          <nz-form-control>
+            <nz-range-picker [nzAllowClear]="false" [nzDisabledDate]="rangePickerDisabledDate" [nzAllowClear]="false" (ngModelChange)="rangePickerChange($event)"
+              formControlName="rangePicker"></nz-range-picker>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzType="primary" [nzLoading]="loading">查询</button>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button (click)="resetForm($event)" [nzLoading]="loading">重置</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </app-common-card>
+</div>

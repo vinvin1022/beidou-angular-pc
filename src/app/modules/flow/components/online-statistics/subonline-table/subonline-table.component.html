@@ -1,0 +1,108 @@
+<div class="eye-subonline-table">
+  <app-common-card nztitle="在线统计({{newFlowDataType === '1' ? '电销' : '网销'}})" [isHideGrayBg]="true">
+    <div name="operate" class="btnsCtrol">
+      <div style="line-height:45px">
+        <button nz-button class="btn-item"
+          appDownloadTemplate="https://sx-silk-bag.oss-cn-shenzhen.aliyuncs.com/file/xn_update.xlsx">
+          <i nz-icon type="download"></i><span>下载模板</span>
+        </button>
+      </div>
+      <app-upload-file class="btn-item upload" [bduploadFileUrl]="bduploadFileUrl"></app-upload-file>
+      <div style="line-height:45px">
+        <!-- <button class="btn-item export" nz-button nzType="info" *appIsshowbtn="'b030501'" [disabled]="!(tableTreeData && tableTreeData.length)"
+          (click)="exportOnline()">导出</button> -->
+        <button class="btn-item export" nz-button nzType="info" *appIsshowbtn="'b030501'"
+          [disabled]="!(tableTreeData && tableTreeData.length)" appExportExecl [getExportsParams]="getExportsParams"
+          url="dms/excelExport/exportStatisticalOnline">导出</button>
+
+
+      </div>
+    </div>
+    <div name="middle-conent">
+
+      <!-- <nz-table #nzTable [nzData]="dataTable" #nzDataTable nzShowSizeChanger nzBordered [nzShowTotal]="showTotal"
+        [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total" [nzPageSizeOptions]="pageSizeList"
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageNoChange($event)"
+        (nzPageSizeChange)="pageSizeChange($event)"> -->
+      <nz-table #nzTableTree nzBordered [nzLoading]="loading" [nzFrontPagination]="false" [nzShowPagination]="false"
+        [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+        <thead>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <th nzLeft="0px">在线部门/在线咨询师</th>
+            <!-- <ng-container *ngFor="let sitem of onlineStatisticsCustomFieldData">
+              <th>{{sitem.label}}</th>
+            </ng-container> -->
+
+            <ng-container *ngFor="let pitem of fieldKeys">
+              <ng-container *ngFor="let sitem of filterFieldData[pitem].children">
+                <th>{{sitem.label}}</th>
+              </ng-container>
+            </ng-container>
+
+
+
+
+            <!-- <th>X率(%)</th>
+            <th>在线点击数</th>
+            <th>点击有效数</th>
+            <th>在线名片</th>
+            <th>在线销机</th>
+
+
+
+            <th>对话有效率(%)</th>
+            <th>发起到有效数</th>
+            <th>发起到有效率(%)</th>
+            <th>在线转化率(%)</th>
+            <th>在线接通率(%)</th>
+            <th>无控场数</th>
+            <th>无控场率(%)</th> -->
+
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children"
+                  [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                  <a (click)="showDetail(item)" *ngIf="item.deptName !== '合计'">{{item.deptName || '--'}}</a>
+                  <span *ngIf="item.deptName === '合计'">{{item.deptName || '--'}}</span>
+                </td>
+                <!-- <ng-container *ngFor="let sitem of onlineStatisticsCustomFieldData">
+                  <td>{{item[sitem.value]}}</td>
+                </ng-container> -->
+
+                <ng-container *ngFor="let ppitem of fieldKeys">
+                  <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container>
+                </ng-container>
+
+                <!-- <td>{{item.rateX}}</td>
+                <td>{{item.onlineClick}}</td>
+                <td>{{item.effClick}}</td>
+                <td>{{item.onlflowidAco}}</td>
+                <td>{{item.onlSaleoppAco}}</td>
+
+                <td>{{item.rate1}}</td>
+                <td>{{item.effClickCon}}</td>
+                <td>{{item.rate2}}</td>
+                <td>{{item.rate3}}</td>
+                <td>{{item.rate4}}</td>
+                <td>{{item.lostcroAcc}}</td>
+                <td>{{item.rate5}}</td> -->
+
+              </tr>
+            </ng-template>
+          </ng-template>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <app-online-detail-list #onlineDetailList [reportDimensionParams]="onlineParams"></app-online-detail-list>
+
+  <!-- <ng-template #showTotal>
+    共 {{total}} 条
+  </ng-template> -->
+</div>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>北斗大数据平台</title>
+  <!-- <base href="/"> -->
+
+  <script>
+    document.write('<base href="' + document.location.origin + '" />');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google" content="notranslate" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    #root-page {
+      display: block;
+    }
+
+    #ngzz {
+      display: none;
+    }
+
+    .ngzz {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .ngzz .tips {
+      width: 100%;
+      font-size: 16px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .ngzz .tips a {
+      font-size: 15px;
+    }
+
+    .ngzz .spinner {
+      margin: 200px auto 50px;
+      width: 100px;
+      height: 60px;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    .spinner>div {
+      background-color: #67CF22;
+      height: 100%;
+      width: 6px;
+      display: inline-block;
+
+      -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+      animation: stretchdelay 1.2s infinite ease-in-out;
+    }
+
+    .spinner .rect2 {
+      -webkit-animation-delay: -1.1s;
+      animation-delay: -1.1s;
+    }
+
+    .spinner .rect3 {
+      -webkit-animation-delay: -1.0s;
+      animation-delay: -1.0s;
+    }
+
+    .spinner .rect4 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+
+    .spinner .rect5 {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
+    }
+
+
+    .spinner .rect6 {
+      -webkit-animation-delay: -0.7s;
+      animation-delay: -0.7s;
+    }
+
+    .spinner .rect7 {
+      -webkit-animation-delay: -0.6s;
+      animation-delay: -0.6s;
+    }
+
+    .spinner .rect8 {
+      -webkit-animation-delay: -0.5s;
+      animation-delay: -0.5s;
+    }
+
+    .spinner .rect9 {
+      -webkit-animation-delay: -0.4s;
+      animation-delay: -0.4s;
+    }
+
+    @-webkit-keyframes stretchdelay {
+
+      0%,
+      40%,
+      100% {
+        -webkit-transform: scaleY(0.4)
+      }
+
+      20% {
+        -webkit-transform: scaleY(1.0)
+      }
+    }
+
+    @keyframes stretchdelay {
+
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+      }
+
+      20% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- oncontextmenu="return false" ondragstart="return false" onselectstart="return false"
+    onselect="document.selection.empty()" oncopy="alert('对不起，禁止复制！');return false;" onbeforecopy="return false"
+    onmouseup="document.selection.empty()" -->
+
+  <app-root id="root-page">
+    <div class="ngzz">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+        <div class="rect6"></div>
+        <div class="rect7"></div>
+        <div class="rect8"></div>
+        <div class="rect9"></div>
+      </div>
+    </div>
+  </app-root>
+
+  <div class="ngzz" id="ngzz">
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+      <div class="rect6"></div>
+      <div class="rect7"></div>
+      <div class="rect8"></div>
+      <div class="rect9"></div>
+    </div>
+    <div id="tips" class="tips">提示：当前浏览器不兼容，建议使用谷歌浏览器，<a
+        href="https://a2a6b615f11e2b531fb243c562b827eb.dd.cdntips.com/dl.softmgr.qq.com/original/Browser/73.0.3683.86_chrome_installer.exe">请点击下载安装包</a>
+    </div>
+  </div>
+
+  <script>
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if ((userAgent.indexOf('chrome') <= 0)) {
+      document.getElementById('ngzz').style.display = 'block';
+      document.getElementById('root-page').style.display = 'none';
+    } else {
+      document.getElementById('root-page').style.display = 'block';
+      document.getElementById('ngzz').style.display = 'none';
+    }
+  </script>
+
+  <script>
+    if (!sessionStorage.getItem('token') || !sessionStorage.getItem('proId')) {
+      const search = location.search.replace('?', '');
+      const params = search.split('&');
+      const searchParams = {};
+      params.forEach(value => {
+        const [key, val] = value.split('=');
+        searchParams[key] = val;
+      })
+      sessionStorage.setItem('token', searchParams.token);
+      sessionStorage.setItem('proId', searchParams.proId);
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+<div class="eye-net-index">
+  <app-dropout-complaint-process-form [isShowDutyState]="false" [isShowRangePicker]="false"
+    (sendQueryData)="getFilterData($event)">
+  </app-dropout-complaint-process-form>
+  <div class="mar-top20">
+    <app-showbusiness-table [filterData]="filterData"></app-showbusiness-table>
+  </div>
+</div>

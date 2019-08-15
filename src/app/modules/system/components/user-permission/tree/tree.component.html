@@ -1,0 +1,12 @@
+<div class="eye-tree">
+  <nz-input-group [nzSuffix]="suffixIcon">
+    <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />
+  </nz-input-group>
+  <ng-template #suffixIcon>
+    <i nz-icon type="search"></i>
+  </ng-template>
+  <nz-tree [nzData]="treeNodes" nzAsyncData [nzSearchValue]="searchValue" nzCheckable nzMultiple
+    [nzCheckedKeys]="defaultCheckedKeys" [nzExpandedKeys]="defaultExpandedKeys" [nzSelectedKeys]="defaultSelectedKeys"
+    (nzCheckBoxChange)="nzEvent($event)">
+  </nz-tree>
+</div>

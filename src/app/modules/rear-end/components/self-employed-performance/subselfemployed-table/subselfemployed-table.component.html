@@ -1,0 +1,49 @@
+<div class="eye-subonline-table">
+  <app-common-card nztitle="自营业绩" [isHideGrayBg]="true">
+    <div name="operate">
+      <ng-template [appIsshowbtn]="'b060101'">
+        <button nz-button [disabled]="!(displayData && displayData.length)" nzType="info"
+          (click)="exportSelfPerformance()">导出</button>
+      </ng-template>
+    </div>
+    <div name="middle-conent">
+
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #filterTable [nzData]="displayData" nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+        [nzScroll]="{ x: '830px', y: '500px' }"
+        [nzWidthConfig]="['80px', '100px', '150px', '100px', '100px', '100px', '100px', '100px']">
+
+        <thead>
+          <tr *ngIf="displayData && displayData.length">
+            <th>序号</th>
+            <th nzShowSort [(nzSort)]="sortMap.periodWid" (nzSortChange)="sort('periodWid',$event)">日期</th>
+            <th>部门</th>
+            <th>班主任</th>
+            <th>在岗状态</th>
+            <th nzShowSort [(nzSort)]="sortMap.performance" (nzSortChange)="sort('performance',$event)">业绩</th>
+            <th nzShowSort [(nzSort)]="sortMap.convertPerformance" (nzSortChange)="sort('convertPerformance',$event)">
+              折算业绩</th>
+            <th nzShowSort [(nzSort)]="sortMap.bonus" (nzSortChange)="sort('bonus',$event)">奖金</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of filterTable.data; let idx = index">
+            <td>{{idx + 1}}</td>
+            <td class="x">{{data.periodWid}}</td>
+            <td>{{data.deptName}}</td>
+            <td>{{data.sellerName}}</td>
+            <td>{{data.stateName}}</td>
+            <td>{{data.performance}}</td>
+            <td>{{data.convertPerformance}}</td>
+            <td>{{data.bonus}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

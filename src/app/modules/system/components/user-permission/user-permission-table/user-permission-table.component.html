@@ -1,0 +1,53 @@
+<div class="eye-user-permission-table">
+  <app-common-card [nztitle]="''" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button nzType="info" (click)="createRole()">新增用户</button>
+    </div>
+    <div name="middle-conent">
+
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #filterTable [nzData]="displayData" nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+        [nzScroll]="{ x: '830px', y: '500px' }" [nzWidthConfig]="['100px', '100px', '100px', '100px']">
+
+        <thead>
+          <tr *ngIf="displayData && displayData.length">
+            <th>用户姓名</th>
+            <th>角色</th>
+            <th>权限</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of filterTable.data; let idx = index">
+            <td>{{data.userName}}</td>
+            <td>{{data.roleName}}</td>
+            <td>{{data.resourceName}}</td>
+            <td>
+              <a class="mar-right10" (click)="editUserRole(data)">编辑</a>
+              <nz-popconfirm [nzTitle]="'确认要删除吗?'" (nzOnConfirm)="deleteUserRole(data.id)">
+                <a class="mar-right10" nz-popconfirm>删除</a>
+              </nz-popconfirm>
+              <a class="mar-right10" (click)="showOrganizational(data)">组织权限</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' }"
+    [nzClosable]="true" [nzVisible]="visible" nzPlacement="right" nzTitle="组织权限" (nzOnClose)="close()">
+    <app-tree (sendSaveUserDateParams)="getSaveUserDateParams($event)" [treeNodes]="treeNodes"
+      [defaultCheckedKeys]="defaultCheckedKeys"></app-tree>
+    <div class="eye-user-permission-footer">
+      <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>取消</span></button>
+      <button type="button" (click)="submit()" class="ant-btn ant-btn-primary"><span>提交</span></button>
+    </div>
+  </nz-drawer>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+
+  <app-ctrl-upermission-dialog (sendNotify)="freshen()" #ctrlUpermissionDialog></app-ctrl-upermission-dialog>
+</div>

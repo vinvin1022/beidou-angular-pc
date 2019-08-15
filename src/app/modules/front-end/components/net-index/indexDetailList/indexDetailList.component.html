@@ -1,0 +1,106 @@
+<nz-modal [(nzVisible)]="isVisible" nzWidth="90%" nzTitle="数据详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
+  <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true"
+    [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #nzTable [nzData]="displayData" nzBordered [(nzPageIndex)]="pageIndex"
+    [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+    [nzShowPagination]="true" [nzWidthConfig]="widthConfig" [nzScroll]="{ x:widthConfig.length * 100 + 'px',y: '500px' }">
+    <thead>
+      <tr>
+        <th nzLeft="0px">咨询师</th>
+        <th nzLeft="99px">日期</th>
+        <ng-container *ngFor="let pitem of fieldKeys">
+            <ng-container *ngFor="let item of filterFieldData[pitem].children">
+              <th>{{item.label}}</th>
+            </ng-container>
+          </ng-container>
+        <!-- <ng-container *ngFor="let sitem of filterFieldData">
+          <th>{{sitem.label}}</th>
+        </ng-container> -->
+        <!-- <th>名片数</th>
+        <th>通过率(%)</th>
+        <th>销售机会数</th>
+        <th>流水</th>
+        <th>当周流水</th>
+        <th>上周流水</th>
+        <th>历史流水</th>
+        <th>通话时长</th>
+
+        <th>通话次数</th>
+        <th>接通率(%)</th>
+        <th>预约数</th>
+        <th>预约到期数</th>
+        <th>到访数</th>
+        <th>预约到访率(%)</th>
+        <th>报名数</th>
+        <th>当周报名数</th>
+
+        <th>上周报名数</th>
+        <th>跨期报名数</th>
+        <th>销转(%)</th>
+        <th>当周销转(%)</th>
+        <th>上周销转(%)</th>
+        <th>历史销转(%)</th>
+        <th>报名率(%)</th>
+        <th>服务时效</th>
+
+        <th>分配时效</th>
+        <th>ARPU</th>
+        <th>RPA</th>
+        <th>销机报名数</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of nzTable.data">
+        <td nzLeft="0px">{{item.deptUserName}}</td>
+        <td nzLeft="99px">{{item.periodWid}}</td>
+        <ng-container *ngFor="let ppitem of fieldKeys">
+            <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+              <td>{{item[sitem.value]}}</td>
+            </ng-container>
+          </ng-container>
+        <!-- <ng-container *ngFor="let sitem of filterFieldData">
+          <td>{{item[sitem.value]}}</td>
+        </ng-container> -->
+        <!-- <td>{{item.flowidAco}}</td>
+        <td>{{item.rate1}}</td>
+        <td>{{item.effordersAcoFlow}}</td>
+        <td>{{item.ordersAmo}}</td>
+        <td>{{item.acoAmoWk}}</td>
+        <td>{{item.acoAmoLwk}}</td>
+        <td>{{item.acoAmoHiswk}}</td>
+        <td>{{item.calLongTime}}</td>
+
+        <td>{{item.callAco}}</td>
+        <td>{{item.rate2}}</td>
+        <td>{{item.orderAco}}</td>
+        <td>{{item.expOrderDay}}</td>
+        <td>{{item.visitAco}}</td>
+        <td>{{item.rate}}</td>
+        <td>{{item.ordersAco}}</td>
+        <td>{{item.acoSignWk}}</td>
+
+        <td>{{item.acoSignLwk}}</td>
+        <td>{{item.acoSignHiswk}}</td>
+        <td>{{item.rate3}}</td>
+        <td>{{item.rate4}}</td>
+        <td>{{item.rate5}}</td>
+        <td>{{item.rate6}}</td>
+        <td>{{item.rate7}}</td>
+        <td>{{item.rate8}}</td>
+
+        <td>{{item.rate9}}</td>
+        <td>{{item.arpu}}</td>
+        <td>{{item.rpa}}</td>
+        <td>{{item.effordersAco}}</td> -->
+      </tr>
+
+
+
+
+    </tbody>
+   
+  </nz-table>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</nz-modal>

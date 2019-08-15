@@ -1,0 +1,14 @@
+<div class="eye-achievement" #eyeAchievement>
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="业绩排行">
+      <div class="operate">
+        <span (click)="getAchievementData('day')" class="today" [ngClass]="{active:orderDate === 'day'}">今天</span>
+        <span (click)="getAchievementData('week')" class="thisweek" [ngClass]="{active:orderDate === 'week'}">本周</span>
+        <span (click)="getAchievementData('month')" class="thismonth" [ngClass]="{active:orderDate === 'month'}">本月</span>
+      </div>
+      <div class="a">
+        <div id="achievement-charts" style="height:210px"></div>
+      </div>
+    </app-eye-card>
+  </nz-spin>
+</div>

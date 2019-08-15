@@ -1,0 +1,171 @@
+<div class="eye-subonline-table">
+  <app-common-card nztitle="每日通时" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button nzType="primary" (click)="showMeetStandard()" *appIsshowbtn="'b060202'"
+        class="mar-right10">设置通时达标值</button>
+      <button nz-button *appIsshowbtn="'b060201'" [disabled]="!(displayData && displayData.length)" nzType="info"
+        (click)="exportDailyTime()">导出</button>
+    </div>
+    <div name="middle-conent">
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #filterTable [nzData]="displayData" nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+        [nzWidthConfig]="nzWidthConfig" [nzScroll]="nzScroll">
+        <thead>
+          <tr *ngIf="displayData && displayData.length">
+            <th colspan="5"></th>
+            <th *ngIf="filedsObject['efficacious'].ishow" colspan="7">有效通话数<span class="yx"
+                (click)="showHidden('efficacious')"><span
+                  *ngIf="filedsObject['efficacious'].ishow">（<i>隐藏时段</i>）</span><span class="show-filed"
+                  *ngIf="!filedsObject['efficacious'].ishow">（<i>显示时段</i>）</span></span></th>
+            <th *ngIf="!filedsObject['efficacious'].ishow" colspan="1">有效通话数<span class="yx"
+                (click)="showHidden('efficacious')"><span
+                  *ngIf="filedsObject['efficacious'].ishow">（<i>隐藏时段</i>）</span><span class="show-filed"
+                  *ngIf="!filedsObject['efficacious'].ishow">（<i>显示时段</i>）</span></span></th>
+
+            <th *ngIf="filedsObject['externalCall'].ishow" colspan="7">外呼通时(秒)<span class="yx"
+                (click)="showHidden('externalCall')"><span
+                  *ngIf="filedsObject['externalCall'].ishow">（<i>隐藏时段</i>）</span><span class="show-filed"
+                  *ngIf="!filedsObject['externalCall'].ishow">（<i>显示时段</i>）</span></span></th>
+            <th *ngIf="!filedsObject['externalCall'].ishow" colspan="1">外呼通时(秒) <span class="yx"
+                (click)="showHidden('externalCall')"><span
+                  *ngIf="filedsObject['externalCall'].ishow">（<i>隐藏时段</i>）</span><span class="show-filed"
+                  *ngIf="!filedsObject['externalCall'].ishow">（<i>显示时段</i>）</span></span></th>
+
+            <th *ngIf="filedsObject['averageTime'].ishow" colspan="7">通话均时(秒)<span class="yx"
+                (click)="showHidden('averageTime')"><span
+                  *ngIf="filedsObject['averageTime'].ishow">（<i>隐藏时段</i>）</span><span class="show-filed"
+                  *ngIf="!filedsObject['averageTime'].ishow">（<i>显示时段</i>）</span></span></th>
+            <th *ngIf="!filedsObject['averageTime'].ishow" colspan="1">通话均时(秒)<span class="yx"
+                (click)="showHidden('averageTime')"><span
+                  *ngIf="filedsObject['averageTime'].ishow">（<i>隐藏时段</i>）</span><span class="show-filed"
+                  *ngIf="!filedsObject['averageTime'].ishow">（<i>显示时段</i>）</span></span></th>
+
+            <th></th>
+          </tr>
+
+          <tr *ngIf="displayData && displayData.length">
+            <th>序号</th>
+            <th nzShowSort [(nzSort)]="sortMap.periodWid" (nzSortChange)="sort('periodWid',$event)">日期</th>
+            <th>部门</th>
+            <th>班主任</th>
+            <th>坐席号</th>
+
+            <ng-container *ngIf="filedsObject['efficacious'].ishow">
+              <th>0-12</th>
+              <th>12-14</th>
+              <th>14-17</th>
+              <th>17-19</th>
+              <th>19-21</th>
+              <th>21-24</th>
+            </ng-container>
+            <th>合计</th>
+
+            <ng-container *ngIf="filedsObject['externalCall'].ishow">
+              <th>0-12</th>
+              <th>12-14</th>
+              <th>14-17</th>
+              <th>17-19</th>
+              <th>19-21</th>
+              <th>21-24</th>
+            </ng-container>
+            <th>合计</th>
+
+            <ng-container *ngIf="filedsObject['averageTime'].ishow">
+              <th>0-12</th>
+              <th>12-14</th>
+              <th>14-17</th>
+              <th>17-19</th>
+              <th>19-21</th>
+              <th>21-24</th>
+            </ng-container>
+            <th>合计</th>
+
+            <th>排班</th>
+
+            <!-- <th nzShowSort [(nzSort)]="sortMap.address" (nzSortChange)="sort('address',$event)" [nzFilters]="filterAddressList" (nzFilterChange)="search(searchNameList,$event)">Address</th> -->
+          </tr>
+        </thead>
+
+
+        <tbody>
+          <tr *ngFor="let data of filterTable.data; let idx = index">
+            <td>{{idx + 1}}</td>
+            <td>{{data.periodWid}}</td>
+            <td>{{data.deptName}}</td>
+            <td>{{data.sellerName}}</td>
+            <td>{{data.seatNumber}}</td>
+
+            <ng-container *ngIf="filedsObject['efficacious'].ishow">
+              <td [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[0]['numberCalls']) > data.effCaltimes12}">
+                {{data.effCaltimes12}}</td>
+              <td [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[1]['numberCalls']) > data.effCaltimes14}">
+                {{data.effCaltimes14}}</td>
+              <td [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[2]['numberCalls']) > data.effCaltimes17}">
+                {{data.effCaltimes17}}</td>
+              <td [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[3]['numberCalls']) > data.effCaltimes19}">
+                {{data.effCaltimes19}}</td>
+              <td [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[4]['numberCalls']) > data.effCaltimes21}">
+                {{data.effCaltimes21}}</td>
+              <td [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[5]['numberCalls']) > data.effCaltimes24}">
+                {{data.effCaltimes24}}</td>
+            </ng-container>
+            <td>{{data.effCaltimes}}</td>
+
+            <ng-container *ngIf="filedsObject['externalCall'].ishow">
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[0]['outgoingCall']) > data.outeffLongtimes12}">
+                {{data.outeffLongtimes12a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[1]['outgoingCall']) > data.outeffLongtimes14}">
+                {{data.outeffLongtimes14a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[2]['outgoingCall']) > data.outeffLongtimes17}">
+                {{data.outeffLongtimes17a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[3]['outgoingCall']) > data.outeffLongtimes19}">
+                {{data.outeffLongtimes19a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[4]['outgoingCall']) > data.outeffLongtimes21}">
+                {{data.outeffLongtimes21a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[5]['outgoingCall']) > data.outeffLongtimes24}">
+                {{data.outeffLongtimes24a}}</td>
+            </ng-container>
+            <td>{{data.outeffLongtimesa}}</td>
+
+            <ng-container *ngIf="filedsObject['averageTime'].ishow">
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[0]['averageCall']) > data.outeffLongtimes12}">
+                {{data.avgeffLongtimes12a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[1]['averageCall']) > data.outeffLongtimes14}">
+                {{data.avgeffLongtimes14a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[2]['averageCall']) > data.outeffLongtimes17}">
+                {{data.avgeffLongtimes17a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[3]['averageCall']) > data.outeffLongtimes19}">
+                {{data.avgeffLongtimes19a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[4]['averageCall']) > data.outeffLongtimes21}">
+                {{data.avgeffLongtimes21a}}</td>
+              <td
+                [ngClass]="{tdbgredcolorw: (dailyTimes.length && dailyTimes[5]['averageCall']) > data.outeffLongtimes24}">
+                {{data.avgeffLongtimes24a}}</td>
+            </ng-container>
+            <td>{{data.avgeffLongtimesa}}</td>
+
+            <td>{{data.classSecondName}}</td>
+
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <app-set-meet-standard (setupSuccess)="recalculate()" #setMeetStandard></app-set-meet-standard>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

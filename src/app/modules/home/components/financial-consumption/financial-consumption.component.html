@@ -1,0 +1,17 @@
+<div class="mar-right5 eye-financial-consumption" #eyeFinancialConsumption>
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="七日内财务消费">
+      <div class="operate">
+        <span (click)="getSevenDayFinance('0')" class="all" [ngClass]="{active:flowDataType === '0'}">全部</span>
+        <span (click)="getSevenDayFinance('1')" class="electric" [ngClass]="{active:flowDataType === '1'}">电销</span>
+        <span (click)="getSevenDayFinance('2')" class="netpin" [ngClass]="{active:flowDataType === '2'}">网销</span>
+      </div>
+      <div class="a">
+        <div [hidden]="!echartsData.length" #consumptionCharts id="consumption-charts" style="height:300px"></div>
+        <div [hidden]="echartsData.length" style="height:300px; padding-top: 50px">
+          <nz-empty></nz-empty>
+        </div>
+      </div>
+    </app-eye-card>
+  </nz-spin>
+</div>

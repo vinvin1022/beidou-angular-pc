@@ -1,0 +1,8 @@
+<div class="eye-sales-target">
+  <div class="subsales-paration">
+    <app-common-form [packagePermissions]="packagePermissions" [isShowDimension]="false" queryPacketUrl="/flow/salesTarget/salesQueryPacket" (sendQueryData)="getQueryData($event)"></app-common-form>
+  </div>
+  <div class="mar-top20">
+    <app-subsales-table [filterData]="filterData"></app-subsales-table>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="eye-traffic-search-form">
+  <ng-template #formtitle>
+    <span>筛选条件</span>
+  </ng-template>
+  <app-common-card [nztitle]="formtitle">
+    <div name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+        <app-sx-select label="流量军团" [selectGroup]="validateForm" bdFormControlName="dept1List"
+          [optionsService]="trafficSearchFormService" methodName="getSelectDept1" [bdServerSearch]="true"
+          bdPlaceHolder="请选择流量军团" (selectedValueChange)="alldept1ListChange($event)"></app-sx-select>
+        <app-sx-select label="流量组" [selectGroup]="validateForm" bdFormControlName="dept2List"
+          [optionsService]="trafficSearchFormService" methodName="getSelectDept2" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择流量组" (selectedValueChange)="alldept2ListChange($event)" [bdServerSearch]="true">
+        </app-sx-select>
+
+
+        <app-sx-select label="流量人员" [selectGroup]="validateForm" bdFormControlName="userList"
+          [optionsService]="trafficSearchFormService" methodName="getSelectUserByDept" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择流量人员" (selectedValueChange)="alluserListChange($event)" [bdServerSearch]="true">
+        </app-sx-select>
+
+        <app-sx-select label="推广方式" [selectGroup]="validateForm" bdFormControlName="advertisersTypeList"
+          [isShowAll]="true" [checkBoxRenderX]="false" bdMode="default" [optionsService]="flowcommonform"
+          methodName="getAdvertisersTypeOptions" bdPlaceHolder="请选择推广方式">
+        </app-sx-select>
+        <app-sx-select label="推广渠道" [selectGroup]="validateForm" bdFormControlName="advertisersNameList"
+          [optionsService]="flowcommonform" methodName="getCodeOptions" bdPlaceHolder="请选择推广渠道" [bdServerSearch]="true">
+        </app-sx-select>
+        <app-sx-select label="事业部" [selectGroup]="validateForm" bdFormControlName="divisionList"
+          [optionsService]="gensearchCriteriaService" methodName="getDivision" bdPlaceHolder="请选择事业部">
+        </app-sx-select>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzType="primary" [nzLoading]="loading">查询</button>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button [nzLoading]="loading" (click)="resetForm($event)">重置</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </app-common-card>
+</div>

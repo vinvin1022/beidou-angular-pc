@@ -1,0 +1,63 @@
+<nz-modal [(nzVisible)]="isVisible" nzWidth="90%" nzTitle="数据详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
+  <nz-table #nzTable [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+    [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable [nzData]="displayData" nzBordered
+    [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)"
+    (nzPageSizeChange)="pageSizeChange($event)" [nzShowPagination]="true" [nzWidthConfig]="widthConfig" [nzScroll]="{ x:widthConfig.length * 100 + 'px',y: '500px' }">
+
+    <thead>
+      <tr>
+        <th nzLeft="0px">维度</th>
+        <th nzLeft="100px">日期</th>
+        <!-- <ng-container *ngFor="let item of netStatisticsFieldData">
+          <th>{{item.label}}</th>
+        </ng-container> -->
+        <ng-container *ngFor="let pitem of fieldKeys">
+            <ng-container *ngFor="let sitem of filterFieldData[pitem].children">
+              <th>{{sitem.label}}</th>
+            </ng-container>
+          </ng-container>
+        <!-- <th>财务消费</th>
+        <th>名片数</th>
+        <th>销售机会数</th>
+        <th>销机报名数</th>
+        <th>CPA</th>
+        <th>流水</th>
+        <th>报名数</th>
+        <th>ARPU</th>
+        <th>销转(%)</th>
+        <th>ROI(%)</th> -->
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let data of nzTable.data">
+        <td nzLeft="0px">{{data.deptUserName || '--'}}</td>
+        <td nzLeft="100px">{{data.periodWid}}</td>
+        <ng-container *ngFor="let ppitem of fieldKeys">
+            <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+              <td>{{data[sitem.value]}}</td>
+            </ng-container>
+          </ng-container>
+        <!-- <ng-container *ngFor="let sitem of netStatisticsFieldData">
+          <td>{{item[sitem.value]}}</td>
+        </ng-container> -->
+        <!-- <td>{{item.financeAmount}}</td>
+        <td>{{item.flowidAco}}</td>
+        <td>{{item.effordersAcoFlow}}</td>
+        <td>{{item.effordersAco}}</td>
+        <td>{{item.cpa}}</td>
+        <td>{{item.ordersAmo}}</td>
+        <td>{{item.ordersAco}}</td>
+        <td>{{item.arpu}}</td>
+        <td>{{item.rate1}}</td>
+        <td>{{item.roi}}</td> -->
+      </tr>
+
+    </tbody>
+  </nz-table>
+
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</nz-modal>

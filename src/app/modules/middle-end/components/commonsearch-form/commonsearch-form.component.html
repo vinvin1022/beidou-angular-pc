@@ -1,0 +1,77 @@
+<div class="eye-commonsearch-form">
+  <app-common-card nztitle="筛选条件">
+    <div name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+
+        <app-sx-select label="军团" [selectGroup]="validateForm" bdFormControlName="deptId"
+          [optionsService]="middleEndSearchFormService" methodName="getMiddleLegion" bdPlaceHolder="请选择军团"
+          (selectedValueChange)="alllegionChangeEvent($event)"></app-sx-select>
+ 
+
+        <app-sx-select label="咨询组" [selectGroup]="validateForm" bdFormControlName="groupId"
+          [optionsService]="middleEndSearchFormService" methodName="getMiddleGroup" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择咨询组" (selectedValueChange)="allmiddleGroupChangeEvent($event)"></app-sx-select>
+      
+
+
+        <app-sx-select label="咨询师" [selectGroup]="validateForm" bdFormControlName="userId"
+          [optionsService]="middleEndSearchFormService" methodName="getMiddleUser" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择咨询师"></app-sx-select>
+       
+
+        <ng-container *ngIf="isShowPopularize">
+          <app-sx-select label="推广渠道" [selectGroup]="validateForm" bdFormControlName="code"
+            [optionsService]="flowcommonform" methodName="getCodeOptions" bdPlaceHolder="请选择推广渠道"></app-sx-select>
+         
+
+          <app-sx-select label="推广来源" [selectGroup]="validateForm" bdFormControlName="source" [isShowAll]="true"
+            [checkBoxRenderX]="false" bdMode="default" [optionsService]="flowcommonform" methodName="getQuerySourceName"
+            bdPlaceHolder="请选择推广来源"></app-sx-select>
+        
+
+          <app-sx-select label="推广城市" [selectGroup]="validateForm" bdFormControlName="cityName"
+            [optionsService]="flowcommonform" methodName="getSpreadCitylist" bdPlaceHolder="请选择推广城市"></app-sx-select>
+       
+
+          <app-sx-select label="推广人" [selectGroup]="validateForm" bdFormControlName="accountUid"
+            [optionsService]="commonCustomService" methodName="getPromoterName" bdPlaceHolder="请选择推广人"></app-sx-select>
+       
+        </ng-container>
+
+
+
+        <div>
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" class="width85"></nz-form-label>
+            <nz-form-control>
+              <nz-radio-group (ngModelChange)="periodTypeChange($event)" formControlName="periodType">
+                <label nz-radio-button *ngFor="let item of timeTypes" [nzValue]="item.key">{{item.value}}</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-range-picker [nzAllowClear]="false" [nzDisabledDate]="rangePickerDisabledDate"
+                formControlName="rangePicker"></nz-range-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" nzType="primary">查询</button>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" (click)="resetForm($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </form>
+
+    </div>
+  </app-common-card>
+</div>

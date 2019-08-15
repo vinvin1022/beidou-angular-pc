@@ -1,0 +1,14 @@
+<div class="eye-self-employed">
+  <app-promotion-form (sendQueryData)="getFilterData($event)"></app-promotion-form>
+  <div class="mar-top20">
+    <!-- <app-subpromotion-table [filterData]="filterData"></app-subpromotion-table> -->
+    <app-sx-table [cardTitle]="cardTitle" [serviceNameClass]="serviceNameClass" [methodName]="methodName"
+      [tableFields]="tableFields" [filterData]="filterData" [exportMethod]="exportMethod"
+      [saveBackQueryExport]="saveBackQueryExport" [showPagination]="showPagination" [showFirstColumn]="showFirstColumn"
+      [customColumnWidth]="['140px', '180px']">
+    </app-sx-table>
+  </div>
+  <ng-template #cardTitle>
+    <span>升班业绩</span>
+  </ng-template>
+</div>

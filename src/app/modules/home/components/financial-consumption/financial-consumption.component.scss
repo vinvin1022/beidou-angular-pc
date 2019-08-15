@@ -1,0 +1,17 @@
+.eye-financial-consumption {
+  .operate {
+    float: right;
+    height: 45px;
+    line-height: 45px;
+    font-size: 11px;
+
+    span {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .active {
+      border-bottom: 2px solid #0096FF;
+    }
+  }
+}

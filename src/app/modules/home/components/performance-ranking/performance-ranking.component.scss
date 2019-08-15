@@ -1,0 +1,59 @@
+.eye-performance-ranking {
+  .achievement-item {
+    display: flex;
+    justify-content: space-between;
+    height: 21px;
+    line-height: 21px;
+
+    .num {
+      margin-right: 5px;
+      display: inline-block;
+      width: 22px;
+      text-align: center;
+      img {
+        width: 18px;
+      }
+
+      i {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: #ff0000;
+      }
+    }
+
+    .one {
+      i {
+        background-color: #ff0000;
+      }
+    }
+
+    .two {
+      i {
+        background-color: #ffff00;
+      }
+    }
+
+    .three {
+      i {
+        background-color: #abcdef;
+      }
+    }
+  }
+
+  .operate {
+    float: right;
+    height: 45px;
+    line-height: 45px;
+    font-size: 11px;
+
+    span {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .active {
+      border-bottom: 2px solid #0096FF;
+    }
+  }
+}

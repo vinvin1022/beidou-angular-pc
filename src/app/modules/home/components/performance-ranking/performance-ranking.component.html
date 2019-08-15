@@ -1,0 +1,50 @@
+<div class="eye-performance-ranking">
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="业绩排行">
+      <div class="operate">
+        <span (click)="getAchievementData('day')" class="today" [ngClass]="{active:orderDate === 'day'}">今天</span>
+        <span (click)="getAchievementData('week')" class="thisweek" [ngClass]="{active:orderDate === 'week'}">本周</span>
+        <span (click)="getAchievementData('month')" class="thismonth" [ngClass]="{active:orderDate === 'month'}">本月</span>
+      </div>
+
+      <div class="achievement-item fs14 a" *ngFor="let item of topThree; let i = index">
+        <div class="col">
+          <ng-container [ngSwitch]="i + 1">
+            <span class="num one" *ngSwitchCase="1">
+              <img src="./assets/images/t1.png">
+            </span>
+            <span class="num two" *ngSwitchCase="2">
+              <img src="./assets/images/t2.png">
+            </span>
+            <span class="num three" *ngSwitchCase="3">
+              <img src="./assets/images/t3.png">
+            </span>
+            <span class="num" *ngSwitchDefault>
+              {{i + 1}}
+            </span>
+          </ng-container>
+          {{item.deptName || '--'}}
+        </div>
+        <div class="col">{{item.orderAmo  | currency:'￥'}}</div>
+      </div>
+      <!-- <div class="achievement-item fs14 a">
+        <div class="col">
+          <span class="num">
+            &nbsp;
+          </span>
+          ......
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="achievement-item fs14 a" *ngFor="let item of bottomThree; let i = index">
+        <div class="col">
+          <span class="num">
+            {{item.rank}}
+          </span>
+          {{item.deptName || '--'}}
+        </div>
+        <div class="col">{{item.orderAmo | currency:'￥'}}</div>
+      </div> -->
+    </app-eye-card>
+  </nz-spin>
+</div>

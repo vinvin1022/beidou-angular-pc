@@ -1,0 +1,48 @@
+<div class="eye-subidxnt-table">
+  <ng-template #cardTitle>
+    <span>数据列表</span>
+    <span class="update-time" *ngIf="filterData">时间：{{filterData['startTime'] | date: 'yyyy/MM/dd'}} -
+      {{filterData['endTime'] | date: 'yyyy/MM/dd'}}</span>
+  </ng-template>
+  <app-common-card [nztitle]="cardTitle" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button *appIsshowbtn="'b040901'" [disabled]="!(tableTreeData && tableTreeData.length)" nzType="info"
+        (click)="exportsFile()">导出</button>
+    </div>
+    <div name="middle-conent">
+      <nz-table #nzTableTree nzBordered [nzLoading]="loading" [nzFrontPagination]="false" [nzShowPagination]="false"
+        [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+        <thead>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <th nzLeft="0px">部门/人</th>
+            <ng-container *ngFor="let pitem of fieldKeys">
+              <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                <th>{{item.label}}</th>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children"
+                  [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                  <span>{{item.showName || '--'}}</span>
+                </td>
+
+                <ng-container *ngFor="let ppitem of fieldKeys">
+                  <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+            </ng-template>
+          </ng-template>
+
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+
+</div>

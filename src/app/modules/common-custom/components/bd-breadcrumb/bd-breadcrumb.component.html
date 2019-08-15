@@ -1,0 +1,5 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item *ngFor="let item of breadcrumbs">
+    <a [routerLink]="[item?.path]">{{item?.breadcrumb}}</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>

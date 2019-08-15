@@ -1,0 +1,25 @@
+<div class="mar-left5 eye-electric-time" #eyeElectricTime>
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="七日内平均通时">
+      <div class="operate">
+        <nz-select style="width: 200px;" [(ngModel)]="deptId" [nzServerSearch]="true" (nzOpenChange)="openDeptId()"
+          (nzOnSearch)="getIndexDept($event)" nzAllowClear nzPlaceHolder="请选择" (ngModelChange)="deptIdChange($event)">
+
+          <nz-option *ngIf="!optionsLoading" nzValue="0" nzLabel="全部"></nz-option>
+          <ng-container *ngFor="let item of deptIdsOptions">
+            <nz-option *ngIf="!optionsLoading" [nzValue]="item && item.optionId" [nzLabel]="item && item.optionName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="optionsLoading" nzDisabled nzCustomContent>
+            <i nz-icon type="loading" class="loading-icon"></i> 加载中...
+          </nz-option>
+        </nz-select>
+      </div>
+      <div class="a">
+        <div [hidden]="!echartsData.length" #electricTimeCharts id="electric-time-charts" style="height:300px"></div>
+        <div [hidden]="echartsData.length" style="height:300px; padding-top: 50px">
+            <nz-empty></nz-empty>
+          </div>
+      </div>
+    </app-eye-card>
+  </nz-spin>
+</div>

@@ -1,0 +1,55 @@
+<div class="eye-index-overview">
+  <div class="mar-bot10">
+    <button class="mar-right5" nz-button [appDownloadTemplate]="downloadTemplateUrl"><i nz-icon
+        type="download"></i><span>下载模板</span></button>
+    <app-upload-file class="mar-right5 btn-item upload" bdBtnTxt="导入目标" [bduploadFileUrl]="bduploadFileUrl">
+    </app-upload-file>
+    <button class="mar-right5" *appIsshowbtn="'b020201'" [disabled]="!(tableTreeData && tableTreeData.length)" nz-button
+      (click)="exportWarNews()">导出战报</button>
+  </div>
+
+  <ng-template #cardTitle>
+    <span>业绩战报</span>
+    <span class="update-time"
+      *ngIf="tableTreeData[1]">更新时间：{{tableTreeData[1]['winsertDt'] | date: 'yyyy/MM/dd HH:mm:ss'}}</span>
+  </ng-template>
+
+  <app-common-card [nztitle]="cardTitle" [isHideGrayBg]="true">
+    <div name="operate">
+      <button (click)="refurbish()" nz-button><span>刷新</span></button>
+    </div>
+    <div name="middle-conent">
+      <nz-table #nzTableTree nzBordered [nzLoading]="loading" [nzFrontPagination]="false" [nzShowPagination]="false"
+        [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+        <thead>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <th nzLeft="0px">模式/事业部</th>
+            <ng-container *ngFor="let pitem of fieldKeys">
+              <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                <th>{{item.label}}</th>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children"
+                  [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                  <span>{{item.showName || '--'}}</span>
+                </td>
+                <ng-container *ngFor="let ppitem of fieldKeys">
+                  <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+            </ng-template>
+          </ng-template>
+
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+</div>

@@ -1,0 +1,123 @@
+<div class="eye-subonline-paration">
+
+  
+  <app-common-card nztitle="筛选条件">
+    <div name="middle-conent">
+
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div nz-row>
+          <div nz-col nzLg="2" nzMd="4" style="text-align:right">
+            <nz-form-label nzFor="condepartment">在线部门</nz-form-label>
+          </div>
+          <div nz-col nzLg="22" nzMd="20">
+    
+
+            <app-sx-select [selectGroup]="validateForm" bdFormControlName="dept" bdMode="multiple" [optionsService]="onlineStatisticsService" methodName="getOnlineDept" 
+            bdPlaceHolder="请选择在线部门" (selectedValueChange)="allonlineDeptChange($event)"></app-sx-select>
+
+
+
+            <app-sx-select [selectGroup]="validateForm" bdFormControlName="userId" [optionsService]="onlineStatisticsService" methodName="getOnlineUser" 
+            bdPlaceHolder="请选择在线咨询师" [requestParams]="paramsAll"></app-sx-select>
+         
+
+
+            <app-sx-select label="推广城市" [selectGroup]="validateForm" bdFormControlName="cityName" [checkBoxRenderX]="false" [optionsService]="flowcommonform" methodName="getSpreadCitylist" 
+            bdPlaceHolder="请选择推广城市"></app-sx-select>
+          
+
+
+            <app-sx-select label="推广方式" [selectGroup]="validateForm" bdFormControlName="advertisersType" [isShowAll]="true" [checkBoxRenderX]="false" bdMode="default" [optionsService]="flowcommonform" methodName="getAdvertisersTypeOptions" 
+            bdPlaceHolder="请选择推广方式"></app-sx-select>
+          
+          </div>
+        </div>
+
+        <div nz-row>
+          <div nz-col nzLg="2" nzMd="4" style="text-align:right">
+            <nz-form-label>业务模式</nz-form-label>
+          </div>
+          <div nz-col nzLg="22" nzMd="20">
+              <app-sx-select [selectGroup]="validateForm" bdFormControlName="flowDataType" [bdAllowClear]="false" [checkBoxRenderX]="false" bdMode="default" [bdServerSearch]="false" [storeOptionsData]="flowDataTypeOptions"  bdPlaceHolder="请选择业务模式"
+              (selectedValueChange)="flowDataTypeChange($event)"></app-sx-select>
+          
+
+
+            <app-sx-select label="推广项目" [selectGroup]="validateForm" bdFormControlName="consultingProject" [checkBoxRenderX]="false" 
+            bdMode="default" [optionsService]="flowcommonform" methodName="getFlConsultingProjectOptions"
+            bdPlaceHolder="请选择推广项目"></app-sx-select>
+          
+
+
+            <app-sx-select label="推广渠道" [selectGroup]="validateForm" bdFormControlName="code" 
+            [checkBoxRenderX]="false" [optionsService]="flowcommonform" methodName="getCodeOptions"
+                  bdPlaceHolder="请选择推广渠道"></app-sx-select>
+
+           
+
+
+            <app-sx-select label="载体" [selectGroup]="validateForm" bdFormControlName="carrier" 
+            [checkBoxRenderX]="false" [storeOptionsData]="carrier" bdMode="multiple"
+                  bdPlaceHolder="请选择载体"></app-sx-select>
+          
+          </div>
+        </div>
+
+
+        <div nz-row>
+          <div nz-col nzLg="2" nzMd="4" style="text-align:right">
+          </div>
+          <div nz-col nzLg="22" nzMd="20">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-radio-group (ngModelChange)="periodTypeChange($event)" formControlName="periodType">
+                  <!-- <label nz-radio-button [nzValue]="'time'">时(范围1周内)</label> -->
+                  <label nz-radio-button [nzValue]="'period_wid'">日(范围2周内)</label>
+                  <label nz-radio-button [nzValue]="'week_inyear'">周(范围3月内)</label>
+                  <label nz-radio-button [nzValue]="'period_month'">月(范围6月内)</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-control>
+              
+                <nz-date-picker [nzDisabledDate]="disabledStartDate" [nzShowToday]="false" formControlName="startTime"
+                  [nzAllowClear]="false" nzPlaceHolder="开始日期" (ngModelChange)="onStartChange($event)">
+                </nz-date-picker>
+                -
+                <nz-date-picker [nzDisabledDate]="disabledEndDate" [nzShowToday]="false" formControlName="endTime"
+                  [nzAllowClear]="false" nzPlaceHolder="结束日期" (ngModelChange)="onEndChange($event)">
+                </nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+
+   
+
+
+
+          </div>
+        </div>
+
+        <div nz-row>
+          <div nz-col nzLg="2" nzMd="4" style="text-align:right">
+          </div>
+          <div nz-col nzLg="22" nzMd="20">
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button nzType="primary" [nzLoading]="loading">查询</button>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button (click)="resetForm($event)" [nzLoading]="loading">重置</button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </app-common-card>
+ 
+</div>

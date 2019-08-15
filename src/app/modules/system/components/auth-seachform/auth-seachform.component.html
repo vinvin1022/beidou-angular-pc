@@ -1,0 +1,45 @@
+<app-common-card [nztitle]="formtitle">
+  <ng-template #formtitle>
+    <span>筛选条件</span>
+  </ng-template>
+  <div name="middle-conent">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label nzFor="roleType">角色</nz-form-label>
+        <nz-form-control>
+          <nz-select nzAllowClear id="roleType" style="width: 180px;" formControlName="roleType"
+            (ngModelChange)="roleTypeChange($event)" nzPlaceHolder="请选择模块">
+            <ng-container *ngFor="let item of roleTypesOptions">
+              <nz-option [nzValue]="item.optionId" [nzLabel]="item.optionName"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-select nzAllowClear [nzServerSearch]="true" id="roleId" style="width: 180px;" formControlName="roleId"
+            nzPlaceHolder="请选择角色">
+            <ng-container *ngFor="let item of roleIdOptions">
+              <nz-option [nzValue]="item.roleId" [nzLabel]="item.roleName"></nz-option>
+            </ng-container>
+
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="isShowUserName">
+        <nz-form-label nzFor="userName">用户名称</nz-form-label>
+        <nz-form-control>
+          <input nz-input id="userName" style="width: 180px;" formControlName="userName" placeHolder="请输入用户名称" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [nzLoading]="loading">查询</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+
+</app-common-card>

@@ -1,0 +1,102 @@
+<nz-modal [(nzVisible)]="isVisible" nzWidth="90%" nzTitle="数据详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <!-- <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true' nzNoResult="暂无数据"
+  [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable [nzData]="displayData" nzBordered
+  [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)"
+  (nzPageSizeChange)="pageSizeChange($event)" [nzWidthConfig]="[
+'50px','100px','100px','100px','100px','100px','100px','100px','100px','100px',
+'100px','100px','100px','100px','100px','100px','100px','100px','100px','100px','100px',
+'100px','100px','100px','100px','100px','100px','100px','100px','100px','100px',
+'100px','100px','100px','100px','100px','100px','100px','100px','100px','100px',
+'100px','100px','100px','100px','100px','100px','100px','100px','100px','100px',
+'100px','100px','100px','100px','100px','100px','100px','100px','100px','100px']"
+  [nzScroll]="{ x:'6050px',y: '500px' }"> -->
+
+
+
+  <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
+    [nzShowTotal]='totalTemplate' #nzTable [nzData]="displayData" nzBordered [(nzPageIndex)]="pageIndex"
+    [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)"
+    (nzPageSizeChange)="pageSizeChange($event)" [nzShowPagination]="true" [nzWidthConfig]="widthConfig"
+    [nzScroll]="scrollConfig">
+    <thead>
+      <tr>
+        <th nzLeft="0px">咨询师</th>
+        <th nzLeft="99px">日期</th>
+        <ng-container *ngFor="let pitem of fieldKeys">
+          <ng-container *ngFor="let item of filterFieldData[pitem].children">
+            <th>{{item.label}}</th>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td nzLeft="0px">{{data.deptUserName || '--'}}</td>
+        <td nzLeft="99px">{{data.periodWid}}</td>
+        <ng-container *ngFor="let ppitem of fieldKeys">
+          <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+            <td>{{data[sitem.value]}}</td>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </tbody>
+  </nz-table>
+  <!-- <ng-container *ngIf="reportDimensionParams['periodType'] === 'period_wid'; else otherType">
+    <thead>
+      <tr>
+        <th nzLeft="0px">咨询师</th>
+        <th nzLeft="99px">日期</th>
+        <ng-container *ngFor="let pitem of fieldKeys">
+          <ng-container *ngFor="let item of filterFieldData[pitem].children">
+            <th>{{item.label}}</th>
+          </ng-container>
+        </ng-container>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td nzLeft="0px">{{data.deptUserName || '--'}}</td>
+        <td nzLeft="99px">{{data.periodWid}}</td>
+        <ng-container *ngFor="let ppitem of fieldKeys">
+          <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+            <td>{{data[sitem.value]}}</td>
+          </ng-container>
+        </ng-container>
+
+
+      </tr>
+    </tbody>
+  </ng-container>
+
+  <ng-template #otherType>
+    <thead>
+      <tr>
+        <th nzLeft="0px">咨询师</th>
+        <th nzLeft="99px">日期</th>
+        <ng-container *ngFor="let pitem of fieldKeys">
+          <ng-container *ngFor="let item of filterFieldData[pitem].children">
+            <th>{{item.label}}</th>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td nzLeft="0px">{{data.deptUserName || '--'}}</td>
+        <td nzLeft="99px">{{data.periodWid}}</td>
+
+        <ng-container *ngFor="let ppitem of fieldKeys">
+          <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+            <td>{{data[sitem.value]}}</td>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </tbody>
+  </ng-template> -->
+
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</nz-modal>

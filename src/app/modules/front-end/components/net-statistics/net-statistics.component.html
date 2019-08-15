@@ -1,0 +1,6 @@
+<div class="eye-net-statistics">
+  <app-commonmore-form [isShowWay]="false"  (sendQueryData)="getFilterData($event)"></app-commonmore-form>
+  <div class="mar-top20">
+    <app-substatistics-table [filterData]="filterData"></app-substatistics-table>
+  </div>
+</div>

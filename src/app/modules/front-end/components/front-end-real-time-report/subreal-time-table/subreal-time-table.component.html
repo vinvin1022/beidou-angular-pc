@@ -1,0 +1,59 @@
+<div class="eye-subidxnt-table">
+  <ng-template #cardTitle>
+    <span>数据列表</span>
+    <span class="update-time"
+      *ngIf="tableTreeData[0]">更新时间：{{tableTreeData[0]['winsertDt'] | date: 'yyyy/MM/dd HH:mm:ss'}}</span>
+  </ng-template>
+  <app-common-card [nztitle]="cardTitle" [isHideGrayBg]="true">
+    <div name="operate">
+      <button [routerLink]="['/frontend/frontEndRealTimeReport/effectiveness']" [queryParams]="{ queryAlType: '1'}"
+        class="mar-right10" nz-button nzType="info">分配时效</button>
+      <button [routerLink]="['/frontend/frontEndRealTimeReport/effectiveness']" [queryParams]="{ queryAlType: '2'}"
+        class="mar-right10" nz-button nzType="info">拨打时效</button>
+      <button nz-button *appIsshowbtn="'b040701'" [disabled]="!(tableTreeData && tableTreeData.length)" nzType="info"
+        (click)="exportsFile()">导出</button>
+
+    </div>
+    <div name="middle-conent">
+      <nz-table #nzTableTree nzBordered [nzLoading]="loading" [nzFrontPagination]="false" [nzShowPagination]="false"
+        [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+        <thead (nzSortChange)="sort($event)" nzSingleSort>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <th rowspan="2" nzLeft="0px">部门/人</th>
+            <ng-container *ngFor="let item of fieldKeys">
+              <th *ngIf="filterFieldData[item].children.length !== 0"
+                [attr.colspan]="filterFieldData[item].children.length">{{filterFieldData[item].name}}</th>
+            </ng-container>
+          </tr>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <ng-container *ngFor="let pitem of fieldKeys">
+              <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                <th [nzShowSort]="item.nzShowSort" [nzSortKey]="item.nzSortKey">{{item.label}}</th>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children"
+                  [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                  <span>{{item.showName || '--'}}</span>
+                </td>
+
+                <ng-container *ngFor="let ppitem of fieldKeys">
+                  <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+            </ng-template>
+          </ng-template>
+
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+
+</div>

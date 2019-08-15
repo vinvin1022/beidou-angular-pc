@@ -1,0 +1,104 @@
+<div class="eye-subonline-table">
+  <app-common-card nztitle="数据分析" [isHideGrayBg]="true">
+    <div name="operate">
+      <button class="mar-right10" nz-button nzType="primary" (click)="showCustomColumnDialog()">自定义列</button>
+    <button nz-button *appIsshowbtn="'b050101'" [disabled]="!(dataTable && dataTable.length)" nzType="info" (click)="exportMidLegionData()">导出</button>
+    </div>
+    <div name="middle-conent">
+
+      <nz-table #nzTable [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+      [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable [nzData]="dataTable" nzBordered
+      [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)"
+      (nzPageSizeChange)="pageSizeChange($event)" [nzData]="dataTable" [nzShowPagination]="true" [nzWidthConfig]="nzWidthConfig" [nzScroll]="nzScroll">
+        <thead *ngIf="dataTable && dataTable.length">
+          <tr>
+            <th nzLeft="0px">咨询师</th>
+            <th nzLeft="98px">日期</th>
+            <ng-container *ngFor="let item of filterFieldData">
+                <th>{{item.label}}</th>
+              </ng-container>
+            <!-- <th>名片数</th>
+            <th>通过率(%)</th>
+            <th>销售机会数</th>
+            <th>流水</th>
+            
+            <th>当周流水</th>
+            <th>上周流水</th>
+            <th>历史流水</th>
+            <th>通话时长</th>
+            <th>通话次数</th>
+
+            <th>接通率(%)</th>
+            <th>预约数</th>
+            <th>预约到期数</th>
+            <th>到访数</th>
+            <th>到访率(%)</th>
+
+            <th>报名数</th>
+            <th>当周报名数</th>
+            <th>上周报名数</th>
+            <th>跨期报名数</th>
+            <th>销转(%)</th>
+
+            <th>当周销转(%)</th>
+            <th>上周销转(%)</th>
+            <th>历史销转(%)</th>
+            <th>报名率(%)</th>
+            <th>服务时效</th>
+
+            <th>分配时效</th>
+            <th>ARPU</th>
+            <th>RPA</th> -->
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data">
+            <td nzLeft="0px">{{data.userName}}</td>
+            <td nzLeft="98px">{{data.wid}}</td>
+            <ng-container *ngFor="let item of filterFieldData">
+                <td>{{data[item.value]}}</td>
+              </ng-container>
+            <!-- <td>{{data.flowidAco}}</td>
+            <td>{{data.rate1}}</td>
+            <td>{{data.effordersAcoFlow}}</td>
+            <td>{{data.ordersAmo}}</td>
+
+            <td>{{data.acoAmoWk}}</td>
+            <td>{{data.acoAmoLwk}}</td>
+            <td>{{data.acoAmoHiswk}}</td>
+            <td>{{data.calLongTime}}</td>
+            <td>{{data.callAco}}</td>
+
+            <td>{{data.rate2}}</td>
+            <td>{{data.orderAco}}</td>
+            <td>{{data.expOrderDay}}</td>
+            <td>{{data.visitAco}}</td>
+            <td>{{data.rate3}}</td>
+
+            <td>{{data.ordersAco}}</td>
+            <td>{{data.acoSignWk}}</td>
+            <td>{{data.acoSignLwk}}</td>
+            <td>{{data.acoSignHiswk}}</td>
+            <td>{{data.rate4}}</td>
+
+            <td>{{data.rate5}}</td>
+            <td>{{data.rate6}}</td>
+            <td>{{data.rate7}}</td>
+            <td>{{data.rate8}}</td>
+            <td>{{data.rate9}}</td>
+
+            <td>{{data.rate10}}</td>
+            <td>{{data.arpu}}</td>
+            <td>{{data.rpa}}</td> -->
+            
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <app-custom-column-dialog (setFilterField)="getFilterField($event)" #customColumnDialog></app-custom-column-dialog>
+  <ng-template #totalTemplate>
+      总共 {{total}} 条
+    </ng-template>
+</div>

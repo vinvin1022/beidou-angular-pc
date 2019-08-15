@@ -1,0 +1,112 @@
+<div class="subgeneral-table">
+  <app-common-card nztitle="推广总览({{newFlowDataType === '1' ? '电销' : '网销'}})" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button nzType="primary" class="mar-right10" (click)="showCustomColumnDialog()">自定义列</button>
+
+      <button nz-button nzType="info" *appIsshowbtn="'b030102'" [disabled]="!((tableTreeData && tableTreeData.length) && (flowDataType === flowViewReportParams['flowDataType']))"
+        appExportExecl [getExportsParams]="getExportsParams" url="dms/excelExport/spreadExcelExport"
+        >导出</button>
+    </div>
+    <div name="middle-conent">
+      <nz-table #nzTableTree nzBordered [nzLoading]="loading" [nzFrontPagination]="false" [nzShowPagination]="false"
+        [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+        <thead>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <!-- <th rowspan="2" nzLeft="0px">序号</th> -->
+            <th rowspan="2" nzLeft="0px">维度</th>
+            <!-- <th rowspan="2" nzLeft="150px">时间</th> -->
+            <ng-container *ngFor="let item of fieldKeys">
+              <th *ngIf="filterFieldData[item].children.length !== 0" [attr.colspan]="filterFieldData[item].children.length">{{
+                filterFieldData[item].name}}</th>
+            </ng-container>
+
+
+            <!-- <th *ngIf="filterFieldData.stream.children.length !== 0" [attr.colspan]="filterFieldData.stream.children.length">{{
+              filterFieldData.stream.name}}</th>
+            <th *ngIf="filterFieldData.businessCard.children.length !== 0" [attr.colspan]="filterFieldData.businessCard.children.length">{{
+              filterFieldData.businessCard.name}}</th>
+            <th *ngIf="filterFieldData.pinMachine.children.length !== 0" [attr.colspan]="filterFieldData.pinMachine.children.length">{{
+              filterFieldData.pinMachine.name}}</th>
+            <th *ngIf="filterFieldData.pinRotation.children.length !== 0" [attr.colspan]="filterFieldData.pinRotation.children.length">{{
+              filterFieldData.pinRotation.name}}</th>
+            <th *ngIf="filterFieldData.enlist.children.length !== 0" [attr.colspan]="filterFieldData.enlist.children.length">{{
+              filterFieldData.enlist.name}}</th>
+            <th *ngIf="filterFieldData.pointElimination.children.length !== 0" [attr.colspan]="filterFieldData.pointElimination.children.length">{{
+              filterFieldData.pointElimination.name}}</th> -->
+
+          </tr>
+          <tr *ngIf="tableTreeData && tableTreeData.length">
+            <ng-container *ngFor="let pitem of fieldKeys">
+              <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                <th>{{item.label}}</th>
+              </ng-container>
+            </ng-container>
+
+            <!-- <ng-container *ngFor="let item of filterFieldData.stream.children">
+              <th>{{item.label}}</th>
+            </ng-container>
+            <ng-container *ngFor="let item of filterFieldData.businessCard.children">
+              <th>{{item.label}}</th>
+            </ng-container>
+            <ng-container *ngFor="let item of filterFieldData.pinMachine.children">
+              <th>{{item.label}}</th>
+            </ng-container>
+            <ng-container *ngFor="let item of filterFieldData.pinRotation.children">
+              <th>{{item.label}}</th>
+            </ng-container>
+            <ng-container *ngFor="let item of filterFieldData.enlist.children">
+              <th>{{item.label}}</th>
+            </ng-container>
+            <ng-container *ngFor="let item of filterFieldData.pointElimination.children">
+              <th>{{item.label}}</th>
+            </ng-container> -->
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand"
+                  (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                  <a (click)="showDetailListModal(item)" *ngIf="item.dimension !== '合计'">{{item.dimension || '--'}}</a>
+                  <span *ngIf="item.dimension === '合计'">{{item.dimension || '--'}}</span>
+                </td>
+                <ng-container *ngFor="let ppitem of fieldKeys">
+                  <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container>
+                </ng-container>
+                <!-- <ng-container *ngFor="let sitem of filterFieldData['businessCard']['children']">
+                  <td>{{item[sitem.value]}}</td>
+                </ng-container>
+                <ng-container *ngFor="let sitem of filterFieldData['pinMachine']['children']">
+                  <td>{{item[sitem.value]}}</td>
+                </ng-container>
+                <ng-container *ngFor="let sitem of filterFieldData['pinRotation']['children']">
+                  <td>{{item[sitem.value]}}</td>
+                </ng-container>
+                <ng-container *ngFor="let sitem of filterFieldData['enlist']['children']">
+                  <td>{{item[sitem.value]}}</td>
+                </ng-container>
+                <ng-container *ngFor="let sitem of filterFieldData['pointElimination']['children']">
+                  <td>{{item[sitem.value]}}</td>
+                </ng-container> -->
+
+
+              </tr>
+            </ng-template>
+          </ng-template>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <app-detail-lista [filterData]="filterData" [reportDimensionParams]="flowViewReportParams" [flowDataType]="newFlowDataType"
+    #detailList></app-detail-lista>
+  <app-custom-column-dialog (setFilterField)="serachData($event)" [title]="title" #customColumnDialog></app-custom-column-dialog>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

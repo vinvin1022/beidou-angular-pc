@@ -1,0 +1,6 @@
+<div class="eye-my-query-packet">
+  <app-subpacket-panier [addBtnVal]="authority['add']" (sendQueryData)="getQueryData($event)"></app-subpacket-panier>
+  <div class="mar-top20">
+    <app-subpacket-table [delBtnVal]="authority['del']" [editBtnVal]="authority['edit']" [filterData]="filterData"></app-subpacket-table>
+  </div>
+</div>

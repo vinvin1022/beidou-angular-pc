@@ -1,0 +1,33 @@
+<nz-modal nzWidth="488px" nzWrapClassName="vertical-center-modal" [(nzVisible)]="isVisible" [nzTitle]="title"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-table #basicTable nzBordered [nzShowPagination]="false" [nzData]="dailyTimeParams">
+    <thead>
+      <tr>
+        <th nzWidth="50px">时段</th>
+        <th>有效通话(数)>=</th>
+        <th>外呼通时(分钟)>=</th>
+        <th>通话均时(分钟)>=</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.timePoint}}</td>
+        <td>
+          <ng-container>
+            <input type="text" maxlength="8" nz-input [(ngModel)]="data.numberCalls">
+          </ng-container>
+        </td>
+        <td>
+          <ng-container>
+            <input type="text" maxlength="8" nz-input [(ngModel)]="data.outgoingCall">
+          </ng-container>
+        </td>
+        <td>
+          <ng-container>
+            <input type="text" maxlength="8" nz-input [(ngModel)]="data.averageCall">
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-modal>

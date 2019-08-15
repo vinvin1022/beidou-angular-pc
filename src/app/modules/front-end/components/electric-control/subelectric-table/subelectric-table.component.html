@@ -1,0 +1,268 @@
+<div class="eye-subelectric-table">
+  <app-common-card nztitle="电销效率指标统计" [isHideGrayBg]="true">
+    <div name="operate">
+      <!-- <button class="mar-right10" [disabled]="filterData && (filterData['periodType'] !== periodType)" nz-button nzType="primary" (click)="showCustomColumnDialog()">自定义列</button> -->
+      
+      <button class="mar-right10" nz-button nzType="primary" (click)="showCustomColumnDialog()">自定义列</button>
+      
+      <button nz-button *appIsshowbtn="'b040301'" [disabled]="!(tableTreeData && tableTreeData.length && filterData && (filterData['periodType'] === periodType))"
+        nzType="info" 
+        appExportExecl [getExportsParams]="getExportsParams"  url="dms/excelExport/electDayWeekMonthExport">导出</button>
+    </div>
+    <div name="middle-conent">
+      <nz-table #nzTableTree nzBordered [nzLoading]="loading" [nzFrontPagination]="false" [nzShowPagination]="false"
+        [nzData]="tableTreeData" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+        <ng-container *ngIf="periodType === 'period_wid'; else otherType">
+          <thead>
+            <tr *ngIf="tableTreeData && tableTreeData.length">
+              <th nzLeft="0px">咨询师</th>
+              <ng-container *ngFor="let pitem of fieldKeys">
+                  <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                    <th>{{item.label}}</th>
+                  </ng-container>
+                </ng-container>
+              <!-- <ng-container *ngFor="let item of filterFieldData">
+                <th>{{item.label}}</th>
+              </ng-container> -->
+              <!-- <th>分配数</th>
+              <th>首咨分配数</th>
+              <th>财务消费</th>
+              <th>总流水</th>
+              <th>当周流水</th>
+              <th>上周流水</th>
+              <th>历史流水</th>
+              <th>通话时长</th>
+              <th>通话次数</th>
+              <th>首咨接通率(%)</th>
+
+              <th>回访接通率(%)</th>
+              <th>总接通率(%)</th>
+              <th>当日预约单</th>
+              <th>到期预约单</th>
+              <th>预约到访数</th>
+              <th>总到访数</th>
+              <th>预约到访率(%)</th>
+              <th>总到访率(%)</th>
+
+              <th>销售机会数</th>
+              <th>销机转换率(%)</th>
+              <th>首咨报名率(%)</th>
+              <th>服务时效</th>
+              <th>分配时效</th> -->
+            </tr>
+          </thead>
+          <tbody>
+
+            <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+              <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+                <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                  <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand"
+                    (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                    <a (click)="showDetail(item)" *ngIf="item.deptUserName !== '合计'">{{item.deptUserName || '--'}}</a>
+                    <span *ngIf="item.deptUserName === '合计'">{{item.deptUserName || '--'}}</span>
+                  </td>
+                
+
+                  <ng-container *ngFor="let ppitem of fieldKeys">
+                      <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                        <td>{{item[sitem.value]}}</td>
+                      </ng-container>
+                    </ng-container>
+                  <!-- <ng-container *ngFor="let sitem of filterFieldData">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container> -->
+
+                  <!-- <td>{{item.allotdAco}}</td>
+                  <td>{{item.firstAllotdAco}}</td>
+                  <td>{{item.financeAmount}}</td>
+                  <td>{{item.ordersAmo}}</td>
+                  <td>{{item.acoAmoWk}}</td>
+                  <td>{{item.acoAmoLwk}}</td>
+                  <td>{{item.acoAmoHiswk}}</td>
+                  <td>{{item.calLongTime}}</td>
+                  <td>{{item.callAco}}</td>
+                  <td>{{item.rate1}}</td>
+
+                  <td>{{item.rate2}}</td>
+                  <td>{{item.rate3}}</td>
+                  <td>{{item.orderAco}}</td>
+                  <td>{{item.expOrderDay}}</td>
+                  <td>{{item.orderVisitDay}}</td>
+                  <td>{{item.visitAco}}</td>
+                  <td>{{item.rate4}}</td>
+                  <td>{{item.rate5}}</td>
+
+                  <td>{{item.effordersAcoFlow}}</td>
+                  <td>{{item.rate6}}</td>
+                  <td>{{item.rate7}}</td>
+                  <td>{{item.firstTimediffAlCal}}</td>
+                  <td>{{item.timediffAlFl}}</td> -->
+                </tr>
+              </ng-template>
+            </ng-template>
+
+          </tbody>
+        </ng-container>
+
+        <ng-template #otherType>
+          <thead>
+            <tr *ngIf="tableTreeData && tableTreeData.length">
+              <th nzLeft="0px">咨询师</th>
+              <ng-container *ngFor="let pitem of fieldKeys">
+                  <ng-container *ngFor="let item of filterFieldData[pitem].children">
+                    <th>{{item.label}}</th>
+                  </ng-container>
+                </ng-container>
+              <!-- <ng-container *ngFor="let item of filterFieldData">
+                <th>{{item.label}}</th>
+              </ng-container> -->
+              <!-- <th>财务消费</th>
+              <th>流水</th>
+              <th>当周流水</th>
+              <th>上周流水</th>
+              <th>历史流水</th>
+              <th>通话时长</th>
+              <th>通话次数</th>
+              <th>首咨接通率(%)</th>
+              <th>有效性</th>
+              <th>回访接通率(%)</th>
+
+              <th>接通率(%)</th>
+              <th>预约单</th>
+              <th>到期预约单</th>
+              <th>预约到访数</th>
+              <th>到访数</th>
+              <th>到访率(%)</th>
+              <th>预约到访率(%)</th>
+              <th>首咨预约率(%)</th>
+
+              <th>当周预约单</th>
+              <th>上周预约单</th>
+              <th>历史预约单</th>
+              <th>当周到访率(%)</th>
+              <th>上周到访率(%)</th>
+
+              <th>历史到访率(%)</th>
+              <th>首咨分配数</th>
+              <th>分配数</th>
+              <th>拨打名片数</th>
+              <th>公海回访数</th>
+
+              <th>销售机会数</th>
+              <th>销转(%)</th>
+              <th>首咨报名率(%)</th>
+              <th>推广报名率(%)</th>
+              <th>服务时效</th>
+
+              <th>分配时效</th>
+              <th>平均拨打次数</th>
+              <th>当周销转(%)</th>
+              <th>上周销转(%)</th>
+              <th>历史销转(%)</th>
+
+              <th>当周回访数</th>
+              <th>上周回访数</th>
+              <th>历史回访数</th>
+              <th>公海报名率(%)</th>
+              <th>回访比(%)</th>
+
+              <th>总费比(%)</th>
+              <th>RPA</th>
+              <th>RPC</th>
+              <th>CPA</th>
+              <th>名片成本</th> -->
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="nzTableTree.data">
+              <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+                <tr *ngIf="(item.parent && item.parent.expand) || !(item.parent)">
+                  <td nzLeft="0px" [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand"
+                    (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                    <a (click)="showDetail(item)" *ngIf="item.deptUserName !== '合计'">{{item.deptUserName || '--'}}</a>
+                    <span *ngIf="item.deptUserName === '合计'">{{item.deptUserName || '--'}}</span>
+                  </td>
+                  <ng-container *ngFor="let ppitem of fieldKeys">
+                      <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                        <td>{{item[sitem.value]}}</td>
+                      </ng-container>
+                    </ng-container>
+                  <!-- <ng-container *ngFor="let sitem of filterFieldData">
+                    <td>{{item[sitem.value]}}</td>
+                  </ng-container> -->
+                  <!-- <td>{{item.financeAmount}}</td>
+                  <td>{{item.ordersAmo}}</td>
+                  <td>{{item.acoAmoWk}}</td>
+                  <td>{{item.acoAmoLwk}}</td>
+                  <td>{{item.acoAmoHiswk}}</td>
+                  <td>{{item.calLongTime}}</td>
+                  <td>{{item.callAco}}</td>
+                  <td>{{item.rate1}}</td>
+                  <td>{{item.rate2}}</td>
+                  <td>{{item.rate3}}</td>
+
+                  <td>{{item.rate4}}</td>
+                  <td>{{item.orderAco}}</td>
+                  <td>{{item.expOrderWk}}</td>
+                  <td>{{item.orderVisitWk}}</td>
+                  <td>{{item.visitAco}}</td>
+                  <td>{{item.rate5}}</td>
+                  <td>{{item.rate6}}</td>
+                  <td>{{item.rate7}}</td>
+
+                  <td>{{item.orderWk}}</td>
+                  <td>{{item.orderLwk}}</td>
+                  <td>{{item.orderHiswk}}</td>
+                  <td>{{item.rate8}}</td>
+                  <td>{{item.rate9}}</td>
+
+                  <td>{{item.rate10}}</td>
+                  <td>{{item.firstAllotdAco}}</td>
+                  <td>{{item.allotdAco}}</td>
+                  <td>{{item.flowidCall}}</td>
+                  <td>{{item.trSea}}</td>
+
+                  <td>{{item.effordersAcoFlow}}</td>
+                  <td>{{item.rate11}}</td>
+                  <td>{{item.rate12}}</td>
+                  <td>{{item.rate13}}</td>
+                  <td>{{item.firstTimediffAlCal}}</td>
+
+                  <td>{{item.timediffAlFl}}</td>
+                  <td>{{item.rate14}}</td>
+                  <td>{{item.rate15}}</td>
+                  <td>{{item.rate16}}</td>
+                  <td>{{item.rate17}}</td>
+
+                  <td>{{item.trWk}}</td>
+                  <td>{{item.trLwk}}</td>
+                  <td>{{item.trHiswk}}</td>
+                  <td>{{item.rate18}}</td>
+                  <td>{{item.rate19}}</td>
+
+                  <td>{{item.rate20}}</td>
+                  <td>{{item.rate21}}</td>
+                  <td>{{item.rate22}}</td>
+                  <td>{{item.rate23}}</td>
+                  <td>{{item.rate24}}</td> -->
+                </tr>
+              </ng-template>
+            </ng-template>
+          </tbody>
+        </ng-template>
+      </nz-table>
+
+
+
+    </div>
+  </app-common-card>
+
+  <app-exdetail-list #exdetailList [reportDimensionParams]="electricityParams"></app-exdetail-list>
+  <app-custom-column-dialog (setFilterField)="serachData($event)" #customColumnDialog></app-custom-column-dialog>
+  <!-- <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template> -->
+
+
+</div>

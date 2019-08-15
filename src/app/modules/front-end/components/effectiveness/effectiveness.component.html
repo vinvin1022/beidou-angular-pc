@@ -1,0 +1,8 @@
+<div class="eye-net-index">
+  <button class="mar-right10 mar-bot10" nz-button nzType="info" (click)="goback()">返回</button>
+  <app-front-real-form [isShowDept0]="true" [isShowRangePicker]="false" [isShowAdvertisersTypeList]="true"
+    (sendQueryData)="getFilterData($event)"></app-front-real-form>
+  <div class="mar-top20">
+    <app-subeffective-table [filterData]="filterData"></app-subeffective-table>
+  </div>
+</div>

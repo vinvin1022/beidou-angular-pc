@@ -1,0 +1,49 @@
+<div class="eye-subonline-table">
+  <app-common-card nztitle="升班业绩" [isHideGrayBg]="true">
+    <div name="operate">
+      <ng-template [appIsshowbtn]="'b060401'">
+        <button nz-button [disabled]="!(displayData && displayData.length)" nzType="info"
+          (click)="exportPromotion()">导出</button>
+      </ng-template>
+    </div>
+    <div name="middle-conent">
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #filterTable [nzData]="displayData" nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+        [nzScroll]="{ x: '1050px', y: '500px' }"
+        [nzWidthConfig]="['160px', '170px', '90px', '80px', '150px', '100px', '100px', '100px', '100px']">
+
+        <thead>
+          <tr *ngIf="displayData && displayData.length">
+            <th>BP移交时间</th>
+            <th>订单号</th>
+            <th>班主任</th>
+            <th>在岗状态</th>
+            <th>部门</th>
+            <th>升班金额</th>
+            <th>原订单金额</th>
+            <th>升班折算业绩</th>
+            <th>升班奖金</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of displayData; let idx = index">
+            <td>{{data.bpTime}}</td>
+            <td>{{data.orderItemSn}}</td>
+            <td>{{data.teacherName}}</td>
+            <td>{{data.userState}}</td>
+            <td>{{data.deptName}}</td>
+            <td>{{data.payAmount}}</td>
+            <td>{{data.beforeAmt}}</td>
+            <td>{{data.convertAmt}}</td>
+            <td>{{data.bonus}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

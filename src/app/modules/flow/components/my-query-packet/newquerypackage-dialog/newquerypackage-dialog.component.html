@@ -1,0 +1,60 @@
+<nz-modal class="newquerypackageDialog" nzWidth="688px" nzWrapClassName="vertical-center-modal"
+  [(nzVisible)]="isVisible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <div nz-row nzType="flex" nzJustify="space-around">
+    <div nz-col nzSpan="16">
+      <form nz-form nzLayout="inline" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div>
+          <nz-form-item>
+            <nz-form-label nzRequired nzFor="packageName">名称</nz-form-label>
+            <nz-form-control>
+              <input nz-input maxlength="20" formControlName="packageName" id="packageName">
+              <nz-form-explain *ngIf="validateForm.get('packageName').dirty && validateForm.get('packageName').errors">
+                名称为必填</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="mar-top10">
+          <nz-form-item>
+            <nz-form-label nzRequired nzFor="typeIdVal">类型</nz-form-label>
+            <nz-form-control>
+              <nz-select [nzDisabled]="typeIdValDisabled" (ngModelChange)="typeIdValChange($event)" id="typeIdVal"
+                style="width: 120px;" formControlName="typeIdVal" nzAllowClear nzPlaceHolder="请选择类型">
+                <nz-option *ngFor="let item of typeIdValOptions" [nzValue]="item.typeId" [nzLabel]="item.typeName">
+                </nz-option>
+              </nz-select>
+              <nz-form-explain *ngIf="validateForm.get('typeIdVal').dirty && validateForm.get('typeIdVal').errors">类型为必填
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <app-sx-select [hidden]="validateForm.get('typeIdVal').value !== '2'" [selectGroup]="validateForm"
+            bdFormControlName="accountUid" [defaultLoad]="true" [optionsService]="flowcommonform"
+            methodName="getQueryAccount" bdPlaceHolder="请选择账户" (selectedValueChange)="allaccountChange($event)"
+            [bdServerSearch]="true"></app-sx-select>
+
+          <app-sx-select [hidden]="validateForm.get('typeIdVal').value !== '1'" [selectGroup]="validateForm"
+            bdFormControlName="siteNumber" [defaultLoad]="true" [optionsService]="flowcommonform"
+            methodName="getSiteNumberOptions" bdPlaceHolder="请选择站点" (selectedValueChange)="allsiteChange($event)"
+            [bdServerSearch]="true"></app-sx-select>
+
+        </div>
+      </form>
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-list
+        [nzDataSource]="validateForm.get('typeIdVal').value === '2' ? accountUidFilterData : siteNumberFilterData"
+        [nzHeader]="xtitle" nzBordered nzSize="small" [nzRenderItem]="item">
+        <ng-template #item let-items>
+          <nz-list-item [nzContent]="items.optionName" [nzActions]="[closeAction]">
+            <ng-template #closeAction><i (click)="remove(items.optionId)" nz-icon type="close-circle"
+                theme="outline"></i></ng-template>
+          </nz-list-item>
+          <!-- <nz-list-item *ngIf="validateForm.get('typeIdVal').value === '1'" [nzContent]="items.optionName" [nzActions]="[closeAction]">
+            <ng-template #closeAction><i (click)="remove(items.optionId)" nz-icon type="close-circle" theme="outline"></i></ng-template>
+          </nz-list-item> -->
+        </ng-template>
+      </nz-list>
+    </div>
+  </div>
+</nz-modal>

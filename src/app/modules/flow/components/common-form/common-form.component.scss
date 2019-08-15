@@ -1,0 +1,35 @@
+.eye-common-gform.moreOpen {
+  .common-card{
+    .ant-card-body{
+      padding: 20px 10px;
+      background-color: #F9F9F9;
+      margin: 10px;
+    }
+  }
+ 
+}
+.eye-common-gform{
+  .common-card{
+    .ant-card-body {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+.show-more{
+  text-align: center;
+  color: #40a9ff;
+  cursor: pointer;
+  font-weight: normal;
+  margin-top:10px;
+  margin-left:10px;
+  .anticon-double-right{
+    transform: rotate(90deg)
+  }
+  .more-icon{
+    .anticon-double-right{
+      transform: rotate(-90deg)
+    }
+  }
+  
+}

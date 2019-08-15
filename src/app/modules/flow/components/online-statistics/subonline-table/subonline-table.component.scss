@@ -1,0 +1,11 @@
+.eye-subonline-table .btnsCtrol{
+    display: flex;
+    justify-content: center;
+    .btn-item {
+        flex: 1;
+        margin-left:5px;
+        width: 110px;
+    }
+    .upload{ width: 100px; text-align: center;}
+    .export{ width: 82px;}
+}

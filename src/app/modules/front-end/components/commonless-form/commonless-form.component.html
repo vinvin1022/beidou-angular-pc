@@ -1,0 +1,65 @@
+<div class="eye-subonline-paration">
+  <app-common-card nztitle="筛选条件">
+    <div name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+        <app-sx-select label="事业部" [selectGroup]="validateForm" bdFormControlName="business"
+          [optionsService]="commonCustomService" methodName="getIndexDept" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择事业部" (selectedValueChange)="allbusinessChangeEvent($event)"></app-sx-select>
+   
+
+
+        <app-sx-select label="军团" [selectGroup]="validateForm" bdFormControlName="deptId1"
+          [optionsService]="frontendService" methodName="getLegion" [requestParams]="paramsAll" bdPlaceHolder="请选择军团"
+          (selectedValueChange)="alllegionChangeEvent($event)"></app-sx-select>
+      
+
+
+
+        <app-sx-select label="咨询组" [selectGroup]="validateForm" bdFormControlName="deptId2"
+          [optionsService]="frontendService" methodName="getfrontGroup" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择咨询组" (selectedValueChange)="allfrontGroupChangeEvent($event)"></app-sx-select>
+       
+
+
+        <app-sx-select label="咨询师" [selectGroup]="validateForm" bdFormControlName="userId"
+          [optionsService]="frontendService" methodName="getFrontUser" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择咨询师"></app-sx-select>
+       
+        <div *ngIf="isShowRangePicker">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" class="width85"></nz-form-label>
+            <nz-form-control>
+              <nz-radio-group (ngModelChange)="periodTypeChange($event)" formControlName="periodType">
+                <label nz-radio-button [nzValue]="'period_wid'">日</label>
+                <label nz-radio-button [nzValue]="'week_inyear'">周</label>
+                <label nz-radio-button [nzValue]="'period_month'">月</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-range-picker [nzAllowClear]="false" [nzDisabledDate]="rangePickerTodayDisabledDate"
+                formControlName="rangePicker"></nz-range-picker>
+
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" nzType="primary">查询</button>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" (click)="resetForm($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </form>
+
+    </div>
+  </app-common-card>
+</div>

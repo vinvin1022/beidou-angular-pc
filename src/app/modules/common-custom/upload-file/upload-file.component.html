@@ -1,0 +1,6 @@
+<nz-upload class="upload-file" [nzShowUploadList]="bdShowUploadList" [nzName]="bdName" [nzSize]="bdSize" [nzAction]="bduploadFileUrl"
+  (nzChange)="uploadFileChange($event)" [nzCustomRequest]="customUploadFile">
+  <button nz-button>
+    <i nz-icon [type]="uploadType"></i><span>{{bdBtnTxt}}</span>
+  </button>
+</nz-upload>

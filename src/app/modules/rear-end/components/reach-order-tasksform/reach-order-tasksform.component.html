@@ -1,0 +1,61 @@
+<div class="eye-commonsearch-form">
+  <app-common-card nztitle="筛选条件">
+    <div name="middle-conent">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+
+        <nz-form-item>
+          <nz-form-control>
+            <nz-cascader #deptIdCascader (ngModelChange)="deptIdChange($event)"
+              (nzSelectionChange)="deptIdSelectionChange($event)" [nzChangeOnSelect]="true" nzAllowClear
+              [nzShowSearch]="true" formControlName="deptId" [nzOptions]="deptIdOptions" nzPlaceHolder="请选择部门">
+            </nz-cascader>
+          </nz-form-control>
+        </nz-form-item>
+
+        <app-sx-select [selectGroup]="validateForm" bdFormControlName="teacherMAIds"
+          [optionsService]="reachOrderTasksformService" methodName="queryTeacheerMa" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择班主任主管" (selectedValueChange)="teacherMAIdsChange($event)" [bdServerSearch]="true">
+        </app-sx-select>
+
+        <app-sx-select [selectGroup]="validateForm" bdFormControlName="teacherIds"
+          [optionsService]="reachOrderTasksformService" methodName="queryTeacheer" [requestParams]="paramsAll"
+          bdPlaceHolder="请选择班主任" [bdServerSearch]="true">
+        </app-sx-select>
+
+        <nz-form-item>
+          <nz-form-label>日期</nz-form-label>
+          <nz-form-control>
+            <nz-range-picker [nzShowTime]="showTime" [nzFormat]="timeFormat" [nzAllowClear]="false"
+              [nzDisabledDate]="rangePickerDisabledDate" formControlName="rangePicker"></nz-range-picker>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item *ngIf="showSaleCategory">
+          <nz-form-control>
+            <nz-cascader #bigIdCascader (ngModelChange)="bigIdChange($event)"
+              (nzSelectionChange)="bigIdSelectionChange($event)" [nzChangeOnSelect]="true" nzAllowClear
+              [nzShowSearch]="true" formControlName="bigId" [nzOptions]="bigIdOptions" nzPlaceHolder="请选择售后大类">
+            </nz-cascader>
+          </nz-form-control>
+        </nz-form-item>
+
+
+
+        <div>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" nzType="primary">查询</button>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button [nzLoading]="loading" (click)="resetForm($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </form>
+
+    </div>
+  </app-common-card>
+</div>

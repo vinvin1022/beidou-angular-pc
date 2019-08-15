@@ -1,0 +1,17 @@
+<div class="eye-realtime-kanban">
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="实时看板">
+      <div nz-row nzGutter="24" ngProjectAs=".a">
+        <div nz-col class="gutter-row" nzSpan="8">
+          <app-data-block [realTimeData]="dayData"></app-data-block>
+        </div>
+        <div nz-col class="gutter-row middle-card" nzSpan="8">
+          <app-data-block [realTimeData]="weekData"></app-data-block>
+        </div>
+        <div nz-col class="gutter-row" nzSpan="8">
+          <app-data-block [realTimeData]="monthData"></app-data-block>
+        </div>
+      </div>
+    </app-eye-card>
+  </nz-spin>
+</div>

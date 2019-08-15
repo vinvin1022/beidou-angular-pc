@@ -1,0 +1,6 @@
+<div class="eye-army-data-analysis">
+    <app-commonsearch-form [isShowPopularize]="false"  (sendQueryData)="getFilterData($event)"></app-commonsearch-form>
+    <div class="mar-top20">
+      <app-subarmydata-table [filterData]="filterData"></app-subarmydata-table>
+    </div>
+  </div>

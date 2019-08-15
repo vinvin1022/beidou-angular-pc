@@ -1,0 +1,49 @@
+<div class="eagle-eye-menu">
+  <div class="child-menu">
+    <!-- <button nz-button [nzType]="'primary'" (click)=" toggleCollapsed()" style="margin-bottom: 10px;">
+    <i nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'"></i>
+    </button> -->
+    <ul nz-menu [nzMode]="'inline'" nzTheme='dark' [nzInlineCollapsed]="isCollapsed">
+      <ng-container *ngFor="let pitem of menuJson;">
+        <ng-container *ngIf="!pitem.children">
+          <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''">
+            <a title [routerLink]="pitem.menuUrl">
+              <!-- <i nz-icon type="mail"></i> -->
+              <i class="icon iconfont" [innerHTML]="pitem.menuIcon"></i>
+              <span>{{pitem.menuName}}</span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="pitem.children">
+          <li nz-submenu [(nzOpen)]="pitem.open" (nzOpenChange)="openHandler(pitem.menuId)">
+            <span title>
+              <!-- <i nz-icon type="appstore"></i> -->
+              <i class="icon iconfont" [innerHTML]="pitem.menuIcon"></i>
+              <span>{{pitem.menuName}}</span>
+            </span>
+            <ul>
+              <ng-container *ngIf="!(pitem.children && pitem.children[0].children)">
+                <li [nzSelected]="maitem.selected" nz-menu-item *ngFor="let maitem of pitem.children">
+                  <a [routerLink]="maitem.menuUrl">{{maitem.menuName}}</a>
+                </li>
+              </ng-container>
+
+              <ng-container *ngIf="pitem.children && pitem.children[0].children">
+                <li nz-submenu *ngFor="let saitem of pitem.children;">
+                  <span title>
+                    <i class="icon iconfont" [innerHTML]="saitem.menuIcon"></i>
+                    <span>{{pitem.menuName}}</span>
+                  </span>
+                  <ul>
+                    <li nz-menu-item *ngFor="let ssitem of saitem.children"><a
+                        [routerLink]="ssitem.menuUrl">{{ssitem.menuName}}</a></li>
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </div>
+</div>

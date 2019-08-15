@@ -1,0 +1,80 @@
+<nz-modal [(nzVisible)]="isVisible" nzWidth="90%" nzTitle="数据详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
+  <nz-table #nzTable [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+    [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable [nzData]="displayData" nzBordered
+    [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)"
+    (nzPageSizeChange)="pageSizeChange($event)" [nzShowPagination]="true" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+
+    <thead>
+      <tr>
+        <th nzLeft="0px">维度</th>
+        <th nzLeft="99px">日期</th>
+        <!-- <ng-container *ngFor="let item of electricStatisticsFieldData">
+          <th>{{item.label}}</th>
+        </ng-container> -->
+        <ng-container *ngFor="let pitem of fieldKeys">
+            <ng-container *ngFor="let sitem of filterFieldData[pitem].children">
+              <th>{{sitem.label}}</th>
+            </ng-container>
+          </ng-container>
+        <!-- <th>首咨分配数</th>
+        <th>流水</th>
+        <th>首咨报名率(%)</th>
+
+        <th>首咨接通数</th>
+        <th>首咨总拨打数</th>
+        <th>销机</th>
+        <th>财务消费</th>
+        <th>首咨有效接通率(%)</th>
+
+        <th>ARPU</th>
+        <th>首咨接通率(%)</th>
+        <th>首咨有效性(%)</th>
+        <th>RPA</th>
+
+        <th>RPC</th>
+        <th>CPA</th>
+        <th>名片成本</th> -->
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let data of nzTable.data">
+        <td nzLeft="0px">{{data.deptUserName || '--'}}</td>
+        <td nzLeft="99px">{{data.periodWid}}</td>
+        <!-- <ng-container *ngFor="let sitem of electricStatisticsFieldData">
+          <td>{{item[sitem.value]}}</td>
+        </ng-container> -->
+        <ng-container *ngFor="let ppitem of fieldKeys">
+            <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+              <td>{{data[sitem.value]}}</td>
+            </ng-container>
+          </ng-container>
+        <!-- <td>{{item.firstAllotdAco}}</td>
+        <td>{{item.ordersAmo}}</td>
+        <td>{{item.rate1}}</td>
+
+
+        <td>{{item.firstCallAco}}</td>
+        <td>{{item.firstAco}}</td>
+        <td>{{item.effordersAcoFlow}}</td>
+        <td>{{item.financeAmount}}</td>
+        <td>{{item.rate6}}</td>
+
+        <td>{{item.arpu}}</td>
+        <td>{{item.rate3}}</td>
+        <td>{{item.rate4}}</td>
+        <td>{{item.rpa}}</td>
+
+        <td>{{item.rpc}}</td>
+        <td>{{item.cpa}}</td>
+        <td>{{item.flowCost}}</td> -->
+      </tr>
+
+    </tbody>
+  </nz-table>
+
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</nz-modal>

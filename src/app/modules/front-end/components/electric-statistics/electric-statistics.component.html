@@ -1,0 +1,6 @@
+<div class="eye-electric-statistics">
+    <app-commonmore-form [isShowSource]="false"  (sendQueryData)="getFilterData($event)"></app-commonmore-form>
+    <div class="mar-top20">
+      <app-subelectricstat-table [filterData]="filterData"></app-subelectricstat-table>
+    </div>
+  </div>

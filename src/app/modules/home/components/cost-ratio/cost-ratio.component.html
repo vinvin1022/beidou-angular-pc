@@ -1,0 +1,19 @@
+<div class="mar-left5 eye-cost-ratio" #eyeCostRatio>
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="七日内费比">
+      <div class="operate">
+        <span (click)="getCostRatioData('0')" class="all" [ngClass]="{active:flowDataType === '0'}">全部</span>
+        <span (click)="getCostRatioData('1')" class="electric" [ngClass]="{active:flowDataType === '1'}">电销</span>
+        <span (click)="getCostRatioData('2')" class="netpin" [ngClass]="{active:flowDataType === '2'}">网销</span>
+      </div>
+      <div class="a">
+
+        <div [hidden]="!echartsData.length" #costRatioCharts id="cost-ratio-charts" style="height:300px"></div>
+        <div [hidden]="echartsData.length" style="height:300px; padding-top: 50px">
+          <nz-empty></nz-empty>
+        </div>
+      </div>
+    </app-eye-card>
+  </nz-spin>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="eye-data-block">
+  <nz-card>
+    <div class="item top">
+      <div class="nape today-data">
+        <p class="tit c999 fs12 mar-bot12">{{realTimeData.type}}名片</p>
+        <p class="fs17 c333 conent"><span>{{realTimeData.flowCo || 0}}</span></p>
+      </div>
+      <div class="nape link-relative">
+        <p class="tit c999 fs12 mar-bot12">环比</p>
+        <p class="ratio fs10" [ngClass]="{'arrtop':realTimeData.flowrate > 0, 'arrbot':realTimeData.flowrate <= 0}"><span>{{realTimeData.flowrate || '0'}}%</span></p>
+      </div>
+    </div>
+    <div class="item bottom">
+      <div class="nape today-data">
+        <p class="tit c999 fs12 mar-bot12">{{realTimeData.type}}流水</p>
+        <p class="fs21 c333 conent"><span>{{realTimeData.orderAmo || 0.00}}</span></p>
+      </div>
+      <div class="nape link-relative">
+        <p class="tit c999 fs12 mar-bot12">环比</p>
+        <p class="ratio fs10" [ngClass]="{'arrtop':realTimeData.rateAmo > 0, 'arrbot':realTimeData.rateAmo <= 0}"><span>{{realTimeData.rateAmo || '0'}}%</span></p>
+      </div>
+    </div>
+  </nz-card>
+</div>

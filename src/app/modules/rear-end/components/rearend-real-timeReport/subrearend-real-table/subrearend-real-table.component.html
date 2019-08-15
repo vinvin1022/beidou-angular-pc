@@ -1,0 +1,50 @@
+<div class="eye-subonline-table">
+    <ng-template #cardTitle>
+        <span>数据列表</span>
+        <span class="update-time" *ngIf="displayData[0]">更新时间：{{displayData[0]['winsertDt'] | date: 'yyyy/MM/dd HH:mm:ss'}}</span>
+      </ng-template>
+  <app-common-card [nztitle]="cardTitle" [isHideGrayBg]="true">
+    <div name="operate">
+      <ng-template [appIsshowbtn]="'b060301'">
+        <button nz-button [disabled]="!(displayData && displayData.length)" nzType="info"
+          (click)="exportDaliyTimeACTVOs()">导出</button>
+      </ng-template>
+    </div>
+    <div name="middle-conent">
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #filterTable [nzData]="displayData" nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+        [nzScroll]="{ x: '830px', y: '500px' }"
+        [nzWidthConfig]="['200px', '100px', '100px', '100px', '100px', '100px', '100px', '100px']">
+        <thead>
+          <tr *ngIf="displayData && displayData.length">
+            <th>部门</th>
+            <th>班主任</th>
+            <th>通话次数</th>
+            <th>有效通话次数</th>
+            <th>通话时长</th>
+            <th>拨打次数</th>
+            <th>有效通话率(%)</th>
+            <th>接通率(%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of filterTable.data; let idx = index">
+            <td>{{data.deptName}}</td>
+            <td>{{data.sellerName}}</td>
+            <td>{{data.effCaltimes3}}</td>
+            <td>{{data.effCaltimes2}}</td>
+            <td>{{data.longtimes}}</td>
+            <td>{{data.caltimes1}}</td>
+            <td>{{data.rate1}}%</td>
+            <td>{{data.rate2}}%</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>

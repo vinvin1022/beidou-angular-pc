@@ -1,0 +1,12 @@
+:host {
+    /deep/ .ant-checkbox-wrapper+.ant-checkbox-wrapper {
+        margin-left: 0;
+    }
+    /deep/ .parent-checkbox .ant-checkbox-wrapper{
+        // width: 200px;
+    }
+    /deep/ .sub-checkbox .ant-checkbox-wrapper{
+        width: 150px;
+    }
+}
+

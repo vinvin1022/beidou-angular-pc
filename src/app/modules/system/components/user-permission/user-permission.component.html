@@ -1,0 +1,7 @@
+<div class="eys-authority-management">
+  <button class="mar-bot10 mar-right10" nz-button nzType="default" (click)="goback()">返回</button>
+  <app-auth-seachform (sentSearchData)="acceptSearchData($event)" [isShowUserName]="true"></app-auth-seachform>
+  <div class="mar-top20">
+    <app-user-permission-table [searchData]="searchData"></app-user-permission-table>
+  </div>
+</div>

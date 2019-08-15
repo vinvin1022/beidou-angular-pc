@@ -1,0 +1,266 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #f8f8f8
+  }
+  
+  @media print{body{display:none}}
+  ul,
+  li {
+    list-style: none
+  }
+  
+  @font-face {
+    font-family: "iconfont";
+    src: url('./assets/fonts/iconfont.eot');
+    /* IE9*/
+    src: url('./assets/fonts/iconfont.eot#iefix') format('embedded-opentype'),
+      /* IE6-IE8 */
+      url('./assets/fonts/iconfont.woff') format('woff'),
+      /* chrome, firefox */
+      url('./assets/fonts/iconfont.ttf') format('truetype'),
+      /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url('./assets/fonts/iconfont.svg#iconfont') format('svg');
+    /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .clearfixed::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+  }
+  
+  
+  
+  .pad-left0 {
+    padding-left: 0;
+  }
+  .pad-left10 {
+    padding-left: 10px;
+  }
+  .pad-left5 {
+    padding-left: 5px;
+  }
+  .pad-bot5 {
+    padding-bottom: 5px;
+  }
+  
+  
+  .mar-bot24 {
+    margin-bottom: 24px;
+  }
+  
+  .mar-bot22 {
+    margin-bottom: 22px;
+  }
+  
+  .mar-bot20 {
+    margin-bottom: 20px;
+  }
+  
+  .mar-bot12 {
+    margin-bottom: 12px;
+  }
+  .mar-bot10 {
+    margin-bottom: 10px;
+  }
+  .mar-bot5 {
+    margin-bottom: 5px;
+  }
+  .mar-bot2 {
+    margin-bottom: 2px;
+  }
+  
+  .mar-top10 {
+    margin-top: 10px;
+  }
+  
+  .mar-top20 {
+    margin-top: 20px;
+  }
+  
+  .mar-left5 {
+    margin-left: 5px;
+  }
+  
+  .mar-right5 {
+    margin-right: 5px;
+  }
+  
+  .mar-left10 {
+    margin-left: 10px;
+  }
+  .mar-left20 {
+    margin-left: 20px;
+  }
+  .mar-left30 {
+    margin-left: 30px;
+  }
+  
+  .mar-right10 {
+    margin-right: 10px;
+  }
+  
+  .c999 {
+    color: #999999;
+  }
+  
+  .c333 {
+    color: #333333;
+  }
+  
+  .cEA2929 {
+    color: #EA2929;
+  }
+  
+  .c33BF40 {
+    color: #33BF40;
+  }
+  
+  .fs10 {
+    font-size: 10px;
+  }
+  
+  .fs12 {
+    font-size: 12px;
+  }
+  
+  .fs14 {
+    font-size: 14px;
+  }
+  
+  .fs17 {
+    font-size: 17px;
+  }
+  
+  .fs21 {
+    font-size: 21px;
+  }
+  .width85{
+    width: 85px;
+  }
+  .txtright{
+    text-align: right
+  }
+  .txtcenter{
+    text-align: center;
+  }
+  
+  .posrelative {
+    position: relative
+  }
+  
+  .posabsolute {
+    position: absolute
+  }
+  
+  .tdBgcEA2929 {
+    background-color: #EA2929;
+  }
+  
+  .update-time{
+    font-weight: normal;
+    padding-left: 10px;
+    font-size: 12px;
+}
+  
+  
+  .ant-table-tbody>tr>td,
+  .ant-table-thead>tr>th {
+    padding: 5px!important;
+    border-bottom: none;
+  }
+  .ant-table-tbody{
+    border-bottom: 1px solid #e8e8e8;
+  }
+  
+  .ant-table-thead>tr>th {
+    background-color: #7786A0;
+    color: #fff;
+  }
+  .ant-table-thead>tr:first-child>th:last-child{
+    border-top-right-radius: 0;
+  }
+  .ant-table-thead>tr>th.ant-table-column-sort{
+    background-color: #7786A0;
+  }
+  .ant-table-thead>tr>th.ant-table-column-has-actions.ant-table-column-has-sorters:hover, .ant-table-thead>tr>th.ant-table-column-has-actions.ant-table-column-has-sorters:hover .ant-table-filter-icon, .ant-table-thead>tr>th.ant-table-column-has-actions.ant-table-column-has-sorters:hover .anticon-filter{
+    background-color: #7786A0;
+  }
+  .ant-table-thead>tr>th .ant-table-column-sorter-down.on, .ant-table-thead>tr>th .ant-table-column-sorter-up.on{
+    color: #3965B4;
+  }
+  
+  .ant-table-tbody>tr:nth-child(even)>td {
+    background-color: #F9F9F9;
+  }
+  
+  .ant-btn-primary{
+    color: #F6F7F8;
+    background-color: #3965B4;
+    border-color: #3965B4;
+  }
+  .ant-btn-primary:focus, .ant-btn-primary:hover {
+    opacity: .8;
+    background-color: #3965B4;
+    border-color: #3965B4;
+  }
+  
+  // .ant-select-selection--multiple .ant-select-selection__rendered{
+  //   height: 30px!important;
+  //   overflow: hidden!important;
+  // }
+  // .ant-select-selection--multiple.ant-select-selection {
+  //   position: relative;
+  //   top: 4px;
+  // }
+  
+  
+  
+  
+  
+  ::-webkit-input-placeholder {
+    color: #D5D8DC;
+  }
+  
+  /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+  }
+  
+  /*内层轨道，滚动条中间部分（除去）*/
+  ::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 4px;
+  }
+  
+  /*滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）*/
+  ::-webkit-scrollbar-thumb:vertical {
+    height: 4px;
+    background-color: #d5d5d5;
+    -webkit-border-radius: 4px;
+  }
+  
+  /*滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）*/
+  ::-webkit-scrollbar-thumb:horizontal {
+    width: 5px;
+    background-color: #d5d5d5;
+    -webkit-border-radius: 4px;
+  }
+  

@@ -1,0 +1,21 @@
+{
+    "/apis": {
+        "target": "http://localhost:3000",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/apis": ""
+        },
+        "logLevel": "debug"
+    },
+    "/getdata": {
+        "target": "http://sheng.com",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/getdata": "/getdata"
+        },
+        "logLevel": "debug"
+    }
+    
+}

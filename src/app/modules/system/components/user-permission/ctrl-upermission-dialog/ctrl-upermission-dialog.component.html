@@ -1,0 +1,58 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modeltitle" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+    <nz-form-item *ngIf="!rowData['id']">
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">账号</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input (ngModelChange)="subject.next($event)" maxlength="11" placeholder="请输入账号" formControlName="accountNumber"
+          nz-input />
+        <nz-form-explain *ngIf="validateForm.get('accountNumber')?.dirty && validateForm.get('accountNumber')?.errors">
+          请输入正确的账号！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">姓名</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input disabled placeholder="请输入角色名称" formControlName="userName" nz-input />
+        <nz-form-explain *ngIf="validateForm.get('userName')?.dirty && validateForm.get('userName')?.errors">请输入姓名！
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+
+
+
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">模块</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select nzAllowClear id="roleType" formControlName="roleType" (ngModelChange)="roleTypeChange($event)"
+          nzPlaceHolder="请选择模块">
+          <ng-container *ngFor="let item of roleTypesOptions">
+            <nz-option [nzValue]="item.optionId" [nzLabel]="item.optionName"></nz-option>
+          </ng-container>
+        </nz-select>
+        <nz-form-explain *ngIf="validateForm.get('roleType')?.dirty && validateForm.get('roleType')?.errors">请选择模块！
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSm]="6" [nzXs]="24">角色</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select (ngModelChange)="roleNameChange($event)" nzAllowClear [nzServerSearch]="true" id="roleName"
+          formControlName="roleName" nzPlaceHolder="请选择角色">
+          <ng-container *ngFor="let item of roleIdOptions">
+            <nz-option [nzValue]="item.roleName" [nzLabel]="item.roleName"></nz-option>
+          </ng-container>
+        </nz-select>
+        <nz-form-explain *ngIf="validateForm.get('roleName')?.dirty && validateForm.get('roleName')?.errors">请输入角色名称！
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">角色描述</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea disabled formControlName="resourceName" nz-input></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

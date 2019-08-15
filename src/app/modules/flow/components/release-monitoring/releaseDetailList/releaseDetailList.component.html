@@ -1,0 +1,179 @@
+<nz-modal [(nzVisible)]="isVisible" nzWidth="90%" nzTitle="数据详情" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+    nzNoResult="暂无数据" [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable [nzData]="displayData"
+    nzBordered [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+    (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+    [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig">
+    <thead>
+      <tr>
+        <th nzLeft="0px">序号</th>
+        <th nzLeft="49px">维度</th>
+        <th nzLeft="149px">时间</th>
+        <ng-container *ngFor="let pitem of fieldKeys">
+          <ng-container *ngFor="let item of filterFieldData[pitem].children">
+            <th>{{item.label}}</th>
+          </ng-container>
+        </ng-container>
+        <!-- <ng-container *ngFor="let item of filterFieldData">
+            <th>{{item.label}}</th>
+          </ng-container> -->
+        <!-- <th>总流水</th>
+          <th>7日内流水</th>
+          <th>14日内流水</th>
+
+          <th>跨期流水</th>
+          <th>总费比(%)</th>
+          <th>当周费比(%)</th>
+          <th>总名片数</th>
+
+          <th>首咨分配数</th>
+          <th>在线名片</th>
+          <th>留言名片</th>
+          <th>在线占比(%)</th>
+
+          <th>名片成本</th>
+          <th>销机</th>
+          <th>CPA</th>
+          <ng-container *ngIf="flowDataType === '电销'">
+            <th>总有效性(%)</th>
+
+            <th>在线有效性(%)</th>
+            <th>留言有效性(%)</th>
+          </ng-container>
+
+          <ng-container *ngIf="flowDataType === '网销'">
+            <th>总加成率(%)</th>
+
+            <th>在线加成率(%)</th>
+            <th>留言加成率(%)</th>
+          </ng-container>
+
+          <th>RPA</th>
+          <th>RPC</th>
+
+          <th>报名率(%)</th>
+          <th>7日内报名率(%)</th>
+          <th>14日内报名率(%)</th>
+          <th>跨期报名率(%)</th>
+
+          <th>在线报名率(%)</th>
+          <th>留言报名率(%)</th>
+          <th>总销转(%)</th>
+          <th>7日内销转(%)</th>
+
+          <th>14日内销转(%)</th>
+          <th>跨期销转(%)</th>
+          <th>在线销转(%)</th>
+          <th>留言销转(%)</th>
+
+          <th>ARPU</th>
+          <th>总报名数</th>
+          <th>7日内报名数</th>
+          <th>14日内报名数</th>
+
+          <th>跨期报名数</th>
+          <th>在线报名数</th>
+          <th>留言报名数</th>
+          <th>记录率(%)</th>
+
+          <th>展现量</th>
+          <th>点击量</th>
+          <th>账面消费</th>
+          <th>财务消费</th>
+
+          <th>CPC</th>
+          <th>CTR</th>
+          <th>网电</th>
+          <th>对话有效率(%)</th>
+
+          <th>发起到有效率(%)</th>
+          <th>在线转化率(%)</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of groupingTable.data;let idx = index">
+        <td nzLeft="0px">{{idx + 1}}</td>
+        <td nzLeft="49px">
+          {{ data.dimensionName || data.queryDimension || '--'}}
+        </td>
+        <td nzLeft="149px">{{data.periodWid}}</td>
+        <ng-container *ngFor="let ppitem of fieldKeys">
+          <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+            <td>{{data[sitem.value]}}</td>
+          </ng-container>
+        </ng-container>
+        <!-- <ng-container *ngFor="let item of filterFieldData">
+            <td>{{data[item.value]}}</td>
+          </ng-container> -->
+
+        <!-- <td>{{data.ordersAmo}}</td>
+
+        <td>{{data.ordersAmo7}}</td>
+        <td>{{data.ordersAmo14}}</td>
+
+        <td>{{data.ordersAmo15}}</td>
+        <td>{{data.rate1}}</td>
+        <td>{{data.rate2}}</td>
+        <td>{{data.flowidAco}}</td>
+
+        <td>{{data.firstallotdAco}}</td>
+        <td>{{data.onlflowidAco}}</td>
+        <td>{{data.mesflowidAco}}</td>
+        <td>{{data.rate3}}</td>
+
+        <td>{{data.rate4}}</td>
+        <td>{{data.saleoppAco}}</td>
+        <td>{{data.rate5}}</td>
+        <td>{{data.rate6}}</td>
+
+        <td>{{data.rate7}}</td>
+        <td>{{data.rate8}}</td>
+
+
+        <td>{{data.rate10}}</td>
+        <td>{{data.rate11}}</td>
+
+        <td>{{data.rate12}}</td>
+        <td>{{data.rate13}}</td>
+        <td>{{data.rate14}}</td>
+        <td>{{data.rate15}}</td>
+
+        <td>{{data.rate16}}</td>
+        <td>{{data.rate17}}</td>
+        <td>{{data.rate21}}</td>
+        <td>{{data.rate22}}</td>
+
+        <td>{{data.rate23}}</td>
+        <td>{{data.rate24}}</td>
+        <td>{{data.rate25}}</td>
+        <td>{{data.rate26}}</td>
+
+        <td>{{data.rate18}}</td>
+        <td>{{data.ordersAco}}</td>
+        <td>{{data.ordersAco7}}</td>
+        <td>{{data.ordersAco14}}</td>
+
+        <td>{{data.ordersAco15}}</td>
+        <td>{{data.onlordersAco}}</td>
+        <td>{{data.mesordersAco}}</td>
+        <td>{{data.rate9}}</td>
+
+        <td>{{data.num}}</td>
+        <td>{{data.click}}</td>
+        <td>{{data.paperAmount}}</td>
+        <td>{{data.financeAmount}}</td>
+
+        <td>{{data.cpc}}</td>
+        <td>{{data.ctr}}</td>
+        <td>{{data.rate19}}</td>
+        <td>{{data.rate27}}</td>
+
+        <td>{{data.rate28}}</td>
+        <td>{{data.rate29}}</td> -->
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</nz-modal>

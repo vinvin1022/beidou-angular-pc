@@ -1,0 +1,25 @@
+// ::ng-deep .vertical-center-modal {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// ::ng-deep .vertical-center-modal .ant-modal {
+//   top: 0;
+// }
+
+.custom-column-dialog{
+  .ant-checkbox-wrapper+.ant-checkbox-wrapper{
+    margin-left: 0;
+    margin-right: 8px;
+  }
+  .ant-checkbox-wrapper{
+    margin-right: 8px;  
+    width: 160px;
+  }
+  .parent-checkbox .ant-checkbox-wrapper{
+    width: 210px;
+  }
+}
+
+

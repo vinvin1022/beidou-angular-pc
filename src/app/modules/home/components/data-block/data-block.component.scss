@@ -1,0 +1,90 @@
+.eye-data-block {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+
+  .ant-card-body {
+    padding: 20px;
+  }
+
+  p {
+    height: 24px;
+    line-height: 24px;
+  }
+
+  .today-data,
+  .nape {
+    .tit {
+      height: 18px;
+      line-height: 18px;
+    }
+  }
+
+  .conent {
+    position: relative;
+
+    span {
+      padding-left: 5px;
+    }
+  }
+
+
+  .conent::before {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+  }
+
+  .ratio {
+    position: relative;
+  }
+
+  .ratio::after {
+    display: block;
+    width: 2px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: -5px;
+  }
+
+  .arrtop{
+    color: #EA2929
+  }
+  .arrtop::after {
+    content: "↑";
+  }
+  .arrbot{
+    color: #33BF40
+  }
+  .arrbot::after {
+    content: "↓";
+  }
+
+  .item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+
+    .snap {
+      flex: 1;
+    }
+  }
+
+  .top {
+    margin-bottom: 22px;
+
+    .conent::before {
+      background-color: #0096FF;
+    }
+  }
+
+  .bottom {
+    .conent::before {
+      background-color: #FF9600;
+    }
+  }
+
+}

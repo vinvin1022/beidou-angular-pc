@@ -1,0 +1,14 @@
+<div class="common-card">
+
+  <nz-card [ngClass]="{'hide-gray-bg':isHideGrayBg}" [nzTitle]="nztitle" [nzExtra]="extraTemplate">
+    <div class="all-content">
+      <ng-content select="[name=left-conent]"></ng-content>
+      <ng-content select="[name=middle-conent]"></ng-content>
+      <ng-content select="[name=right-conent]"></ng-content>
+    </div>
+
+  </nz-card>
+  <ng-template #extraTemplate>
+    <ng-content select="[name=operate]"></ng-content>
+  </ng-template>
+</div>

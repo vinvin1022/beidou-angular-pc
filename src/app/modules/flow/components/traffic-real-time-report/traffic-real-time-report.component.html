@@ -1,0 +1,8 @@
+<div class="eye-traffic-real-time-report">
+  <div class="traffic-real-time-report">
+    <app-traffic-search-form #trafficSearchForm (sendQueryData)="getQueryData($event)"></app-traffic-search-form>
+  </div>
+  <div class="mar-top20">
+    <app-traffic-table [filterData]="filterData" class="subgeneral-table"></app-traffic-table>
+  </div>
+</div>

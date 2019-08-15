@@ -1,0 +1,51 @@
+<div class="eye-subonline-table">
+  <ng-template #cardTitle>
+    <button class="mar-right10" routerLink="/system/authorityManagement/userPermission" nz-button nzType="primary" >用户权限</button>
+    <button class="mar-right10" routerLink="/system/authorityManagement/setIndexAuthority" nz-button nzType="primary" >指标权限</button>
+    <button class="mar-right10" routerLink="/system/authorityManagement/setCustomColumn" nz-button nzType="primary" >自定义列</button>
+  </ng-template>
+
+  <app-common-card [nztitle]="cardTitle" [isHideGrayBg]="true">
+    <div name="operate">
+      <button nz-button nzType="info" (click)="createRole()">新增角色</button>
+    </div>
+    <div name="middle-conent">
+
+      <nz-table [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #filterTable [nzData]="displayData" nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading"
+        (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)"
+        [nzScroll]="{ x: '830px', y: '500px' }" [nzWidthConfig]="['100px', '100px', '100px', '100px', '100px']">
+
+        <thead>
+          <tr *ngIf="displayData && displayData.length">
+            <th>模块</th>
+            <th>角色名称</th>
+            <th>权限</th>
+            <th>操作</th>
+            <th>用户人数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of filterTable.data; let idx = index">
+            <td>{{data.roleTypeName}}</td>
+            <td>{{data.roleName}}</td>
+            <td>{{data.resourceName}}</td>
+            <td>
+              <a class="mar-right10" (click)="editUserRole(data)">编辑</a>
+              <nz-popconfirm [nzTitle]="'确认要删除吗?'" (nzOnConfirm)="deleteUserRoleById(data.roleId)">
+                <a nz-popconfirm>删除</a>
+              </nz-popconfirm>
+            </td>
+            <td><a [routerLink]="['/system/authorityManagement/userPermission']" [queryParams]="{ roleType: data.roleType, roleId: data.roleId}">{{data.num}}</a></td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+
+  <app-operate-role-dialog (sendNotify)="freshen()" #operateRoleDialog></app-operate-role-dialog>
+</div>

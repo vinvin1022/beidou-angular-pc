@@ -1,0 +1,13 @@
+<div class="mar-right5 after-salecategory">
+  <nz-spin [nzSpinning]="isSpinning">
+    <app-eye-card nztitle="售后大类概况">
+      <div class="operate"></div>
+      <div class="a">
+        <div [hidden]="!echartsData.length" #salecategory style="height:300px"></div>
+        <div [hidden]="echartsData.length" style="height:300px; padding-top: 50px">
+          <nz-empty></nz-empty>
+        </div>
+      </div>
+    </app-eye-card>
+  </nz-spin>
+</div>

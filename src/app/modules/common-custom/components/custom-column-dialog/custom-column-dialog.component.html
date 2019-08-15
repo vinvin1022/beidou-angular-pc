@@ -1,0 +1,44 @@
+<!-- <nz-modal class="xxxxxxxxxxxxxx" nzWidth="688px" nzWrapClassName="vertical-center-modal" [(nzVisible)]="isVisible" [nzTitle]="title"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <div class="mitem mar-bot20" *ngFor="let key of keysArray">
+    <div class="parent-checkbox mar-bot10" *ngIf="customColumnData[key].isShowTitle">
+      <label nz-checkbox [(ngModel)]="customColumnData[key].allChecked" (ngModelChange)="updateAllChecked(key)" [nzIndeterminate]="customColumnData[key].indeterminate">
+        {{customColumnData[key].name}}
+      </label>
+    </div>
+    <div class="sub-checkbox mar-left30">
+      <nz-checkbox-group [(ngModel)]="customColumnData[key].children" (ngModelChange)="updateSingleChecked(key)"></nz-checkbox-group>
+    </div>
+  </div>
+</nz-modal> -->
+<div>
+  <ng-template #tplTitle>
+    <span>{{title}}</span>
+  </ng-template>
+  <ng-template #tplContent>
+    <ng-container *ngIf="keysArray.length">
+      <div class="mitem mar-bot10" *ngFor="let key of keysArray">
+        <div class="parent-checkbox mar-bot2" *ngIf="customColumn[key].isShowTitle">
+          <label nz-checkbox [(ngModel)]="customColumn[key].allChecked" (ngModelChange)="updateAllChecked(key)"
+            [nzIndeterminate]="customColumn[key].indeterminate">
+            {{customColumn[key].name}}
+          </label>
+        </div>
+        <div class="sub-checkbox mar-left30">
+          <nz-checkbox-group [(ngModel)]="customColumn[key].children" (ngModelChange)="updateSingleChecked(key)">
+          </nz-checkbox-group>
+        </div>
+      </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="!keysArray.length">
+      <span>暂无权限</span>
+    </ng-container>
+  </ng-template>
+  <ng-template #tplFooter>
+    <button nz-button (click)="destroyDialogModel()">取消</button>
+    <button nz-button nzType="primary" (click)="okTplModal()">确认</button>
+  </ng-template>
+
+</div>

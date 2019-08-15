@@ -1,0 +1,17 @@
+.commonhborder{
+  height: 21px;
+  text-align: center;
+  color: #999999;
+  font-weight: 400;
+  margin: 10px 0;
+  .middleborder{
+    height: 1px;
+    background-color: #ECECEC;
+    width: 100%;
+    top:11px;
+  }
+  span{
+    padding: 5px 10px;
+    background-color: #F9F9F9;
+  }
+}

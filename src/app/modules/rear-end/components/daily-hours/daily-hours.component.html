@@ -1,0 +1,6 @@
+<div class="eye-daily-hours">
+    <app-commonrear-form [isShowDutyState]="false" (sendQueryData)="getFilterData($event)"></app-commonrear-form>
+    <div class="mar-top20">
+      <app-subdailyhours-table [filterData]="filterData"></app-subdailyhours-table>
+    </div>
+</div>

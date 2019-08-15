@@ -1,0 +1,64 @@
+<div class="eye-subonline-table">
+  <app-common-card nztitle="数据分析" [isHideGrayBg]="true">
+    <div name="operate">
+      <!-- <button nz-button *appIsshowbtn="'b040601'" nzType="info" [disabled]="!(dataTable && dataTable.length)" (click)="exportMidLegionFlow()">导出</button> -->
+    
+      <button nz-button *appIsshowbtn="'b040601'" nzType="info" [disabled]="!(dataTable && dataTable.length)" 
+      appExportExecl [getExportsParams]="getExportsParams" url="dms/excelExport/exportMidLegionFlow">导出</button>
+    </div>
+    <div name="middle-conent">
+
+      <nz-table #nzTable [nzTotal]="total" [nzFrontPagination]="false" [nzShowQuickJumper]="true" [nzShowSizeChanger]='true'
+        [nzShowSizeChanger]="true" [nzShowTotal]='totalTemplate' #groupingTable  nzBordered
+        [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="pageIndexChange($event)"
+        (nzPageSizeChange)="pageSizeChange($event)" [nzData]="dataTable" [nzShowPagination]="true" [nzWidthConfig]="widthConfig"
+        [nzScroll]="scrollConfig">
+        <thead>
+          <tr *ngIf="dataTable && dataTable.length">
+            <th nzLeft="0px">咨询师</th>
+            <th nzLeft="100px">时间</th>
+            <ng-container *ngFor="let pitem of fieldKeys">
+                <ng-container *ngFor="let sitem of filterFieldData[pitem].children">
+                  <th>{{sitem.label}}</th>
+                </ng-container>
+              </ng-container>
+            <!-- <th>财务消费</th>
+            <th>名片数</th>
+            <th>销售机会数</th>
+            <th>CPA</th>
+            <th>流水</th>
+            <th>报名数</th>
+            <th>ARPU</th>
+            <th>销转(%)</th>
+            <th>ROI(%)</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data">
+            <td nzLeft="0px">{{data.userName}}</td>
+            <td nzLeft="100px">{{data.wid}}</td>
+
+            <ng-container *ngFor="let ppitem of fieldKeys">
+                <ng-container *ngFor="let sitem of filterFieldData[ppitem]['children']">
+                  <td>{{data[sitem.value]}}</td>
+                </ng-container>
+              </ng-container>
+            <!-- <td>{{data.financeAmount}}</td>
+            <td>{{data.flowidAco}}</td>
+            <td>{{data.effordersAcoFlow}}</td>
+            <td>{{data.cpa}}</td>
+            <td>{{data.ordersAmo}}</td>
+            <td>{{data.ordersAco}}</td>
+            <td>{{data.arpu}}</td>
+            <td>{{data.rate1}}</td>
+            <td>{{data.roi}}</td> -->
+
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </app-common-card>
+  <ng-template #totalTemplate>
+    总共 {{total}} 条
+  </ng-template>
+</div>
