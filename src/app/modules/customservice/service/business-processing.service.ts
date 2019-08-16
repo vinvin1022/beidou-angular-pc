@@ -4,7 +4,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Injectable()
 export class BusinessProcessingService {
   public serviceName = 'dms';
-  public loading: Boolean = false;
+  public loading = false;
   public plusPercentage = ['snRate1', 'snRate2', 'snRate3', 'snRate4', 'snRate5'];
   constructor(private requestHttp: RequestService) { }
 
@@ -22,9 +22,9 @@ export class BusinessProcessingService {
 
 
   /**
-  *  流水周期报表导出
-  * @param params Object  请求参数
-  */
+   * 流水周期报表导出
+   * @param params 請求參數
+   */
   exportDealCycle(params = {}) {
     return this.requestHttp.exportExcel(`${this.serviceName}/excelExport/exportDealCycle`, params);
   }
@@ -32,9 +32,9 @@ export class BusinessProcessingService {
 
 
   /**
-  *  保存导出流水周期报表参数
-  * @param params Object  请求参数
-  */
+   * 保存导出流水周期报表参数
+   * @param params 請求參數
+   */
   saveDealCycleQueryVO(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/excelExport/saveDealCycleQueryVO`, params);
   }

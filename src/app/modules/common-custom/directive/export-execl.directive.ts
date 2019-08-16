@@ -7,9 +7,9 @@ import { RequestService } from 'src/app/service/request.service';
   selector: '[appExportExecl]'
 })
 export class ExportExeclDirective {
-  @Input() getExportsParams: Function;  // 请求参数
+  @Input() getExportsParams: () => object;  // 请求参数
   @Input() url: string; // 必传 请求url
-  @Input() isGetCostomMenu: Boolean = true;
+  @Input() isGetCostomMenu = true;
   constructor(private commonCustomService: CommonCustomService,
     private requestHttp: RequestService) { }
   @HostListener('click')

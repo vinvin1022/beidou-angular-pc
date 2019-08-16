@@ -8,7 +8,7 @@ import { setDefaultDate } from 'src/app/tools';
 })
 export class SettingCenterService {
   public day = setDefaultDate('period_wid', true);
-  public defaultFormData: Object = {
+  public defaultFormData: object = {
     channelNoList: [], // 推广渠道
     rangePicker: [this.day, this.day] // 推广日期
   };

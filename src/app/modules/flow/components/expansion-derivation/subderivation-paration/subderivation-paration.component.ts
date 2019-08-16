@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, DoCheck, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ExpansionDerivationService } from '../../../service/expansion-derivation.service';
-import { formatDate, rangePickerTodayDisabledDate} from '../../../../../tools';
+import { formatDate, rangePickerTodayDisabledDate } from '../../../../../tools';
 
 @Component({
   selector: 'app-subderivation-paration',
@@ -11,11 +11,11 @@ import { formatDate, rangePickerTodayDisabledDate} from '../../../../../tools';
 export class SubderivationParationComponent implements OnInit, DoCheck {
   @Output() sendQueryData = new EventEmitter();
 
-  public channelNoOptions: Array<Object> = [];
-  public rangePickerDisabledDate: Function = rangePickerTodayDisabledDate;
+  public channelNoOptions: Array<object> = [];
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
   public validateForm: FormGroup;
-  public loading: Boolean = false;
-  public optionsLoading: Boolean = false;
+  public loading = false;
+  public optionsLoading = false;
 
   constructor(private fb: FormBuilder,
     private expansionDerivationService: ExpansionDerivationService) {
@@ -40,7 +40,7 @@ export class SubderivationParationComponent implements OnInit, DoCheck {
     });
   }
 
-  rangePickerChange(rangePicker) {}
+  rangePickerChange(rangePicker) { }
 
 
   ngOnInit(): void {

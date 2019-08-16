@@ -26,7 +26,6 @@ export class DailyReachRateComponent implements OnInit {
   }
   getFilterData(data) {
     this.filterData = data;
-    console.log(this.filterData);
   }
 
 

@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReleaseQueryPacketComponent implements OnInit {
 
-  public authority: Object;
+  public authority: object;
   constructor(private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {

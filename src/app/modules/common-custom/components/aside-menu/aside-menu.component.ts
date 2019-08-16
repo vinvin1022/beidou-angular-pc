@@ -9,7 +9,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class AsideMenuComponent implements OnInit {
-  public menuJson: Array<Object>;
+  public menuJson: Array<object>;
   public isCollapsed = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }

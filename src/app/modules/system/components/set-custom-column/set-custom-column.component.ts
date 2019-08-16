@@ -27,13 +27,13 @@ export class SetCustomColumnComponent implements OnInit {
   public roleIds: Array<any> = [];
   public radioValuesOptions: Array<any> = [];
   public radioValue: string;
-  public customColumn: Object = {};
+  public customColumn: object = {};
   public syllable: object = {};
   public customMenu: object = {};
   public validateForm: FormGroup;
   public optionsLoading = false;
-  public hasPermissions: Boolean = true;
-  private backupsMergeAfter: Object = {};
+  public hasPermissions = true;
+  private backupsMergeAfter: object = {};
   constructor(private fb: FormBuilder, private nzMessage: NzMessageService,
     private commonSettargetService: CommonSettargetService, private customColumnDialogService: CustomColumnDialogService) {
   }
@@ -82,9 +82,9 @@ export class SetCustomColumnComponent implements OnInit {
 
 
   /**
-  * 获取选中的字段
-  * @param customMenu object
-  */
+   * 获取选中的字段
+   * @param customMenu object
+   */
   private _getSelectedLie() {
     return this.customMenu;
   }
@@ -103,7 +103,7 @@ export class SetCustomColumnComponent implements OnInit {
 
   /**
    * 角色change
-   * @param val
+   * @param val 参数
    */
   roleTypeChange(val?) {
     this.radioValuesOptions = this.commonSettargetService.customReportMenus[this.validateForm.get('roleType').value];
@@ -117,8 +117,8 @@ export class SetCustomColumnComponent implements OnInit {
 
   getRoleMenuByMenuId() {
     const params = {
-      'menuId': this.radioValue,
-      'roleId': this.validateForm.get('roleId').value,
+      menuId: this.radioValue,
+      roleId: this.validateForm.get('roleId').value,
     };
     if (!params['roleId']) { return; }
     this.commonSettargetService.getRoleMenuByMenuId(params).subscribe(res => {
@@ -127,7 +127,7 @@ export class SetCustomColumnComponent implements OnInit {
         customMenu = JSON.parse(res.result.customMenu);
       }
       const mergeAfterObject = this.combineObject(customMenu['1'], customMenu['2']);
-      this.backupsMergeAfter = {...mergeAfterObject};
+      this.backupsMergeAfter = { ...mergeAfterObject };
       this.loadDifferentField(mergeAfterObject);
     });
   }
@@ -144,7 +144,7 @@ export class SetCustomColumnComponent implements OnInit {
             if (typeof selement === 'string' || typeof selement === 'boolean') {
               tmpObj[key][skey] = selement;
             } else if (Array.isArray(selement)) {
-              tmpObj[key][skey] = [ ];
+              tmpObj[key][skey] = [];
               for (const iterator of selement) {
                 const tmpo = {};
                 for (const xkey in iterator) {

@@ -13,13 +13,13 @@ import { DailyReportsService } from 'src/app/service/daily-reports.service';
 export class SettingCenterComponent implements OnInit, DoCheck {
   @Output() sendQueryData = new EventEmitter();
 
-  public channelNoOptions: Array<Object> = [];
+  public channelNoOptions: Array<object> = [];
 
   public validateForm: FormGroup;
-  public loading: Boolean = false;
-  public optionsLoading: Boolean = false;
+  public loading = false;
+  public optionsLoading = false;
   public interval;
-  public rangePickerDisabledDate: Function = rangePickerDisabledDate;
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerDisabledDate;
 
   constructor(private fb: FormBuilder, private nzMessage: NzMessageService, private dailyReportsService: DailyReportsService,
     private settingCenterService: SettingCenterService, private notification: NzNotificationService) {
@@ -79,7 +79,7 @@ export class SettingCenterComponent implements OnInit, DoCheck {
   getSyncResult(data: string) {
     const messageId = this.nzMessage.loading('正在同步数据...', { nzDuration: 0 }).messageId;
     this.dailyReportsService.loading = true;
-    const params = { 'syncNum': data };
+    const params = { syncNum: data };
     this.settingCenterService.getSyncResult(params).subscribe(res => {
       if (res['code'] === 200) {
         this.nzMessage.remove(messageId);
@@ -90,7 +90,7 @@ export class SettingCenterComponent implements OnInit, DoCheck {
       }
     });
   }
-  repeaterSyncResult (messageId, params) {
+  repeaterSyncResult(messageId, params) {
     this.interval = setInterval(() => {
       this.settingCenterService.getSyncResult(params).subscribe(res => {
         if (res['code'] === 200) {

@@ -25,6 +25,11 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              },
               "src/assets"
             ],
             "styles": [

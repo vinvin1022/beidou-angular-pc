@@ -25,40 +25,40 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
   @ViewChild('formtitle', { static: false }) formtitle: TemplateRef<any>;
 
   // 是否显示条件
-  public isShowMore: Boolean = this.gensearchCriteriaService.isShowMore;
+  public isShowMore = this.gensearchCriteriaService.isShowMore;
   // 查询包管理权限控制
-  @Input() packagePermissions: String = 'b030102';
+  @Input() packagePermissions = 'b030102';
   // 是否显示报名城市
-  @Input() isShowRegistCity: Boolean = this.gensearchCriteriaService.isShowRegistCity;
+  @Input() isShowRegistCity = this.gensearchCriteriaService.isShowRegistCity;
   // 是否显示维度
-  @Input() isShowDimension: Boolean = this.gensearchCriteriaService.isShowDimension;
+  @Input() isShowDimension = this.gensearchCriteriaService.isShowDimension;
   // 是否显示对比时间
-  @Input() isShowContrast: Boolean = this.gensearchCriteriaService.isShowContrast;
+  @Input() isShowContrast = this.gensearchCriteriaService.isShowContrast;
   // 是否显示年条件
-  @Input() isShowYear: Boolean = this.gensearchCriteriaService.isShowYear;
+  @Input() isShowYear = this.gensearchCriteriaService.isShowYear;
   // 是否显示查询包管理
-  @Input() isShowMyQueryPacket: Boolean = true;
+  @Input() isShowMyQueryPacket = true;
 
-  @Input() isShowMenAreaName: Boolean = true;
+  @Input() isShowMenAreaName = true;
   // 是否显示时间范围
-  @Input() isShowPurview: Boolean = false;
+  @Input() isShowPurview = false;
   // 我的查询包url
-  @Input() queryPacketUrl: String = '/flow/genQueryPacket';
+  @Input() queryPacketUrl = '/flow/genQueryPacket';
 
   @Output() sendQueryData = new EventEmitter<any>();
   public flowDataTypeOptions = []; // 业务模式
-  public carrierOptions: Array<Object> = [];   // 载体
+  public carrierOptions: Array<object> = [];   // 载体
   public size = 'defalut';
 
-  public queryDimensionOptions: Array<Object> = [];   // 维度
-  public isSubmit: Boolean = true;
+  public queryDimensionOptions: Array<object> = [];   // 维度
+  public isSubmit = true;
   public subscribeAll$ = {}; // 订阅的所有事件
   public validateForm: FormGroup;
-  public accountUidDisabled: Boolean = false;   // 是否禁用推广账户选项
-  public siteNumberDisabled: Boolean = false;   // 是否禁用推广站点选项
-  public accountUidPackageDisabled: Boolean = false;   // 是否禁用推广账户选项
-  public siteNumberPackageDisabled: Boolean = false;   // 是否禁用推广站点选项
-  public loading: Boolean = false;
+  public accountUidDisabled = false;   // 是否禁用推广账户选项
+  public siteNumberDisabled = false;   // 是否禁用推广站点选项
+  public accountUidPackageDisabled = false;   // 是否禁用推广账户选项
+  public siteNumberPackageDisabled = false;   // 是否禁用推广站点选项
+  public loading = false;
   public selectDimensions: Array<object> = [];
   public sort = 0;
 
@@ -85,8 +85,8 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
 
 
   /**
-  * 提交数据
-  */
+   * 提交数据
+   */
   submitForm(): boolean {
     this.isSubmit = true;
     this.markAsPristineFrom();
@@ -212,7 +212,7 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
       // carrier: carrier,  // 载体
       // advertisersType: advertisersType, // 推广方式
       // source: source, // 推广来源
-      queryDimension: queryDimension    // 维度
+      queryDimension    // 维度
     };
 
     this.selectDimensions = queryDimension.filter(item => item['checked']);
@@ -232,7 +232,7 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
   allAccountUidChange(accountUids) {
     const { siteNumber } = this.gensearchCriteriaService.defaultFormData;
     this.validateForm.patchValue({
-      siteNumber: siteNumber
+      siteNumber
     });
     this._setAssociationParams();
     if (accountUids && accountUids.length) {
@@ -247,8 +247,8 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
     // this.checkAllData['siteNumber'] = null;
     const { accountUid, siteNumber } = this.gensearchCriteriaService.defaultFormData;
     this.validateForm.patchValue({
-      accountUid: accountUid,
-      siteNumber: siteNumber
+      accountUid,
+      siteNumber
     });
     this._setAssociationParams();
   }
@@ -260,10 +260,10 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
     // this.checkAllData['siteNumber'] = null;
     const { deptId2, userId, accountUid, siteNumber } = this.gensearchCriteriaService.defaultFormData;
     this.validateForm.patchValue({
-      deptId2: deptId2,
-      userId: userId,
-      accountUid: accountUid,
-      siteNumber: siteNumber
+      deptId2,
+      userId,
+      accountUid,
+      siteNumber
     });
     this._setAssociationParams();
   }
@@ -274,18 +274,18 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
     // this.checkAllData['siteNumber'] = null;
     const { userId, accountUid, siteNumber } = this.gensearchCriteriaService.defaultFormData;
     this.validateForm.patchValue({
-      userId: userId,
-      accountUid: accountUid,
-      siteNumber: siteNumber
+      userId,
+      accountUid,
+      siteNumber
     });
     this._setAssociationParams();
   }
 
 
   /**
- * 推广账户包变动事件
- * @param accountUidPackage Array 推广账户包
- */
+   * 推广账户包变动事件
+   * @param accountUidPackage Array 推广账户包
+   */
   accountUidPackageChange(accountUidPackage) {
     if (accountUidPackage && accountUidPackage.length) {
       this.accountUidDisabled = true;
@@ -488,7 +488,7 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
    * 设置最终选择的form数据
    */
   setSelectedData() {
-    const paramsData: Object = {};
+    const paramsData: object = {};
     paramsData['isSubmit'] = this.isSubmit;
     const mergeParams = Object.assign({}, this.validateForm.value, this.checkAllData);
     Object.keys(mergeParams).forEach((value) => {
@@ -516,304 +516,6 @@ export class GensearchCriteriaComponent implements OnInit, OnDestroy, DoCheck {
   handleShowMore(): void {
     this.isShowMore = !this.isShowMore;
   }
-
-
-
-  // openQuerySourceNameChange(isOpen: boolean) {
-  //   if (isOpen && !this.sourceOptions.length) {
-  //     this.getQuerySourceName();
-  //   }
-  // }
-
-
-  // menAreaCodeValChange(val) {
-  //   this.menAreaCode = val;
-  // }
-
-  /**
-   * 获取推广来源
-   */
-  // getQuerySourceName(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getQuerySourceName$'] = this.gensearchCriteriaService.getQuerySourceName({ searchVal }).subscribe(result => {
-  //     this.gensearchCriteriaService.sourceOptions = this.sourceOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-  /**
-   * 获取推广账户包
-   */
-  // getQueryAccountPackage() {
-  //   this.subscribeAll$['getQueryAccountPackage$'] = this.gensearchCriteriaService.getQueryAccountPackage().subscribe(result => {
-  //     this.accountUidsOptions = result.result;
-  //   });
-  // }
-
-  /**
-   * 获取推广站点包
-   */
-  // getQuerySitePackage() {
-  //   this.subscribeAll$['getQuerySitePackage$'] = this.gensearchCriteriaService.getQuerySitePackage().subscribe(result => {
-  //     this.siteNumbersOptions = result.result;
-  //   });
-  // }
-
-
-  // openCityNameChange(isOpen: boolean) {
-  //   if (isOpen && !this.cityNameOptions.length) {
-  //     this.getSpreadCitylist();
-  //   }
-  // }
-  /**
-   * 获取推广城市下拉列表
-   */
-  // getSpreadCitylist(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getSpreadCitylist$'] = this.gensearchCriteriaService.getSpreadCitylist({ searchVal }).subscribe(result => {
-  //     this.cityNameOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-
-
-
-
-
-  /**
-   * 推广账户下拉列表变化
-   */
-  // queryAccountChange(isOpen: boolean) {
-  //   if (isOpen) {
-  //     this.getQueryAccount();
-  //   }
-  // }
-  /**
-   * 获取推广账户下拉列表
-   */
-  // getQueryAccount(searchVal: String = '') {
-  //   this.optionsLoading = true;
-  //   const params = { userId: this.validateForm.get('userId').value, searchVal };
-  //   this.subscribeAll$['getQueryAccount$'] = this.gensearchCriteriaService.getQueryAccount(params).subscribe(result => {
-  //     this.accountUidOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-
-  /**
-   * 打开推广项目下拉选项
-   */
-  // flConsultingProjectChange(isOpen: boolean) {
-  //   if (isOpen && !this.flConsultingProjectOptions.length) {
-  //     this.getFlConsultingProjectOptions();
-  //   }
-  // }
-
-  /**
-   * 获取推广项目列表
-   */
-  // getFlConsultingProjectOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getFlConsultingProjectOptions$'] = this.gensearchCriteriaService.getFlConsultingProjectOptions({ searchVal })
-  //     .subscribe(result => {
-  //       this.gensearchCriteriaService.flConsultingProjectOptions = this.flConsultingProjectOptions = result.result;
-  //       this.optionsLoading = false;
-  //     });
-  // }
-
-
-  // openCodeChange(isOpen) {
-  //   if (isOpen && !this.codeOptions.length) {
-  //     this.getCodeOptions();
-  //   }
-  // }
-  /**
-   * 获取推广渠道
-   */
-  // getCodeOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getCodeOptions$'] = this.gensearchCriteriaService.getCodeOptions({ searchVal }).subscribe(result => {
-  //     this.gensearchCriteriaService.codeOptions = this.codeOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-  /**
-   * 打开推广站点下拉选项
-   */
-  // openSiteNumberChange(isOpen: boolean) {
-  //   if (isOpen && !this.siteNumberOptions.length) {
-  //     this.getSiteNumberOptions();
-  //   }
-  // }
-  /**
-   * 获取推广站点
-   */
-  // getSiteNumberOptions(searchVal: String = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getSiteNumberOptions$'] = this.gensearchCriteriaService.getSiteNumberOptions({ searchVal })
-  //     .subscribe(result => {
-  //       this.gensearchCriteriaService.siteNumberOptions = this.siteNumberOptions = result.result;
-  //       this.optionsLoading = false;
-  //     });
-  // }
-
-  /**
-   * 打开报名城市下拉选项
-   */
-  // menAreaCodeChange(isOpen: boolean) {
-  //   if (isOpen && !this.menAreaCodeOptions.length) {
-  //     this.getMenAreaCodeOptions();
-  //   }
-  // }
-
-  /**
-   * 获取报名城市
-   */
-  // getMenAreaCodeOptions(searchVal: String = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getMenAreaCodeOptions$'] = this.gensearchCriteriaService.getMenAreaCodeOptions({ searchVal }).subscribe(result => {
-  //     this.menAreaCodeOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-
-  // openAdvertisersTypeChange(isOpen: boolean) {
-  //   if (isOpen && !this.advertisersTypeOptions.length) {
-  //     this.getAdvertisersTypeOptions();
-  //   }
-  // }
-  /**
-   * 获取推广方式
-   */
-  // getAdvertisersTypeOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getAdvertisersTypeOptions$'] = this.gensearchCriteriaService.getAdvertisersTypeOptions({ searchVal })
-  //     .subscribe(result => {
-  //       this.advertisersTypeOptions = result.result;
-  //       this.optionsLoading = false;
-  //     });
-  // }
-
-
-
-  // openWebUidChange(isOpen: boolean) {
-  //   if (isOpen && !this.webUidOptions.length) {
-  //     this.getWebUidOptions();
-  //   }
-  // }
-  /**
-   * 获取主域名
-   */
-  // getWebUidOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getWebUidOptions$'] = this.gensearchCriteriaService.getWebUidOptions({ searchVal }).subscribe(result => {
-  //     this.gensearchCriteriaService.webUidOptions = this.webUidOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-  /**
-   * 获取流量军团下拉选项
-   */
-  // getDeptOptions() {
-  //   this.subscribeAll$['getDeptOptions$'] = this.gensearchCriteriaService.getDeptOptions().subscribe(result => {
-  //     this.deptId1Options = result.result;
-  //   });
-  // }
-
-
-
-  // openGroupChange(isOpen) {
-  //   if (isOpen) {
-  //     this.getGroupOptions();
-  //   }
-  // }
-  /**
-   * 获取流量组下拉选项
-   */
-  // getGroupOptions(searchVal: string = '') {
-  //   const params = { searchVal };
-  //   const { deptId1 } = this.validateForm.value;
-  //   if (deptId1 && deptId1.length) {
-  //     params['dept'] = deptId1;
-  //   }
-  //   this.subscribeAll$['getGroupOptions$'] = this.gensearchCriteriaService.getGroupOptions(params).subscribe(result => {
-  //     this.deptId2Options = result.result;
-  //   });
-  // }
-
-
-
-  // openUserChange(isOpen) {
-  //   if (isOpen) {
-  //     this.getUserOptions();
-  //   }
-  // }
-
-  /**
-   * 获取流量人员下拉选项
-   */
-  // getUserOptions(searchVal: string = '') {
-  //   const params = {searchVal};
-  //   const { deptId1, deptId2 } = this.validateForm.value;
-  //   if (deptId1 && deptId1.length) {
-  //     params['dept'] = deptId1;
-  //   }
-  //   if (deptId2 && deptId2.length) {
-  //     params['legion'] = deptId2;
-  //   }
-  //   this.subscribeAll$['getUserOptions$'] = this.gensearchCriteriaService.getUserOptions(params).subscribe(result => {
-  //     this.userIdOptions = result.result;
-  //   });
-  // }
-
-  // deptId1Change() {
-  //   this.validateForm.patchValue({ deptId2: [], userId: [] });
-  //   this.deptId2Options = [];
-  //   this.userIdOptions = [];
-  // }
-
-  // deptId2Change() {
-  //   this.validateForm.patchValue({ userId: [] });
-  //   this.userIdOptions = [];
-  // }
-
-
-
-  /**
-   * 获取流量人员下拉选项
-   * @param parentId String 父ID 组织架构id
-   */
-  // getUserIdOptions(parentId) {
-  //   this.subscribeAll$['getUserIdOptions$'] = this.gensearchCriteriaService.getUserIdOptions({ parentId: parentId }).subscribe(result => {
-  //     this.userIdOptions = result.data;
-  //   });
-  // }
-
-
-  /**
-   * 流量组变动事件
-   * @param values Array
-   */
-  // public onCascaderChanges(values: any): void {
-  //   this.validateForm.patchValue({ userId: '' });
-  //   this.depOptions = [];
-  //   // 在线咨询师
-  //   if (!values.length) {
-  //     this.userIdOptions = [];
-  //   } else {
-  //     // 根据部门UID查询用户信息
-  //     this.getUserIdOptions(values[values.length - 1]);
-  //   }
-  // }
-
-
-
-
 
 
 

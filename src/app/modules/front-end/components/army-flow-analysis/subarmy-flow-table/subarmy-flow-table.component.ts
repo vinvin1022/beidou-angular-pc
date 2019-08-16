@@ -16,11 +16,11 @@ import { FrontendService } from '../../../service/frontend.service';
 export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
   public dataTable = [];
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public midLegionFlowParams: Object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public midLegionFlowParams: object = {};
   public midLegionFlowSubscribe$;
 
   public customColumnData: object = {};
@@ -31,11 +31,11 @@ export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
   public customMenu: object = {};
   public flowDataType = '1';
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
   constructor(private armyFlowAnalysisService: ArmyFlowAnalysisService, private middleEndSearchFormService: MiddleEndSearchFormService,
     private commonCustomService: CommonCustomService, private frontendService: FrontendService,
     private customColumnDialogService: CustomColumnDialogService,
-     private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnChanges() {
     if (this.filterData) {
@@ -56,7 +56,7 @@ export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
     this.getMenuMsgParams['menuId'] = path;
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.getMenuParams();
     this.customColumnDialogService.getMenu(this.getMenuMsgParams).subscribe(res => {
       if (res.code === 200) {
@@ -77,7 +77,7 @@ export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * 获取自定义列过滤数据
-   * @param data
+   * @param data 参数
    */
   getFilterField(data) {
     const newData = this.customColumnDialogService.filterSelectColoumn(data);
@@ -127,13 +127,13 @@ export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
 
 
   /**
- * 军团数据分析导出
- */
+   * 军团数据分析导出
+   */
   exportMidLegionFlow() {
     this.armyFlowAnalysisService.exportMidLegionFlow({ ...this.midLegionFlowParams });
   }
 
-   /**
+  /***
    * 设置导出参数
    */
   getExportsParams = () => {

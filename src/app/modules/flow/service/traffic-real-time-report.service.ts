@@ -12,7 +12,7 @@ export class TrafficRealTimeReportService {
 
   /**
    * 查询实时列表
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getQueryFlowRealTime(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/flowAct/realtime/queryFlowRealTime`, params);

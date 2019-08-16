@@ -1,7 +1,7 @@
 /**
-* 格式化组织架构
-* @param temp Array
-*/
+ * 格式化组织架构
+ * @param temp Array
+ */
 export function changeJson(temp: Array<any> = []) {
   // 转换成多选nz-cascader格式
   const tempMenus = [];
@@ -21,9 +21,9 @@ export function changeJson(temp: Array<any> = []) {
 }
 
 /**
-* 格式化组织架构
-* @param temp Array
-*/
+ * 格式化组织架构
+ * @param temp Array
+ */
 export function changeJson2(temp: Array<any> = []) {
   // 转换成多选nz-cascader格式
   const tempMenus = [];
@@ -48,9 +48,9 @@ export function changeJson2(temp: Array<any> = []) {
 
 
 /**
-* 格式化组织架构
-* @param temp Array
-*/
+ * @param temp 格式化组织架构
+ * @param temp Array
+ */
 export function changeJson3(temp: Array<any> = []) {
   // 转换成多选nz-cascader格式
   const tempMenus = [];
@@ -174,8 +174,9 @@ export function setDefaultDate(value: string = 'period_wid', isIncludeToday = fa
  * 专门为日(范围2周内)，周(范围3月内)，月(范围6月内) 设置默认时间
  * @param type 时间类型（日，周，月）
  */
-export function setPurviewDefaultDate(type: String = 'period_wid') {
-  let startTime, endTime;
+export function setPurviewDefaultDate(type: string = 'period_wid') {
+  let startTime;
+  let endTime;
   const oneDay = 24 * 3600 * 1000;
   const nowTime = new Date();
   switch (type) {
@@ -223,7 +224,7 @@ export function formattingTime(timeStamp): string {
  * 格式化请求参数
  * @param filterData Object 需要请求的参数
  */
-export function setFinalFilterData(filterData: Object = {}) {
+export function setFinalFilterData(filterData: object = {}) {
   const viewReportParams = {};
   for (const key in filterData) {
     if (filterData.hasOwnProperty(key)) {
@@ -267,7 +268,7 @@ export function setFinalFilterData(filterData: Object = {}) {
 
 /**
  * 是否为空对象
- * @param obj
+ * @param obj 参数
  */
 export function _isEmptyObject(obj) {
   for (const key in obj) {

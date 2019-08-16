@@ -6,22 +6,21 @@ import { formattingTime } from 'src/app/tools';
 
 @Injectable()
 export class CommonCustomService {
-  public indexDeptOptions: Object;
-  public serviceName: String = 'dms';
+  public indexDeptOptions: object;
+  public serviceName = 'dms';
   constructor(private requestHttp: RequestService) { }
 
 
   /**
-* 获取模式
-* @param params Object  请求参数
-*/
+   * 获取模式
+   */
   queryPattern(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/userDept/queryPattern`, params);
   }
 
   /**
    * 获取事业部
-   * @param params Object
+   * @param params object
    */
   getIndexDept(params = {}): Observable<any> {
     const url = `${this.serviceName}/userDept/indexDept`;
@@ -29,35 +28,33 @@ export class CommonCustomService {
   }
 
   /**
-*  获取推广渠道
-* @param url String   请求地址
-* @param params Object  请求参数
-*/
+   * 获取推广渠道
+   * @param params 請求參數
+   */
   getCodeOptions(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/userDept/queryCodeName`, params);
   }
 
   /**
    * 获取流量军团
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getDeptOptions(params: Object = {}) {
+  getDeptOptions(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/userDept/getDept`, params);
   }
 
   /**
-  *  获取推广方式
-  * @param url String   请求地址
-  * @param params Object  请求参数
-  */
+   * 获取推广方式
+   * @param params 請求參數
+   */
   getAdvertisersTypeOptions(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/userDept/queryAdvertisersName`, params);
   }
 
   /**
-*  公共导出前
-* @param params Object  请求参数
-*/
+   * 公共导出前
+   * @param params 請求參數
+   */
   exportNetSaleTargetPost(params = {}) {
     // return this.requestHttp.exportExcel('dms/flowExport/exportNetSaleTarget', params);
     return this.requestHttp.post('dms/excelExport/savaMenuCostom', params);
@@ -65,7 +62,7 @@ export class CommonCustomService {
 
   /**
    *  获取推广人
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getPromoterName(params = {}) {
     return this.requestHttp.post('dms/userDept/promoterName', params);
@@ -75,7 +72,7 @@ export class CommonCustomService {
    * 取消Observable订阅
    * @param subscribeAll$ Object
    */
-  unsubscribe(subscribeAll$: Object = {}) {
+  unsubscribe(subscribeAll$: object = {}) {
     for (const key in subscribeAll$) {
       if (subscribeAll$.hasOwnProperty(key)) {
         if (subscribeAll$[key]) {
@@ -195,8 +192,8 @@ export class CommonCustomService {
   }
 
   /*
-* 获取浏览器版本信息
-*/
+ * 获取浏览器版本信息
+ */
   getBrowserInfo() {
     const userAgent = window.navigator.userAgent.toLowerCase();
     let browserType = '';

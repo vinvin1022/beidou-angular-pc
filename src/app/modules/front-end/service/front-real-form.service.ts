@@ -4,7 +4,7 @@ import { setDefaultDate } from 'src/app/tools';
 
 @Injectable()
 export class FrontRealFormService {
-  public loading: Boolean = false;
+  public loading = false;
   private serviceName = 'dms';
   public NOWTIME = [setDefaultDate('period_wid', true), setDefaultDate('period_wid', true)];
   public defalutData = {
@@ -19,9 +19,9 @@ export class FrontRealFormService {
   constructor(private requestHttp: RequestService) { }
 
   /**
- * 获取模式
- * @param params Object  请求参数
- */
+   * @param params 获取模式
+   * @param params object  请求参数
+   */
   queryPattern(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/userDept/queryPattern`, params);
   }

@@ -39,7 +39,7 @@ export class ExtensionIndexService {
   constructor(private requestHttp: RequestService) { }
   /**
    * 流量推广指标
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getExtensionTarget(params = {}) {
     return this.requestHttp.post('dms/view/extensionTarget', params);
@@ -47,7 +47,7 @@ export class ExtensionIndexService {
 
   /**
    * 推广总览导出
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   flowExportExportExtension(params = {}) {
     // return this.requestHttp.get('dms/flowExport/exportView', params);

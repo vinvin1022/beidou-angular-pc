@@ -10,14 +10,14 @@ import { ReleaseMonitoringService } from '../../../service/release-monitoring.se
 })
 export class ReleaseDetailListComponent implements OnInit {
   @Input() reportDimensionParams = {};
-  @Input() flowDataType: String = '电销';
-  @Input() rowData: Object = {};
+  @Input() flowDataType = '电销';
+  @Input() rowData: object = {};
   @Input() filterData;
   public displayData: Array<any> = [];
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public flowViewReport$;
   public isVisible = false;
   public allChildren = [];

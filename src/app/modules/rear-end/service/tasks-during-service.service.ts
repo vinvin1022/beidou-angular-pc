@@ -4,7 +4,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Injectable()
 export class TasksDuringServiceService {
   public serviceName = 'dms';
-  public loading: Boolean = false;
+  public loading = false;
   public plusPercentage = ['snRate1', 'snRate2', 'snRate3', 'snRate4', 'snRate5'];
   constructor(private requestHttp: RequestService) { }
 
@@ -12,32 +12,25 @@ export class TasksDuringServiceService {
 
 
   /**
-   * 流水周期报表查询
-   * @param url string 请求地址
-   * @param params object 请求参数
+   * 服务任务统计报表
    */
-  queryDealCycle(params: object = {}) {
-    return this.requestHttp.post(`${this.serviceName}/deal/cycle/queryDealCycle`, params);
+  queryServiceTasks(params: object = {}) {
+    return this.requestHttp.post(`${this.serviceName}/middler/queryServiceTasks`, params);
   }
 
-
-  /**
-  *  流水周期报表导出
-  * @param params Object  请求参数
-  */
-  exportDealCycle(params = {}) {
-    return this.requestHttp.exportExcel(`${this.serviceName}/excelExport/exportDealCycle`, params);
-  }
 
 
 
   /**
-  *  保存导出流水周期报表参数
-  * @param params Object  请求参数
-  */
-  saveDealCycleQueryVO(params = {}) {
-    return this.requestHttp.post(`${this.serviceName}/excelExport/saveDealCycleQueryVO`, params);
+   * 服务期任务统计报表导出
+   * @param params 请求参数
+   */
+  exportServiceTasks(params = {}) {
+    return this.requestHttp.exportExcel(`${this.serviceName}/excelExport/exportServiceTasks`, params);
   }
+
+
+
 
 
 }

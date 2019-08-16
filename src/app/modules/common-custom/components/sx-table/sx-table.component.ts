@@ -13,10 +13,10 @@ import { CustomColumnDialogService } from 'src/app/modules/common-custom/service
   styleUrls: ['./sx-table.component.scss']
 })
 export class SxTableComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() filterData: Object = {};   // 请求参数
-  @Input() serviceNameClass: Object;   // 请求表格数据服务类  必传
+  @Input() filterData: object = {};   // 请求参数
+  @Input() serviceNameClass: object;   // 请求表格数据服务类  必传
   @Input() methodName: string;    // 请求表格方法名   必传
-  @Input() tableFields: Object = {};   // 表格展示的字段 必传
+  @Input() tableFields: object = {};   // 表格展示的字段 必传
   @Input() treeFields: Array<string>;  // 表格树形结构层级字段  如果是树形表格 必须传该字段
   @Input() cardTitle: TemplateRef<any>;
   @Input() exportMethod: string;
@@ -28,22 +28,22 @@ export class SxTableComponent implements OnInit, OnChanges, OnDestroy {
   @ContentChild('exportsbtn', { static: false }) exportsbtntpl: TemplateRef<any>;
 
 
-  private requestTableParams: Object = {};  // 请求table数据参数
+  private requestTableParams: object = {};  // 请求table数据参数
   public total = 0;
   public pageIndex = 1;
   public pageSize = 10;
   public firstColumn = { label: '部门', value: 'showName' };
 
 
-  public loading: Boolean = false;
-  public subscribeAll$: Object = {};
-  public exportsParams: Object = {};
+  public loading = false;
+  public subscribeAll$: object = {};
+  public exportsParams: object = {};
 
   public filterFieldData;
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
 
   tableTreeData = [];
@@ -73,13 +73,6 @@ export class SxTableComponent implements OnInit, OnChanges, OnDestroy {
     this.getTableData();
   }
 
-
-
-
-  /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
   getFilterField() {
     const newData = this.customColumnDialogService.filterSelectColoumn(this.tableFields);
     this.filterFieldData = newData.selectField;
@@ -184,7 +177,7 @@ export class SxTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 参数
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

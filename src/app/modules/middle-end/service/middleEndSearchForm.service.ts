@@ -6,7 +6,7 @@ import { setDefaultDate } from 'src/app/tools';
   providedIn: 'root'
 })
 export class MiddleEndSearchFormService {
-  public loading: Boolean = false;
+  public loading = false;
   public startEndTime: Date = setDefaultDate('period_wid', true);
   public defalutData = {
     deptId: null,  // 军团
@@ -20,7 +20,7 @@ export class MiddleEndSearchFormService {
     rangePicker: [this.startEndTime, this.startEndTime]  // 时间范围
   };
 
-  public timeTypes: Array<Object> = [
+  public timeTypes: Array<object> = [
     { key: 'period_wid', value: '日' },
     { key: 'week_inyear', value: '周' },
     { key: 'period_month', value: '月' },
@@ -32,27 +32,25 @@ export class MiddleEndSearchFormService {
 
 
   /**
- *  获取中端军团
- * @param params Object  请求参数
- */
+   * 获取中端军团
+   */
   getMiddleLegion(params = {}) {
     return this.requestHttp.post('dms/userDept/middleLegion', params);
   }
 
 
   /**
- *  获取中端咨询组
- * @param params Object  请求参数
- */
+   * 获取中端咨询组
+   * @param params 請求參數
+   */
   getMiddleGroup(params = {}) {
     return this.requestHttp.post('dms/userDept/middleGroup', params);
   }
 
 
   /**
- *  获取中端咨询师
- * @param params Object  请求参数
- */
+   * 获取中端咨询师
+   */
   getMiddleUser(params = {}) {
     return this.requestHttp.post('dms/userDept/middleUser', params);
   }

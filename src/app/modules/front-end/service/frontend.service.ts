@@ -8,9 +8,10 @@ import { CustomColumnDialogService } from '../../common-custom/service/custom-co
 export class FrontendService {
   public staticFileds = [{ name: '事业部', exName: 'deptDivisionName', sort: 0 }, { name: '军团', exName: 'deptLegionName', sort: 1 },
   { name: '咨询组', exName: 'deptFormName', sort: 2 }, { name: '咨询师', exName: 'deptUserName', sort: 3 }, {
-    name: '维度', exName: 'permision', sort: 4 }, { name: '日期', exName: 'periodWid', sort: 5 }];
+    name: '维度', exName: 'permision', sort: 4
+  }, { name: '日期', exName: 'periodWid', sort: 5 }];
 
-  public middleFileds = [{ name: '时间', exName: 'wid', sort: 0 }, { name: '咨询师', exName: 'userName', sort: 1 } ];
+  public middleFileds = [{ name: '时间', exName: 'wid', sort: 0 }, { name: '咨询师', exName: 'userName', sort: 1 }];
 
 
   constructor(private requestHttp: RequestService, private customColumnDialogService: CustomColumnDialogService) { }
@@ -31,9 +32,9 @@ export class FrontendService {
   }
 
   /**
-  *  网销效率指标统计导出
-  * @param params Object  请求参数
-  */
+   * 网销效率指标统计导出
+   * @param params 请求参数
+   */
   exportNetSaleTargetPost(params = {}) {
     // return this.requestHttp.exportExcel('dms/flowExport/exportNetSaleTarget', params);
     return this.requestHttp.post('dms/excelExport/electDayWeekMonthExport', params);
@@ -42,16 +43,16 @@ export class FrontendService {
 
 
   /**
-  * 获取前端军团
-  * @param params Object  请求参数
-  */
+   * 获取前端军团
+   * @param params 请求参数
+   */
   getLegion(params = {}) {
     return this.requestHttp.post('dms/userDept/getLegion', params);
   }
 
   /**
    * 获取咨询师
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getFrontUser(params = {}) {
     return this.requestHttp.post('dms/userDept/frontUser', params);
@@ -59,7 +60,7 @@ export class FrontendService {
 
   /**
    * 获取咨询组
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getfrontGroup(params = {}) {
     return this.requestHttp.post('dms/userDept/frontGroup', params);

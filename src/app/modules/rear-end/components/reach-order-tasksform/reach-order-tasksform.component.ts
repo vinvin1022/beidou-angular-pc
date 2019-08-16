@@ -11,20 +11,20 @@ import { ReachOrderTasksformService } from '../../service/reach-order-tasksform.
 })
 export class ReachOrderTasksFormComponent implements OnInit, OnDestroy, DoCheck, OnChanges {
   @Output() sendQueryData = new EventEmitter();
-  @Input() showSaleCategory: Boolean = true;  // 是否售后大类
-  @Input() showTime: Boolean | Object = { nzFormat: 'HH:mm' }; // 是否显示时间选择
-  timeFormat: String = 'yyyy-MM-dd  HH:mm';
+  @Input() showSaleCategory = true;  // 是否售后大类
+  @Input() showTime: boolean | object = { nzFormat: 'HH:mm' }; // 是否显示时间选择
+  timeFormat = 'yyyy-MM-dd  HH:mm';
 
-  private _bigType: object = {};
+  private bigType: object = {};
 
 
-  public loading: Boolean = false;
-  public rangePickerDisabledDate: Function = rangePickerTodayDisabledDate;
-  public subscribeAll$: Object = {};
-  public deptIdOptions: Array<Object> = [];  // 部门学院下拉列表
+  public loading = false;
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
+  public subscribeAll$: object = {};
+  public deptIdOptions: Array<object> = [];  // 部门学院下拉列表
   public paramsAll: object = {};
   public validateForm: FormGroup;
-  public bigIdOptions: Array<Object> = [];  // 售后大类下拉列表
+  public bigIdOptions: Array<object> = [];  // 售后大类下拉列表
 
   constructor(private fb: FormBuilder, public reachOrderTasksformService: ReachOrderTasksformService,
     private commonCustomService: CommonCustomService) { }
@@ -36,7 +36,7 @@ export class ReachOrderTasksFormComponent implements OnInit, OnDestroy, DoCheck,
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.timeFormat = changes.showTime.currentValue ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd';
+    this.timeFormat = changes.showTime && changes.showTime.currentValue ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd';
   }
   ngDoCheck() {
     if (this.loading !== this.reachOrderTasksformService.loading) {
@@ -45,8 +45,8 @@ export class ReachOrderTasksFormComponent implements OnInit, OnDestroy, DoCheck,
   }
 
   /**
-    * 查询部门下拉列表
-    */
+   * 查询部门下拉列表
+   */
   getDeptQueryByToken() {
     this.subscribeAll$['getDeptQueryByToken$'] = this.reachOrderTasksformService.getDeptQueryByToken().subscribe(res => {
       this.deptIdOptions = changeJson2(res.result);
@@ -83,13 +83,12 @@ export class ReachOrderTasksFormComponent implements OnInit, OnDestroy, DoCheck,
   }
 
   bigIdChange(bigId) {
-    console.log(bigId);
+
   }
 
   bigIdSelectionChange(bigId) {
-    console.log(bigId);
-    this._bigType['typeCode'] = bigId[bigId.length - 1].typeCode;
-    this._bigType['typeId'] = bigId[bigId.length - 1].typeId;
+    this.bigType['typeCode'] = bigId[bigId.length - 1].typeCode;
+    this.bigType['typeId'] = bigId[bigId.length - 1].typeId;
   }
 
 
@@ -109,8 +108,7 @@ export class ReachOrderTasksFormComponent implements OnInit, OnDestroy, DoCheck,
     delete this.paramsAll['userMaIds'];
     delete this.validateForm.value['bigId'];
     delete this.validateForm.value['deptId'];
-    const params = setFinalFilterData({ ...this.validateForm.value, ...this.paramsAll, ...this._bigType });
-    console.log(params);
+    const params = setFinalFilterData({ ...this.validateForm.value, ...this.paramsAll, ...this.bigType });
     this.sendQueryData.emit(params);
   }
 

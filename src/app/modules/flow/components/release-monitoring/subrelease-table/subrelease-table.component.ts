@@ -19,28 +19,28 @@ import { setFinalFilterData } from 'src/app/tools';
 })
 export class SubreleaseTableComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
 
-  public title: String = '自定义显示列';
-  public customColumnData: Object = {};
-  @Input() filterData: Object;
-  @ViewChild('customColumnDialog', {static: false}) customColumnDialog: CustomColumnDialogComponent;
-  @ViewChild('releaseDetailList', {static: false}) releaseDetailList: ReleaseDetailListComponent;
+  public title = '自定义显示列';
+  public customColumnData: object = {};
+  @Input() filterData: object;
+  @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
+  @ViewChild('releaseDetailList', { static: false }) releaseDetailList: ReleaseDetailListComponent;
   public displayData: Array<any> = [];
   public filterFieldData: object = {};
   public flowViewReportParams = {};
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public launchMonitor$;
   public flowDataType = '1';
   public newFlowDataType = '1';
   public getMenuMsgParams: object = {};
   public customMenu: object = {};
-  public rowData: Object = {};
+  public rowData: object = {};
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
 
 
@@ -79,7 +79,7 @@ export class SubreleaseTableComponent implements OnInit, OnChanges, OnDestroy, D
     this.getMenuMsgParams['menuId'] = path;
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.getMenuParams();
     this.customColumnDialogService.getMenu(this.getMenuMsgParams).subscribe(res => {
       if (res.code === 200) {
@@ -233,7 +233,7 @@ export class SubreleaseTableComponent implements OnInit, OnChanges, OnDestroy, D
   }
 
   serachData(data) {
-    const filterData = this.filterData || { 'flowDataType': '1' };
+    const filterData = this.filterData || { flowDataType: '1' };
     if (this.flowDataType !== filterData['flowDataType']) {
       return;
     }
@@ -241,7 +241,7 @@ export class SubreleaseTableComponent implements OnInit, OnChanges, OnDestroy, D
   }
   /**
    * 获取自定义列过滤数据
-   * @param data
+   * @param data 参数
    */
   getFilterField(data) {
     const newData = this.customColumnDialogService.filterSelectColoumn(data);

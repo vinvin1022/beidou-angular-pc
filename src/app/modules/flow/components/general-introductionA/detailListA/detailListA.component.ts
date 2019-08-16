@@ -11,14 +11,14 @@ import { GensearchCriteriaService } from '../../../service/gensearch-criteria.se
 })
 export class DetailListAComponent implements OnInit {
   @Input() reportDimensionParams = {};
-  @Input() flowDataType: String = '电销';
-  @Input() rowData: Object = {};
+  @Input() flowDataType = '电销';
+  @Input() rowData: object = {};
   @Input() filterData;
   public displayData: Array<any> = [];
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public flowViewReport$;
   public isVisible = false;
   public listDimension: Array<any> = [];
@@ -30,7 +30,7 @@ export class DetailListAComponent implements OnInit {
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px',
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px',
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px'];
-  public scrollConfig: Object = { x: '6200px', y: '500px' };
+  public scrollConfig: object = { x: '6200px', y: '500px' };
   public filterFieldData = {};
   public allChildren = [];
   public fieldKeys: Array<string> = [];

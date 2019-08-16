@@ -6,24 +6,24 @@
         <div>
           <nz-form-item>
             <nz-form-label nzRequired nzFor="packageName">名称</nz-form-label>
-            <nz-form-control>
+            <nz-form-control nzErrorTip="名称为必填">
               <input nz-input maxlength="20" formControlName="packageName" id="packageName">
-              <nz-form-explain *ngIf="validateForm.get('packageName').dirty && validateForm.get('packageName').errors">
-                名称为必填</nz-form-explain>
+              <!-- <nz-form-explain *ngIf="validateForm.get('packageName').dirty && validateForm.get('packageName').errors">
+                名称为必填</nz-form-explain> -->
             </nz-form-control>
           </nz-form-item>
         </div>
         <div class="mar-top10">
           <nz-form-item>
             <nz-form-label nzRequired nzFor="typeIdVal">类型</nz-form-label>
-            <nz-form-control>
+            <nz-form-control nzErrorTip="类型为必填">
               <nz-select [nzDisabled]="typeIdValDisabled" (ngModelChange)="typeIdValChange($event)" id="typeIdVal"
                 style="width: 120px;" formControlName="typeIdVal" nzAllowClear nzPlaceHolder="请选择类型">
                 <nz-option *ngFor="let item of typeIdValOptions" [nzValue]="item.typeId" [nzLabel]="item.typeName">
                 </nz-option>
               </nz-select>
-              <nz-form-explain *ngIf="validateForm.get('typeIdVal').dirty && validateForm.get('typeIdVal').errors">类型为必填
-              </nz-form-explain>
+              <!-- <nz-form-explain *ngIf="validateForm.get('typeIdVal').dirty && validateForm.get('typeIdVal').errors">类型为必填
+              </nz-form-explain> -->
             </nz-form-control>
           </nz-form-item>
 

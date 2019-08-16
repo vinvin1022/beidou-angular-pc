@@ -15,17 +15,17 @@ import { SituationOfBusinessService } from '../../../service/situation-of-busine
 
 })
 export class RealTimeChartComponent implements OnInit, AfterViewInit {
-  @ViewChild('realTime', {static: false}) realTime: ElementRef;
-  @ViewChild('electricTimeCharts', {static: false}) electricTimeCharts: ElementRef;
+  @ViewChild('realTime', { static: false }) realTime: ElementRef;
+  @ViewChild('electricTimeCharts', { static: false }) electricTimeCharts: ElementRef;
   public echartsIntance = null;
   public echartsData = [];
   public deptId = '0';
-  public isSpinning: Boolean = false;
-  public optionsLoading: Boolean = false;
-  public deptIdsOptions: Array<Object> = [];
+  public isSpinning = false;
+  public optionsLoading = false;
+  public deptIdsOptions: Array<object> = [];
   public advertisersTypeListOptions = [];
   public validateForm: FormGroup;
-  private chartOptions: Object = {};
+  private chartOptions: object = {};
 
   private legendData = [];
   private xTitle = [];
@@ -35,7 +35,7 @@ export class RealTimeChartComponent implements OnInit, AfterViewInit {
   private methondName = 'queryDeptLine';
 
 
-  public carrierOptions: Array<Object> = this.situationOfBusinessService.carrierOptions;
+  public carrierOptions: Array<object> = this.situationOfBusinessService.carrierOptions;
   constructor(private fb: FormBuilder, private situationOfBusinessService: SituationOfBusinessService, public commonCustomService: CommonCustomService) { }
 
   ngOnInit() {

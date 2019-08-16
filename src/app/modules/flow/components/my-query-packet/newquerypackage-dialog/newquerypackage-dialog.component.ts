@@ -10,24 +10,24 @@ import { NzMessageService } from 'ng-zorro-antd';
   encapsulation: ViewEncapsulation.None
 })
 export class NewquerypackageDialogComponent implements OnInit, OnChanges, DoCheck {
-  @Input() title: String = '新增查询包';
-  @Input() rowData: Object;
+  @Input() title = '新增查询包';
+  @Input() rowData: object;
   @Output() createQueryPackage = new EventEmitter();
-  public isVisible: Boolean = false;
-  public typeIdValDisabled: Boolean = false;
-  public xtitle: String = '选中的站点：';
+  public isVisible = false;
+  public typeIdValDisabled = false;
+  public xtitle = '选中的站点：';
 
   public validateForm: FormGroup;
-  public typeIdValOptions: Array<Object> = this.myquerypacketService.typeIdValOptions;
+  public typeIdValOptions: Array<object> = this.myquerypacketService.typeIdValOptions;
   public accountUidOptions: Array<any> = [];   // 推广账户下拉选项
   public siteNumberOptions: Array<any> = [];   // 推广站点下拉选项
 
-  public siteNumberParams: Object = { state: 0 };
+  public siteNumberParams: object = { state: 0 };
   public accountUidFilterData: Array<any> = []; // 选中的推广账户
   public siteNumberFilterData: Array<any> = []; // 选中的推广站点
 
-  public addQueryPackageParams: Object = {};
-  public checkAllData = { };
+  public addQueryPackageParams: object = {};
+  public checkAllData = {};
   constructor(private fb: FormBuilder, private nzMessage: NzMessageService, public flowcommonform: FlowcommonformService,
     private myquerypacketService: MyquerypacketService) { }
 
@@ -40,7 +40,7 @@ export class NewquerypackageDialogComponent implements OnInit, OnChanges, DoChec
     this.setXTitel();
   }
   private _initForm() {
-    const { packageName, typeIdVal, accountUid, siteNumber} = this.myquerypacketService.dialogDefalutData;
+    const { packageName, typeIdVal, accountUid, siteNumber } = this.myquerypacketService.dialogDefalutData;
     this.validateForm = this.fb.group({
       packageName: [packageName, [Validators.required]],   // 查询包名称
       typeIdVal: [typeIdVal, [Validators.required]],  // 查询包内容
@@ -80,7 +80,7 @@ export class NewquerypackageDialogComponent implements OnInit, OnChanges, DoChec
       this.submitForm();
     }
   }
-  ngDoCheck() {}
+  ngDoCheck() { }
 
   /**
    * 确认新增查询包
@@ -133,7 +133,7 @@ export class NewquerypackageDialogComponent implements OnInit, OnChanges, DoChec
    * 是否关闭新增查询包弹窗
    * @param isShow Boolean 是否关闭新增查询包弹窗
    */
-  handleCancel(isShow: Boolean = false): void {
+  handleCancel(isShow = false): void {
     this.isVisible = isShow;
     if (!this.isVisible) {
       this.validateForm.reset(this.myquerypacketService.dialogDefalutData);
@@ -249,7 +249,7 @@ export class NewquerypackageDialogComponent implements OnInit, OnChanges, DoChec
     }
   }
 
-  formatSelectedData(data, options): Array<Object> {
+  formatSelectedData(data, options): Array<object> {
     const tmpArr = [];
     if ((data && data.length) && (options && options.length)) {
       for (let sidx = 0, len = data.length; sidx < len; sidx++) {
@@ -275,8 +275,11 @@ export class NewquerypackageDialogComponent implements OnInit, OnChanges, DoChec
 
     let selectedFilterData = typeId === '2' ? this.accountUidFilterData : this.siteNumberFilterData;
     selectedFilterData = selectedFilterData.filter((val) => item !== val.optionId);
-    for (let index = 0; index < selectedFilterData.length; index++) {
-      const ele = selectedFilterData[index];
+    // for (let index = 0; index < selectedFilterData.length; index++) {
+    //   const ele = selectedFilterData[index];
+    //   tmpArr.push(ele.optionId);
+    // }
+    for (const ele of selectedFilterData) {
       tmpArr.push(ele.optionId);
     }
     if (typeId === '2') {

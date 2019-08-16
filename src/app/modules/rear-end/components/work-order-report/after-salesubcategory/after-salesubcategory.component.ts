@@ -15,14 +15,13 @@ export class AfterSalesubcategoryComponent implements AfterViewInit, OnChanges, 
   @Input() private bigId;
 
   @ViewChild('salesubcategory', { static: false }) salesubcategory: ElementRef;
-  private _echartsIntance = null;
+  private echartsIntance = null;
   public echartsData = [];
-  public isSpinning: Boolean = false;
-  private _clientWidth: number;
-  constructor(private _workOrderReportService: WorkOrderReportService) { }
+  public isSpinning = false;
+  private clientWidth: number;
+  constructor(private workOrderReportService: WorkOrderReportService) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (changes.requestParams && changes.requestParams.currentValue && !changes.requestParams.firstChange) {
       this.querySmallTypeNum();
     }
@@ -33,14 +32,14 @@ export class AfterSalesubcategoryComponent implements AfterViewInit, OnChanges, 
 
 
   ngAfterViewInit() {
-    this._clientWidth = this.salesubcategory.nativeElement.clientWidth;
-    this._echartsIntance = echarts.init(this.salesubcategory.nativeElement);
+    this.clientWidth = this.salesubcategory.nativeElement.clientWidth;
+    this.echartsIntance = echarts.init(this.salesubcategory.nativeElement);
 
   }
   ngAfterViewChecked() {
-    if (this._clientWidth !== this.salesubcategory.nativeElement.clientWidth) {
-      this._clientWidth = this.salesubcategory.nativeElement.clientWidth;
-      this._echartsIntance.resize({ width: this.salesubcategory.nativeElement.clientWidth });
+    if (this.clientWidth !== this.salesubcategory.nativeElement.clientWidth) {
+      this.clientWidth = this.salesubcategory.nativeElement.clientWidth;
+      this.echartsIntance.resize({ width: this.salesubcategory.nativeElement.clientWidth });
     }
   }
 
@@ -49,9 +48,9 @@ export class AfterSalesubcategoryComponent implements AfterViewInit, OnChanges, 
     if (this.bigId) {
       this.requestParams['bigId'] = this.bigId;
     }
-    this._workOrderReportService.querySmallTypeNum(this.requestParams).subscribe(res => {
+    this.workOrderReportService.querySmallTypeNum(this.requestParams).subscribe(res => {
       this.echartsData = res.result;
-      this._echartsIntance.setOption(this._setChartsOptions(res.result));
+      this.echartsIntance.setOption(this._setChartsOptions(res.result));
       this.isSpinning = false;
       this.bigId = null;
     });
@@ -80,8 +79,7 @@ export class AfterSalesubcategoryComponent implements AfterViewInit, OnChanges, 
         textStyle: {
           fontSize: 12
         },
-        formatter: function (params) {
-          console.log(params);
+        formatter: (params) => {
           const html = `
             ${params[0]['data']['parentName']}<br />
             ${params[0]['name']}: ${params[0]['value']}

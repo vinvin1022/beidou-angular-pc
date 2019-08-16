@@ -4,7 +4,7 @@ import { RequestService } from 'src/app/service/request.service';
 @Injectable()
 export class WorkOrderReportService {
   public serviceName = 'dms';
-  public loading: Boolean = false;
+  public loading = false;
   public plusPercentage = ['rate1'];
   constructor(private requestHttp: RequestService) { }
 
@@ -18,19 +18,16 @@ export class WorkOrderReportService {
   }
 
   /**
- * 查询每日工单饼图
- * @param url string 请求地址
- * @param params object 请求参数
- */
+   * 查询每日工单饼图
+   */
   queryBigTypeNum(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/middler/queryBigTypeNum`, params);
   }
 
   /**
- * 查询每日工单柱状图
- * @param url string 请求地址
- * @param params object 请求参数
- */
+   * 查询每日工单柱状图
+   * @param params 請求參數
+   */
   querySmallTypeNum(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/middler/querySmallTypeNum`, params);
   }
@@ -38,9 +35,9 @@ export class WorkOrderReportService {
 
 
   /**
-  *  每日工单导出
-  * @param params Object  请求参数
-  */
+   * 每日工单导出
+   * @param params 請求參數
+   */
   exportDailyWorkOrders(params = {}) {
     return this.requestHttp.exportExcel(`${this.serviceName}/excelExport/exportDailyWorkOrders`, params);
   }

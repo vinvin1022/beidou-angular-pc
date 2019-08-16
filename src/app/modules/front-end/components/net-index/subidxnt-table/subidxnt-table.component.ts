@@ -19,21 +19,21 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class SubidxntTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  @ViewChild('indexDetailList', {static: false}) indexDetailList: IndexDetailListComponent;
-  @ViewChild('customColumnDialog', {static: false}) customColumnDialog: CustomColumnDialogComponent;
-  public customColumnData: Object = {};
+  @ViewChild('indexDetailList', { static: false }) indexDetailList: IndexDetailListComponent;
+  @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
+  public customColumnData: object = {};
   public filterFieldData;
   public dataTable = [];
-  public loading: Boolean = false;
-  public subscribeAll$: Object = {};
-  public targetNetSaleParams: Object = {};
+  public loading = false;
+  public subscribeAll$: object = {};
+  public targetNetSaleParams: object = {};
   public getMenuMsgParams: object = {};
   public customMenu: object = {};
   public flowDataType = '1';
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
   tableTreeData = [];
   expandDataCache = {};
@@ -58,7 +58,7 @@ export class SubidxntTableComponent implements OnInit, OnChanges, OnDestroy {
     this.getMenuMsgParams['menuId'] = path;
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.getMenuParams();
     this.customColumnDialogService.getMenu(this.getMenuMsgParams).subscribe(res => {
       if (res.code === 200) {
@@ -76,11 +76,10 @@ export class SubidxntTableComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
+   * 获取自定义列过滤数据
+   * @param data 參數
+   */
   getFilterField(data) {
     const newData = this.customColumnDialogService.filterSelectColoumn(data);
     this.filterFieldData = newData.selectField;
@@ -169,7 +168,7 @@ export class SubidxntTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 參數
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

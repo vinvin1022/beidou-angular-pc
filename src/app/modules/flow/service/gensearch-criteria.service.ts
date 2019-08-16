@@ -6,20 +6,20 @@ import { formatDate, setDefaultDate, setPurviewDefaultDate } from '../../../tool
   providedIn: 'root'
 })
 export class GensearchCriteriaService {
-  public isShowRegistCity: Boolean = true;
+  public isShowRegistCity = true;
   // 是否显示条件
-  public isShowMore: Boolean = true;
+  public isShowMore = true;
   // 是否显示维度
-  public isShowDimension: Boolean = true;
+  public isShowDimension = true;
   // 是否显示对比时间
-  public isShowContrast: Boolean = true;
+  public isShowContrast = true;
   // 是否显示年条件
-  public isShowYear: Boolean = true;
-  public formData: Object;
+  public isShowYear = true;
+  public formData: object;
   public flowValidateForm;
-  public loading: Boolean = false;
+  public loading = false;
   public NOWTIME = [setDefaultDate('period_wid', true), setDefaultDate('period_wid', true)];
-  public queryDimensionOptions: Array<Object> = [
+  public queryDimensionOptions: Array<object> = [
     { value: 'men_area_name', label: '报名城市', disabled: false, checked: false },
     { value: 'fl_consulting_project', label: '推广项目', disabled: false, checked: false },
     { value: 'flowin_depid', label: '事业部', disabled: false, checked: false },
@@ -65,13 +65,13 @@ export class GensearchCriteriaService {
   };
 
   // 业务模式
-  public flowDataTypeOptions: Array<Object> = [
+  public flowDataTypeOptions: Array<object> = [
     { optionId: '1', optionName: '电销' },
     { optionId: '2', optionName: '网销' },
   ];
 
   // 载体下拉选项
-  public carrierOptions: Array<Object> = [
+  public carrierOptions: Array<object> = [
     { optionId: '0', optionName: '未知' },
     { optionId: '1', optionName: 'PC' },
     { optionId: '2', optionName: 'MB' },
@@ -107,9 +107,9 @@ export class GensearchCriteriaService {
 
   /**
    * 暂时不用 使用tools的方法
-   * @param filterData
+   * @param filterData 參數
    */
-  setFinalFilterData(filterData: Object = {}) {
+  setFinalFilterData(filterData: object = {}) {
     const flowViewReportParams = {};
     for (const key in filterData) {
       if (filterData.hasOwnProperty(key)) {
@@ -140,7 +140,7 @@ export class GensearchCriteriaService {
   }
 
 
-  formateFlowDataType(flowDataType: String) {
+  formateFlowDataType(flowDataType: string) {
     return this.flowDataTypeOptions.find((item) => flowDataType === item['optionId']);
   }
 
@@ -148,24 +148,24 @@ export class GensearchCriteriaService {
 
   /**
    * 获取推广来源
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getQuerySourceName(params = {}) {
     return this.requestHttp.post('dms/userDept/querySourceName', params);
   }
   /**
    * 获取推广城市下拉列表
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getSpreadCitylist(params = {}) {
     return this.requestHttp.post('dms/userDept/queryCityName', params);
   }
   /**
    * 获取推广账户下来列表
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getQueryAccount(params = {}) {
     return this.requestHttp.post('dms/userDept/queryAccountName', params);
@@ -173,26 +173,25 @@ export class GensearchCriteriaService {
 
   /**
    *  获取推广项目列表
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getFlConsultingProjectOptions(params = {}) {
     return this.requestHttp.post('dms/userDept/queryProjectName', params);
   }
 
   /**
-  *  获取推广渠道
-  * @param url String   请求地址
-  * @param params Object  请求参数
-  */
+   * 获取推广渠道
+   * @param params 请求参数
+   */
   getCodeOptions(params = {}) {
     return this.requestHttp.post('dms/userDept/queryCodeName', params);
   }
 
   /**
    *  获取推广站点
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getSiteNumberOptions(params = {}) {
     return this.requestHttp.post('dms/userDept/querySiteNumber', params);
@@ -201,8 +200,8 @@ export class GensearchCriteriaService {
 
   /**
    *  获取报名城市
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getMenAreaCodeOptions(params = {}) {
     return this.requestHttp.post('dms/userDept/queryCampusName', params);
@@ -210,8 +209,8 @@ export class GensearchCriteriaService {
 
   /**
    *  获取主域名
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getWebUidOptions(params = {}) {
     return this.requestHttp.post('dms/userDept/queryWebName', params);
@@ -220,8 +219,8 @@ export class GensearchCriteriaService {
 
   /**
    *  获取推广方式
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getAdvertisersTypeOptions(params = {}) {
     return this.requestHttp.post('dms/userDept/queryAdvertisersName', params);
@@ -229,19 +228,18 @@ export class GensearchCriteriaService {
 
   /**
    * 获取组织架构
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
-  getQueryDept(params: Object = {}) {
+  getQueryDept(params: object = {}) {
     return this.requestHttp.post('authentication/dept/list', params);
   }
 
   /**
-  * 获取详细人员
-  * @param url String   请求地址
-  * @param params Object  请求参数
-  */
-  getUserIdOptions(params: Object = {}) {
+   * 获取详细人员
+   * @param params 请求参数
+   */
+  getUserIdOptions(params: object = {}) {
     return this.requestHttp.post('authentication/dept/getUserByDeptId', params);
   }
 
@@ -250,49 +248,49 @@ export class GensearchCriteriaService {
 
   /**
    * 获取事业部
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getDivision(params: Object = {}) {
+  getDivision(params: object = {}) {
     return this.requestHttp.post('dms/userDept/getDivision', params);
   }
 
   /**
    * 获取流量军团
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getDeptOptions(params: Object = {}) {
+  getDeptOptions(params: object = {}) {
     return this.requestHttp.post('dms/userDept/getDept', params);
   }
 
   /**
    * 获取流量组
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getGroupOptions(params: Object = {}) {
+  getGroupOptions(params: object = {}) {
     return this.requestHttp.post('dms/userDept/getGroup', params);
   }
 
   /**
    * 获取流量人员
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getUserOptions(params: Object = {}) {
+  getUserOptions(params: object = {}) {
     return this.requestHttp.post('dms/userDept/getUser', params);
   }
 
   /**
    * 获取推广账户包接口
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getQueryAccountPackage(params: Object = {}) {
+  getQueryAccountPackage(params: object = {}) {
     return this.requestHttp.post('dms/view/queryAccountPackage', params);
   }
 
   /**
    * 获取推广站点包接口
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getQuerySitePackage(params: Object = {}) {
+  getQuerySitePackage(params: object = {}) {
     return this.requestHttp.post('dms/view/querySitePackage', params);
   }
 }

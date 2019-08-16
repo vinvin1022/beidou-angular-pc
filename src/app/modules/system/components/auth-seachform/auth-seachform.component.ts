@@ -12,7 +12,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router'
   styleUrls: ['./auth-seachform.component.scss']
 })
 export class AuthSeachformComponent implements OnInit, DoCheck, AfterViewInit {
-  @Input() public isShowUserName: Boolean = false;
+  @Input() public isShowUserName = false;
   public loading = false;
   public validateForm: FormGroup;
   public roleTypesOptions: object;
@@ -71,7 +71,7 @@ export class AuthSeachformComponent implements OnInit, DoCheck, AfterViewInit {
           }
         }
       }
-    }   
+    }
     // this.authSeachformService.sendMessage(paramsObject);
     this.sentSearchData.emit(paramsObject);
   }
@@ -90,9 +90,9 @@ export class AuthSeachformComponent implements OnInit, DoCheck, AfterViewInit {
 
 
   /**
-  * 角色change
-  * @param val
-  */
+   * 角色change
+   * @param val 参数
+   */
   roleTypeChange(val?) {
     this.roleId = null;
     this.getKarakters();

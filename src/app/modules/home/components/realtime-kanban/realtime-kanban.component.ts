@@ -8,10 +8,10 @@ import { HomeService } from '../../service/home.service';
 
 })
 export class RealtimeKanbanComponent implements OnInit, OnDestroy {
-  public isSpinning: Boolean = false;
-  public dayData: Object = {};
-  public weekData: Object = {};
-  public monthData: Object = {};
+  public isSpinning = false;
+  public dayData: object = {};
+  public weekData: object = {};
+  public monthData: object = {};
   public timer = null;
 
   constructor(private homeService: HomeService) { }

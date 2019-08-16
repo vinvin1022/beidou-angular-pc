@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./extension-index.component.scss']
 })
 export class ExtensionIndexComponent implements OnInit {
-  public filterData: Object;
-  public packagePermissions: String = 'b030202';
+  public filterData: object;
+  public packagePermissions = 'b030202';
 
   constructor() { }
 

@@ -17,16 +17,16 @@ import { FrontendService } from '../../../service/frontend.service';
 })
 export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  @ViewChild('nzTable', {static: false}) overviewTableData: ElementRef;
-  @ViewChild('customColumnDialog', {static: false}) customColumnDialog: CustomColumnDialogComponent;
-  public customColumnData: Object = {};
+  @ViewChild('nzTable', { static: false }) overviewTableData: ElementRef;
+  @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
+  public customColumnData: object = {};
   public filterFieldData = {};
   public dataTable: Array<any> = [];
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public midLegionDataParams: Object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public midLegionDataParams: object = {};
   public midLegionDataSubscribe$;
   public allChildren = [];
   public fieldKeys: Array<string> = [];
@@ -34,7 +34,7 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
   public customMenu: object = {};
   public dataType = '1';
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
   constructor(private middleEndSearchFormService: MiddleEndSearchFormService, private armyDataAnalysisService: ArmyDataAnalysisService,
     private commonCustomService: CommonCustomService, private customColumnDialogService: CustomColumnDialogService,
@@ -47,10 +47,10 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
   ngOnInit() {
-     // tslint:disable-next-line:max-line-length   过滤掉电销或者网销字段
-     // this.customColumnData = this.customColumnDialogService.resetColumnData({ ...armyDataAnalysisCustomFieldData });
-     // this.getMenu();
-     this.setWidthScrollConfig();
+    // tslint:disable-next-line:max-line-length   过滤掉电销或者网销字段
+    // this.customColumnData = this.customColumnDialogService.resetColumnData({ ...armyDataAnalysisCustomFieldData });
+    // this.getMenu();
+    this.setWidthScrollConfig();
   }
 
   getMenuParams() {
@@ -58,7 +58,7 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
     this.getMenuMsgParams['menuId'] = path;
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.getMenuParams();
     this.customColumnDialogService.getMenu(this.getMenuMsgParams).subscribe(res => {
       if (res.code === 200) {
@@ -66,13 +66,13 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
         this.customMenu = customMenu || {};
         if (this.customMenu) {
           this.customColumnDialogService.columnData =
-          // this.customColumnData = this.customColumnDialogService.shaiXuanSelected(this.customColumnData, customMenu[this.dataType]);
-          this.customColumnData = this.customColumnDialogService.deleteProto(this.customMenu[this.dataType]);
+            // this.customColumnData = this.customColumnDialogService.shaiXuanSelected(this.customColumnData, customMenu[this.dataType]);
+            this.customColumnData = this.customColumnDialogService.deleteProto(this.customMenu[this.dataType]);
           // tslint:disable-next-line:no-unused-expression
           fn && fn();
-        }  else {
+        } else {
           this.customColumnDialogService.columnData =
-          this.customColumnData = this.customColumnDialogService.deleteProto(armyDataAnalysisCustomFieldData);
+            this.customColumnData = this.customColumnDialogService.deleteProto(armyDataAnalysisCustomFieldData);
         }
       }
     });
@@ -110,32 +110,32 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
- getFilterField(data) {
-  const newData = this.customColumnDialogService.filterSelectColoumn(data);
-  this.filterFieldData = newData.selectField;
-  this.fieldKeys = Object.keys(this.filterFieldData);
-  this.allChildren = newData.allChildren;
-  this.setWidthScrollConfig();
-}
-
-setWidthScrollConfig() {
-  if (this.dataTable.length) {
-    this.widthConfig = this.commonCustomService.setWidthConfig(this.allChildren.length, ['100px', '100px']);
-    this.scrollConfig = this.commonCustomService.setScrollWidth(this.widthConfig);
-  } else {
-    this.widthConfig = ['100px'];
-    this.scrollConfig = { x: '100px', y: '100px' };
+   * 获取自定义列过滤数据
+   * @param data 请求参数
+   */
+  getFilterField(data) {
+    const newData = this.customColumnDialogService.filterSelectColoumn(data);
+    this.filterFieldData = newData.selectField;
+    this.fieldKeys = Object.keys(this.filterFieldData);
+    this.allChildren = newData.allChildren;
+    this.setWidthScrollConfig();
   }
-}
+
+  setWidthScrollConfig() {
+    if (this.dataTable.length) {
+      this.widthConfig = this.commonCustomService.setWidthConfig(this.allChildren.length, ['100px', '100px']);
+      this.scrollConfig = this.commonCustomService.setScrollWidth(this.widthConfig);
+    } else {
+      this.widthConfig = ['100px'];
+      this.scrollConfig = { x: '100px', y: '100px' };
+    }
+  }
 
   /**
    * 军团数据分析导出
    */
   exportMidLegionData() {
-    this.armyDataAnalysisService.exportMidLegionData({...this.midLegionDataParams});
+    this.armyDataAnalysisService.exportMidLegionData({ ...this.midLegionDataParams });
   }
 
 

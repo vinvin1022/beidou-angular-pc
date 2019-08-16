@@ -27,7 +27,7 @@ export class SetIndexAuthorityComponent implements OnInit {
   public roleIds: Array<any> = [];
   public radioValuesOptions: Array<any> = [];
   public radioValue: string;
-  public customColumn: Object = {};
+  public customColumn: object = {};
   public syllable: object = {};
   public customMenu: object = {};
   public validateForm: FormGroup;
@@ -78,11 +78,12 @@ export class SetIndexAuthorityComponent implements OnInit {
 
 
   /**
-  * 获取选中的字段
-  * @param customMenu object
-  */
+   * 获取选中的字段
+   * @param customMenu object
+   */
   private _getSelectedLie() {
-    const tmpObj1 = {}, tmpObj2 = {};
+    const tmpObj1 = {};
+    const tmpObj2 = {};
     for (const pkey in this.customMenu) {
       if (this.customMenu.hasOwnProperty(pkey)) {
         const pelement = this.customMenu[pkey];
@@ -93,7 +94,8 @@ export class SetIndexAuthorityComponent implements OnInit {
             if (mkey !== 'children') {
               tmpObj1[pkey][mkey] = tmpObj2[pkey][mkey] = melement;
             } else {
-              const tmpArr1 = [], tmpArr2 = [];
+              const tmpArr1 = [];
+              const tmpArr2 = [];
               melement.forEach(item => {
                 if (item['authorityChecked'] && (item['type'] === '1' || !item['type'])) {
                   tmpArr1.push({ ...item });
@@ -126,7 +128,7 @@ export class SetIndexAuthorityComponent implements OnInit {
 
   /**
    * 角色change
-   * @param val
+   * @param val 参数
    */
   roleTypeChange(val?) {
     this.radioValuesOptions = this.commonSettargetService.reportMenus[this.validateForm.get('roleType').value];
@@ -140,8 +142,8 @@ export class SetIndexAuthorityComponent implements OnInit {
 
   getRoleMenuByMenuId() {
     const params = {
-      'menuId': this.radioValue,
-      'roleId': this.validateForm.get('roleId').value,
+      menuId: this.radioValue,
+      roleId: this.validateForm.get('roleId').value,
     };
     if (!params['roleId']) { return; }
     this.commonSettargetService.getRoleMenuByMenuId(params).subscribe(res => {
@@ -252,7 +254,7 @@ export class SetIndexAuthorityComponent implements OnInit {
         } else if (newContrastField[key].children.every(item => item.authorityChecked === true)) {
           newContrastField[key].allChecked = true;
           newContrastField[key].indeterminate = false;
-         } else if (newContrastField[key].children.some(item => item.authorityChecked === true)) {
+        } else if (newContrastField[key].children.some(item => item.authorityChecked === true)) {
           newContrastField[key].allChecked = false;
           newContrastField[key].indeterminate = true;
         } else {

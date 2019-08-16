@@ -3,10 +3,10 @@ import { RequestService } from 'src/app/service/request.service';
 
 @Injectable()
 export class IncubationProjectService {
-  public loading: Boolean = false;
-  public periodType: String = 'period_wid';
-  public period_widColumn;
-  public week_inyearColumn;
+  public loading = false;
+  public periodType = 'period_wid';
+  public periodWidColumn;
+  public weekInyearColumn;
 
   // public formatTime = ['calLongTime', 'firstTimediffAlCal', 'timediffAlFl'];
 
@@ -18,9 +18,9 @@ export class IncubationProjectService {
 
 
   /**
-    *  查询MDC列表
-    * @param params DayGroupDivisionParams  请求参数
-    */
+   * 查询MDC列表
+   * @param params DayGroupDivisionParams  请求参数
+   */
   queryMDCView(params = {}) {
     const url = 'dms/mdc/manager/queryMDCView';
     return this.requestHttp.post(url, params);
@@ -30,9 +30,9 @@ export class IncubationProjectService {
 
 
   /**
- *  研究生孵化项目导出
- * @param params Object  请求参数
- */
+   * 研究生孵化项目导出
+   * @param params 請求參數
+   */
   exportMDC(params = {}) {
     return this.requestHttp.exportExcel('dms/excelExport/exportMDC', params);
 

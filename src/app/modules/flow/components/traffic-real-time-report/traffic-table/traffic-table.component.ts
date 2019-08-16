@@ -13,20 +13,20 @@ import { trafficRealTimeReportCustomFieldData } from '../../../service/traffic-r
   styleUrls: ['./traffic-table.component.scss']
 })
 export class TrafficTableComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() filterData: Object = {};
-  public customColumnData: Object = {};
+  @Input() filterData: object = {};
+  public customColumnData: object = {};
   public displayData: Array<any> = [];
   public filterFieldData = {};
   public flowViewReportParams: object = { range: '1' };
-  public loading: Boolean = false;
+  public loading = false;
   public flowViewReport$;
   public subscribeAll$: object = {};
-  public rowData: Object = {};
+  public rowData: object = {};
   public allChildren = [];
   public fieldKeys: Array<string> = [];
 
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
   public exportsParams = {};
   public sortParams = {};
 
@@ -94,9 +94,8 @@ export class TrafficTableComponent implements OnInit, OnChanges, OnDestroy {
 
 
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
+   * 获取自定义列过滤数据
+   */
   getFilterField() {
     const newData = this.customColumnDialogService.filterSelectColoumn(trafficRealTimeReportCustomFieldData);
     this.filterFieldData = newData.selectField;
@@ -138,7 +137,7 @@ export class TrafficTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 參數
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

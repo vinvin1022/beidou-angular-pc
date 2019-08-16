@@ -15,8 +15,8 @@ export class SituationBusinessFormComponent implements OnInit, DoCheck, OnDestro
   @Output() sendQueryData = new EventEmitter();
 
 
-  public rangePickerTodayDisabledDate: Function = rangePickerTodayDisabledDate;
-  public loading: Boolean = false;
+  public rangePickerTodayDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
+  public loading = false;
 
   public customColumnData: object = {};
   public paramsAll = {};
@@ -47,10 +47,10 @@ export class SituationBusinessFormComponent implements OnInit, DoCheck, OnDestro
   }
 
   /**
-  * 设置最终选择的form数据
-  */
+   * 设置最终选择的form数据
+   */
   setSelectedData() {
-    const paramsData: Object = {};
+    const paramsData: object = {};
     const mergeParams = Object.assign({}, this.validateForm.value);
     Object.keys(mergeParams).forEach((value) => {
       if (mergeParams[value]) {
@@ -81,8 +81,8 @@ export class SituationBusinessFormComponent implements OnInit, DoCheck, OnDestro
   }
 
   /**
-  * 设置查询 事业部 军团 咨询组 咨询师查询参数
-  */
+   * 设置查询 事业部 军团 咨询组 咨询师查询参数
+   */
   private _setAssociationParams() {
     this.paramsAll = setFinalFilterData(this.validateForm.value);
   }

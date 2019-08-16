@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sales-target.component.scss']
 })
 export class SalesTargetComponent implements OnInit {
-  public packagePermissions: String = 'b030302';
+  public packagePermissions = 'b030302';
 
-  public filterData: Object;
+  public filterData: object;
   constructor() { }
 
   ngOnInit() {

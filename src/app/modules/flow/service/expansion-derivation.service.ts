@@ -7,8 +7,8 @@ import { RequestService } from 'src/app/service/request.service';
 })
 export class ExpansionDerivationService {
   public day = new Date();
-  public loading: Boolean = false;
-  public defaultFormData: Object = {
+  public loading = false;
+  public defaultFormData: object = {
     channelNoList: [], // 推广渠道
     rangePicker: [this.day, this.day] // 推广日期
   };
@@ -18,23 +18,23 @@ export class ExpansionDerivationService {
   /**
    * 在线统计接口
    *
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getConditions(params: Object = {}) {
+  getConditions(params: object = {}) {
     return this.requestHttp.post('ftms-channel/report/selectByConditions', params);
   }
   /**
    * 推广计划日报表数据导出
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  exportSpreadPlanExport(params: Object = {}) {
+  exportSpreadPlanExport(params: object = {}) {
     return this.requestHttp.exportExcel('ftms-channel/report/spreadPlanExport', params);
   }
   /**
    * 根据条件查询渠道信息
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  selectChannelByConditions(params: Object = {}) {
+  selectChannelByConditions(params: object = {}) {
     return this.requestHttp.post('ftms-channel/channel/selectChannelByConditions', params);
   }
 

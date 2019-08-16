@@ -27,33 +27,33 @@ export class OperateRoleDialogService {
 
   /**
    *   查询角色人数列表
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  queryPowerUserNum(params: Object = {}) {
+  queryPowerUserNum(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/power/manager/queryPowerUserNum`, params);
   }
 
   /**
    *   修改角色
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  updateRole(params: Object = {}) {
+  updateRole(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/power/manager/updateRole`, params);
   }
 
   /**
-  *   添加角色
-  * @param params Object  请求参数
-  */
-  saveRole(params: Object = {}) {
+   * 添加角色
+   * @param params object  请求参数
+   */
+  saveRole(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/power/manager/saveRole`, params);
   }
 
   /**
-  *   删除角色
-  * @param params Object  请求参数
-  */
-  deleteUserRoleById(params: Object = {}) {
+   * 删除角色
+   * @param params object  请求参数
+   */
+  deleteUserRoleById(params: object = {}) {
     return this.requestHttp.post(`${this.serviceName}/power/manager/deleteUserRoleById`, params);
   }
 }

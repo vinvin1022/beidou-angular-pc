@@ -7,53 +7,53 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./set-meet-standard.component.scss']
 })
 export class SetMeetStandardComponent implements OnInit {
-  @Input() title: String = '设置通时达标值';
+  @Input() title = '设置通时达标值';
   @Output() setupSuccess = new EventEmitter();
-  public subscribeAll$: Object = {};
-  public isVisible: Boolean = false;
+  public subscribeAll$: object = {};
+  public isVisible = false;
 
-  public dailyTimeParams: Array<Object> = [
+  public dailyTimeParams: Array<object> = [
     {
-      timePoint    : '0-12',
-      numberCalls   : 5,
-      outgoingCall    : 32,
+      timePoint: '0-12',
+      numberCalls: 5,
+      outgoingCall: 32,
       averageCall: 1000
     },
     {
-      timePoint    : '12-14',
-      numberCalls   : 10,
-      outgoingCall    : 32,
+      timePoint: '12-14',
+      numberCalls: 10,
+      outgoingCall: 32,
       averageCall: 200
     },
     {
-      timePoint    : '14-17',
-      numberCalls   : 20,
-      outgoingCall    : 32,
+      timePoint: '14-17',
+      numberCalls: 20,
+      outgoingCall: 32,
       averageCall: 1500
     },
     {
-      timePoint    : '17-19',
-      numberCalls   : 15,
-      outgoingCall    : 32,
+      timePoint: '17-19',
+      numberCalls: 15,
+      outgoingCall: 32,
       averageCall: 1200
     },
     {
-      timePoint    : '19-21',
-      numberCalls   : 18,
-      outgoingCall    : 32,
+      timePoint: '19-21',
+      numberCalls: 18,
+      outgoingCall: 32,
       averageCall: 800
     },
     {
-      timePoint    : '21-24',
-      numberCalls   : 12,
-      outgoingCall    : 32,
+      timePoint: '21-24',
+      numberCalls: 12,
+      outgoingCall: 32,
       averageCall: 650
     }
   ];
 
   constructor(private dailyHoursService: DailyHoursService, private nzMessage: NzMessageService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   handleOk(): void {
     this.addDailyTime();
   }
@@ -68,7 +68,7 @@ export class SetMeetStandardComponent implements OnInit {
   }
 
   addDailyTime() {
-    const dmDailyTime = {dmDailyTime: JSON.stringify(this.dailyTimeParams)};
+    const dmDailyTime = { dmDailyTime: JSON.stringify(this.dailyTimeParams) };
     this.dailyHoursService.addDailyTime(dmDailyTime).subscribe(res => {
       this.nzMessage.success('设置通时达标值成功');
       this.setupSuccess.emit();
@@ -76,7 +76,7 @@ export class SetMeetStandardComponent implements OnInit {
     });
   }
 
-  handleCancel(isShow: Boolean = false): void {
+  handleCancel(isShow = false): void {
     this.isVisible = isShow;
     if (this.isVisible) {
       this.getCommonDailyTime();

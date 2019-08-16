@@ -7,8 +7,8 @@ import { RequestService } from 'src/app/service/request.service';
   selector: '[appExportExeclNew]'
 })
 export class ExportExeclNewDirective implements OnInit {
-  @Input() serviceNameClass: Object;  // 请求服务名
-  @Input() getExportsParams: Function;  // 请求参数
+  @Input() serviceNameClass: object;  // 请求服务名
+  @Input() getExportsParams: () => {};  // 请求参数
   @Input() foreordainMethond: string;  // 预先请求方法
   @Input() formalMethond: string;  // 正式请求方法
 

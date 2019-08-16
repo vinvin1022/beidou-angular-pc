@@ -11,7 +11,7 @@ export class CustomColumnDialogService {
 
   /**
    * 获取自定义列菜单信息
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getMenu(params?: object) {
     return this.request.post('dms/costomMenu/getMenu', params);

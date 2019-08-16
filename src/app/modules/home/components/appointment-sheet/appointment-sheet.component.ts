@@ -15,23 +15,23 @@ export class AppointmentSheetComponent implements OnInit, AfterViewInit, AfterVi
   public echartsIntance = null;
   public echartsData = [];
   public deptId = '0';
-  public isSpinning: Boolean = false;
-  public optionsLoading: Boolean = false;
-  public deptIdsOptions: Array<Object> = [];
-  private _clientWidth: number;
+  public isSpinning = false;
+  public optionsLoading = false;
+  public deptIdsOptions: Array<object> = [];
+  private clientWidth: number;
 
   constructor(private homeService: HomeService, private commonCustomService: CommonCustomService) { }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
-    this._clientWidth = this.appointmentSheetCharts.nativeElement.clientWidth;
+    this.clientWidth = this.appointmentSheetCharts.nativeElement.clientWidth;
     this.echartsIntance = echarts.init(this.appointmentSheetCharts.nativeElement);
     this.getAppointmentSheetData();
   }
   ngAfterViewChecked() {
-    if (this._clientWidth !== this.appointmentSheetCharts.nativeElement.clientWidth) {
-      this._clientWidth = this.appointmentSheetCharts.nativeElement.clientWidth;
+    if (this.clientWidth !== this.appointmentSheetCharts.nativeElement.clientWidth) {
+      this.clientWidth = this.appointmentSheetCharts.nativeElement.clientWidth;
       this.echartsIntance.resize({ width: this.appointmentSheetCharts.nativeElement.clientWidth });
     }
   }

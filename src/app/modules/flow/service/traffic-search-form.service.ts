@@ -17,7 +17,7 @@ export class TrafficSearchFormService {
 
   /**
    * 查询军团列表
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getSelectDept1(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/flowAct/realtime/selectDept1`, params);
@@ -25,15 +25,15 @@ export class TrafficSearchFormService {
 
   /**
    * 查询组信息
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getSelectDept2(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/flowAct/realtime/selectDept2`, params);
   }
   /**
    * 查询流量师
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   getSelectUserByDept(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/flowAct/realtime/selectUserByDept`, params);

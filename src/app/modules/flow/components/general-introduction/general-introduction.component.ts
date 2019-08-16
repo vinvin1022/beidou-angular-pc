@@ -7,8 +7,8 @@ import { CommonFormComponent } from '../common-form/common-form.component';
   styleUrls: ['./general-introduction.component.scss']
 })
 export class GeneralIntroductionComponent implements OnInit {
-  public filterData: Object;
-  public packagePermissions: String = 'b030702';
+  public filterData: object;
+  public packagePermissions = 'b030702';
   @ViewChild('commonForm', { static: false }) commonForm: CommonFormComponent;
   constructor() { }
 

@@ -69,7 +69,7 @@ export class CtrlUpermissionDialogComponent implements OnInit, OnChanges, OnDest
     });
   }
   getUserByPhone(phone) {
-    this.subscribeAll$[`getUserByPhone$`] = this.ctrlUpermissionDalogService.getUserByPhone({ phone: phone }).subscribe(res => {
+    this.subscribeAll$[`getUserByPhone$`] = this.ctrlUpermissionDalogService.getUserByPhone({ phone }).subscribe(res => {
       if (res.msg === '4001') {
         this.message.warning(res.result);
         this.validateForm.get('userName').patchValue(null);
@@ -83,9 +83,9 @@ export class CtrlUpermissionDialogComponent implements OnInit, OnChanges, OnDest
   }
 
   /**
-  * 用户change
-  * @param val
-  */
+   * 用户change
+   * @param val 参数
+   */
   roleTypeChange(val?) {
     this.validateForm.get('resourceName').patchValue(null);
     this.validateForm.get('roleName').patchValue(null, { emitViewToModelChange: false });

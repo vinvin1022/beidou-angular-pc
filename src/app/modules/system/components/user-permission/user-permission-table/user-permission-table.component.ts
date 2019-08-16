@@ -15,20 +15,20 @@ import { UserPermissionTableService } from '../../../service/user-permission-tab
 })
 export class UserPermissionTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() searchData = {};
-  @ViewChild('ctrlUpermissionDialog', {static: false}) ctrlUpermissionDialog: CtrlUpermissionDialogComponent;
-  public userRoleParams: Object = {};
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public subscribeAll$: Object = {};
+  @ViewChild('ctrlUpermissionDialog', { static: false }) ctrlUpermissionDialog: CtrlUpermissionDialogComponent;
+  public userRoleParams: object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public subscribeAll$: object = {};
   public displayData = [];
   public visible = false;
   public treeNodes: Array<any> = [];
-  public currentRowData: Object = {};
+  public currentRowData: object = {};
   public defaultCheckedKeys: Array<any> = [];
   public checkData = {};
-  private saveUserDateParams: Object = {
+  private saveUserDateParams: object = {
     keys: [], center: [], legion: [], group: []
   };
 
@@ -63,8 +63,8 @@ export class UserPermissionTableComponent implements OnInit, OnChanges, OnDestro
   }
 
   /**
-  * 设置查询参数
-  */
+   * 设置查询参数
+   */
   setQueryUserRoleParams() {
     this.userRoleParams['pageNo'] = this.pageIndex;
     this.userRoleParams['pageSize'] = this.pageSize;

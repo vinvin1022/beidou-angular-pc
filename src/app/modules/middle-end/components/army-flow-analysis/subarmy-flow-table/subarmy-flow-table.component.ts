@@ -12,11 +12,11 @@ import { CommonCustomService } from 'src/app/modules/common-custom/service/commo
 export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
   public dataTable = [];
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public midLegionFlowParams: Object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public midLegionFlowParams: object = {};
   public midLegionFlowSubscribe$;
   constructor(private armyFlowAnalysisService: ArmyFlowAnalysisService, private middleEndSearchFormService: MiddleEndSearchFormService,
     private commonCustomService: CommonCustomService) { }
@@ -58,11 +58,11 @@ export class SubarmyflowTableComponent implements OnInit, OnChanges, OnDestroy {
 
 
   /**
- * 军团数据分析导出
- */
-exportMidLegionFlow() {
-  this.armyFlowAnalysisService.exportMidLegionFlow({...this.midLegionFlowParams});
-}
+   * 军团数据分析导出
+   */
+  exportMidLegionFlow() {
+    this.armyFlowAnalysisService.exportMidLegionFlow({ ...this.midLegionFlowParams });
+  }
   /**
    * 设置查询参数
    */

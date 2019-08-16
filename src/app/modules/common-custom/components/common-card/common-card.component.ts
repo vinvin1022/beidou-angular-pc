@@ -7,8 +7,8 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class CommonCardComponent implements OnInit {
-  @Input() nztitle: String = 'card';
-  @Input() isHideGrayBg: Boolean = false;
+  @Input() nztitle = 'card';
+  @Input() isHideGrayBg = false;
   constructor() { }
 
   ngOnInit() {

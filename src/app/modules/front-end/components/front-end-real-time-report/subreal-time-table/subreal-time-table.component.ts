@@ -15,17 +15,17 @@ import { FrontRealReportService } from '../../../service/front-real-report.servi
 })
 export class SubrealTimeTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  public customColumnData: Object = {};
+  public customColumnData = {};
   public filterFieldData;
-  public loading: Boolean = false;
-  public subscribeAll$: Object = {};
-  public targetNetSaleParams: Object = {};
-  public exportsParams: Object = {};
+  public loading = false;
+  public subscribeAll$ = {};
+  public targetNetSaleParams = {};
+  public exportsParams = {};
 
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig = {};
   public sortParams = {};
 
   tableTreeData = [];
@@ -51,9 +51,9 @@ export class SubrealTimeTableComponent implements OnInit, OnChanges, OnDestroy {
 
 
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
+   *  获取自定义列过滤数据
+   * @param data 参数
+   */
   getFilterField() {
     const newData = this.customColumnDialogService.filterSelectColoumn(frontRealReportCustomFieldData);
     this.filterFieldData = newData.selectField;
@@ -124,7 +124,7 @@ export class SubrealTimeTableComponent implements OnInit, OnChanges, OnDestroy {
    * @param data object 当前数据
    * @param methodName string 请求方法名
    */
-  getTableTreeData(data: object = {}) {
+  getTableTreeData(data: object= {}) {
     const params = { ...this.targetNetSaleParams };
     if (!(data['children'] && data['children'].length)) {
       this.loading = this.frontRealFormService.loading = true;
@@ -139,7 +139,7 @@ export class SubrealTimeTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 参数
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

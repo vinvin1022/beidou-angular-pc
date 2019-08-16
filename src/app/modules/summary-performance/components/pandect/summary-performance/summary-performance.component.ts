@@ -13,20 +13,20 @@ import { NzMessageService } from 'ng-zorro-antd';
   encapsulation: ViewEncapsulation.None
 })
 export class SummaryPerformanceComponent implements OnInit, DoCheck {
-  // public deptOptions: Array<Object> = this.pandect.deptOptions;
+  // public deptOptions: Array<object> = this.pandect.deptOptions;
 
-  public timeTypes: Array<Object> = this.pandect.timeTypes;
-  public indexItems: Array<Object> = this.pandect.indexItems;
+  public timeTypes: Array<object> = this.pandect.timeTypes;
+  public indexItems: Array<object> = this.pandect.indexItems;
   public validateForm: FormGroup;
-  public isSubmit: Boolean = false;
-  public loading: Boolean = false;
-  // public departmentOptions: Array<Object> = [];
+  public isSubmit = false;
+  public loading = false;
+  // public departmentOptions: Array<object> = [];
   // public userIdOptions: Array<any> = [];
-  public rangePickerDisabledDate: Function = rangePickerDisabledDate;
-  // public businessOptions: Array<Object> = [];
-  public optionsLoading: Boolean = false;
-  public subscribeAll$: Object = {};
-  @Output('sendQueryData') sendQueryData = new EventEmitter();
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerDisabledDate;
+  // public businessOptions: Array<object> = [];
+  public optionsLoading = false;
+  public subscribeAll$: object = {};
+  @Output() sendQueryData = new EventEmitter();
   constructor(private fb: FormBuilder, private pandect: PandectService, private message: NzMessageService,
     public commonCustomService: CommonCustomService) { }
 

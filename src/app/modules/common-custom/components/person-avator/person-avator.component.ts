@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./person-avator.component.scss']
 })
 export class PersonAvatorComponent implements OnInit {
-  public userName: String = '';
-  public avatarSrc: String = '';
-  private authority_url: String;
+  public userName = '';
+  public avatarSrc = '';
+  private authorityUrl: string;
   constructor(private request: RequestService, private router: Router, private nzMessage: NzMessageService,
     private landingAuthorityService: LandingAuthorityService) { }
 
@@ -33,7 +33,7 @@ export class PersonAvatorComponent implements OnInit {
     // });
 
     this.landingAuthorityService.clearInfoMessage();
-    location.href = `${environment['authority_url']}#/messageList`;
+    location.href = `${environment['authorityUrl']}#/messageList`;
   }
 
 }

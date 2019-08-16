@@ -9,15 +9,15 @@ export class SalesTargetService {
   constructor(private requestHttp: RequestService) { }
   /**
    * 流量销售指标
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getSaleTarget(params = {}) {
     return this.requestHttp.post('dms/view/saleTarget', params);
   }
 
-   /**
+  /**
    * 推广总览导出
-   * @param params Object  请求参数
+   * @param params 请求参数
    */
   flowExportSale(params = {}) {
     // return this.requestHttp.get('dms/flowExport/exportView', params);

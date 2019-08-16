@@ -9,12 +9,12 @@ import { UploadXHRArgs, NzMessageService } from 'ng-zorro-antd';
 })
 export class UploadFileComponent implements OnInit {
   public fileList: Array<any> = [];
-  public uploadType: String = 'upload';
+  public uploadType = 'upload';
   @Input() public bdShowUploadList: Boolean | { showPreviewIcon?: boolean, showRemoveIcon?: boolean } = false;  // 是否显示上传文件列表
-  @Input() public bduploadFileUrl: String = 'dms/xiaoNeng/import/xiaoNengImport';  // 请求url
-  @Input() public bdSize: Number = 0;    // 限制文件大小q
-  @Input() public bdName: String = 'exclFile';  // 文件流参数
-  @Input() public bdBtnTxt: String = '导入';    // 按钮文本
+  @Input() public bduploadFileUrl = 'dms/xiaoNeng/import/xiaoNengImport';  // 请求url
+  @Input() public bdSize = 0;    // 限制文件大小q
+  @Input() public bdName = 'exclFile';  // 文件流参数
+  @Input() public bdBtnTxt = '导入';    // 按钮文本
 
   constructor(private http: HttpClient, private message: NzMessageService) { }
 

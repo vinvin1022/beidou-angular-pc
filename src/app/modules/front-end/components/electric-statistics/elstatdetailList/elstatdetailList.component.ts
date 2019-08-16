@@ -12,12 +12,12 @@ import { electricStatisticsFieldData } from '../../../service/electric-statistic
 })
 export class ElstatDetailListComponent implements OnInit {
   @Input() reportDimensionParams = {};
-  public rowData: Object = {};
+  public rowData: object = {};
   public displayData: Array<any> = [];
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public filterFieldData: object = {};
   public allChildren = [];
   public fieldKeys = [];

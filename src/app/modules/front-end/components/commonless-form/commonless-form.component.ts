@@ -18,11 +18,11 @@ export class CommonlessFormComponent implements OnInit, DoCheck, OnDestroy {
   @Input() isShowRangePicker = true;
 
 
-  public rangePickerTodayDisabledDate: Function = rangePickerTodayDisabledDate;
-  public loading: Boolean = false;
+  public rangePickerTodayDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
+  public loading = false;
 
   public customColumnData: object = {};
-  public flowDataType: String = '1';   // 1电销 2网销
+  public flowDataType = '1';   // 1电销 2网销
   public checkAllData: object = {};
   public paramsAll = {};
   public validateForm: FormGroup;

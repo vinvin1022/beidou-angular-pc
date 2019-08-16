@@ -13,7 +13,7 @@ export class ArmyDataAnalysisService {
 
   /**
    *  中端军团数据统计接口
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getMidLegionData(params = {}) {
     return this.requestHttp.post('dms/middler/midLegionData', params);
@@ -21,7 +21,7 @@ export class ArmyDataAnalysisService {
 
   /**
    *  军团数据分析导出
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   exportMidLegionData(params = {}) {
     return this.requestHttp.exportExcel('dms/flowExport/exportMidLegionData', params);

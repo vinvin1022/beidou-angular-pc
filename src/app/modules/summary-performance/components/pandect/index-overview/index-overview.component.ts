@@ -12,14 +12,14 @@ import { PandectService } from '../../../service/pandect.service';
 })
 export class IndexOverviewComponent implements OnInit, OnChanges, OnDestroy {
   public indexoverviewparams = {};
-  public pageInfoLoading: Boolean = false;
+  public pageInfoLoading = false;
   public displayData;
   public pageInfo2: Array<any> = [];
   public pageInfo1: Array<any> = [];
   public pageInfo1Title: Array<any> = [];
   public pageInfo2Title: Array<any> = [];
-  public nz1ScrollData: Object = {};
-  public nz2ScrollData: Object = {};
+  public nz1ScrollData: object = {};
+  public nz2ScrollData: object = {};
   public pageInfo1List: Array<any> = [];
   public pageInfo2List: Array<any> = [];
 
@@ -27,7 +27,7 @@ export class IndexOverviewComponent implements OnInit, OnChanges, OnDestroy {
   public nzWidthConfig2: Array<any> = [];
 
   public getIndexItem$;
-  @Input('filterData') filterData;
+  @Input() filterData;
   constructor(private pandect: PandectService, private selectAllService: SelectAllService) { }
 
   ngOnChanges() {
@@ -39,7 +39,7 @@ export class IndexOverviewComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * 设置查询参数
    */
-  setFinalsearchData(): Object {
+  setFinalsearchData(): object {
     const filterData = this.filterData;
     const indexoverviewparams = {};
     for (const key in filterData) {

@@ -40,7 +40,7 @@ export class TableTreeService {
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array Array
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */
@@ -71,7 +71,7 @@ export class TableTreeService {
     const array = [];
     const hashMap = {};
     const inroot = this.addPercentageFormatTime(root, plusPercentage, formatTime);    // 添加某些字段%
-    stack.push({ ...inroot, level: 0, expand: expand });
+    stack.push({ ...inroot, level: 0, expand });
 
     while (stack.length !== 0) {
       const node = stack.pop();
@@ -79,7 +79,7 @@ export class TableTreeService {
       if (node.children) {
         for (let i = node.children.length - 1; i >= 0; i--) {
           const inchildren = this.addPercentageFormatTime(node.children[i], plusPercentage, formatTime); // 添加某些字段%
-          stack.push({ ...inchildren, level: node.level + 1, expand: expand, parent: node });
+          stack.push({ ...inchildren, level: node.level + 1, expand, parent: node });
         }
       }
     }
@@ -120,7 +120,7 @@ export class TableTreeService {
 
   /**
    * 存在extChild 添加chidren树形
-   * @param data
+   * @param data 參數
    */
   createTableTreeChildren(data: Array<any> = []) {
     const newData = [...data];
@@ -135,7 +135,7 @@ export class TableTreeService {
 
   /**
    * 组装数据children属性
-   * @param tableTreeData
+   * @param tableTreeData 参数
    * @param data object 当前行数据
    * @param result Array 请求返回结果数据
    */
@@ -226,7 +226,7 @@ export class TableTreeService {
    * 获取每一层的key value
    * @param data object
    */
-  _getdlist(data: object = {}): {listValue: Array<string>, listDimension: Array<string>} {
+  _getdlist(data: object = {}): { listValue: Array<string>, listDimension: Array<string> } {
     const listValue = [];
     const listDimension = [];
     let px = { ...data['parent'] };

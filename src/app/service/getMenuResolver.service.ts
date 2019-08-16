@@ -19,7 +19,6 @@ export class GetMenuResolverService implements Resolve<any> {
       take(1),
       mergeMap(saveProId => {
         if (saveProId) {
-          console.log(saveProId);
           return of(saveProId);
         } else { // id not found
           // this.router.navigate(['/crisis-center']);

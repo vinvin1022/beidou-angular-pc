@@ -19,23 +19,23 @@ import { setFinalFilterData } from 'src/app/tools';
   styleUrls: ['./subgeneral-tableA.component.scss']
 })
 export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
-  @Input() filterData: Object = { flowDataType: '1' };
+  @Input() filterData: object = { flowDataType: '1' };
   @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
   @ViewChild('detailList', { static: false }) detailList: DetailListAComponent;
-  public title: String = '自定义显示列';
-  public customColumnData: Object = {};
+  public title = '自定义显示列';
+  public customColumnData: object = {};
   public displayData: Array<any> = [];
   public filterFieldData = {};
   public flowViewReportParams = {};
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public flowViewReport$;
   public flowDataType = '1';
   public newFlowDataType = '1';
   public subscribeAll$: object = {};
-  public rowData: Object = {};
+  public rowData: object = {};
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public getMenuMsgParams: object = {};
@@ -43,9 +43,9 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
 
   public listDimension: Array<any> = [];
   public listValue: Array<any> = [];
-  public selectDimensions: Array<Object> = [];
+  public selectDimensions: Array<object> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
   tableTreeData = [];
   expandDataCache = {};
@@ -89,7 +89,7 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
     this.getMenuMsgParams['menuId'] = path;
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.getMenuParams();
     this.customColumnDialogService.getMenu(this.getMenuMsgParams).subscribe(res => {
       if (res.code === 200) {
@@ -131,8 +131,17 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
 
     const clearArrs = ['men_area_name', 'source', 'fl_consulting_project'];
 
-    for (let index = 0; index < this.selectDimensions.length; index++) {
-      const item = this.selectDimensions[index];
+    // for (let index = 0; index < this.selectDimensions.length; index++) {
+    //   const item = this.selectDimensions[index];
+    //   if (clearArrs.includes(item['value'])) {
+    //     this.flowViewReportParams['isClear'] = true;
+    //   }
+    //   if (item['value'] === 'men_area_name' || item['value'] === 'source') {
+    //     this.flowViewReportParams['isflConsultingProject'] = true;
+    //   }
+    // }
+
+    for (const item of this.selectDimensions) {
       if (clearArrs.includes(item['value'])) {
         this.flowViewReportParams['isClear'] = true;
       }
@@ -233,7 +242,7 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
   }
 
   serachData(data) {
-    const filterData = this.filterData || { 'flowDataType': '1' };
+    const filterData = this.filterData || { flowDataType: '1' };
     if (this.flowDataType !== filterData['flowDataType']) {
       return;
     }
@@ -241,9 +250,9 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
   }
 
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
+   * 获取自定义列过滤数据
+   * @param data 参数
+   */
   getFilterField(data) {
     const newData = this.customColumnDialogService.filterSelectColoumn(data);
     this.filterFieldData = newData.selectField;
@@ -263,9 +272,9 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
   }
 
   /**
-  * 过滤电销或者网销字段
-  * @param customColumnData object
-  */
+   * 过滤电销或者网销字段
+   * @param customColumnData object
+   */
   filterFlowDataType(customColumnData: object) {
     const tmpObj = {};
     for (const pkey in customColumnData) {
@@ -315,7 +324,7 @@ export class SubgeneralTableAComponent implements OnInit, OnChanges, OnDestroy, 
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array Array
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

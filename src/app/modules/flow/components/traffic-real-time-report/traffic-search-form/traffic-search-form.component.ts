@@ -16,13 +16,13 @@ import { setFinalFilterData } from 'src/app/tools';
   encapsulation: ViewEncapsulation.None
 })
 export class TrafficSearchFormComponent implements OnInit, OnDestroy {
-  @ViewChild('formtitle', {static: false}) formtitle: TemplateRef<any>;
+  @ViewChild('formtitle', { static: false }) formtitle: TemplateRef<any>;
   @Output() sendQueryData = new EventEmitter<any>();
 
-  public isSubmit: Boolean = true;
+  public isSubmit = true;
 
   public validateForm: FormGroup;
-  public loading: Boolean = false;
+  public loading = false;
   public paramsAll = {};
 
 
@@ -41,9 +41,7 @@ export class TrafficSearchFormComponent implements OnInit, OnDestroy {
   }
 
 
-  /**
-  * 提交数据
-  */
+
   submitForm(): boolean {
     this.isSubmit = true;
     this.markAsPristineFrom();
@@ -90,18 +88,13 @@ export class TrafficSearchFormComponent implements OnInit, OnDestroy {
 
   alldept1ListChange(val) {
     const { dept2List, userList } = this.trafficSearchFormService.defaultFormData;
-    this.validateForm.patchValue({
-      dept2List: dept2List,
-      userList: userList
-    });
+    this.validateForm.patchValue({ dept2List, userList });
     this._setAssociationParams();
   }
 
   alldept2ListChange(val) {
     const { userList } = this.trafficSearchFormService.defaultFormData;
-    this.validateForm.patchValue({
-      userList: userList
-    });
+    this.validateForm.patchValue({ userList });
     this._setAssociationParams();
   }
 
@@ -115,7 +108,7 @@ export class TrafficSearchFormComponent implements OnInit, OnDestroy {
    * 设置最终选择的form数据
    */
   setSelectedData() {
-    const paramsData: Object = {};
+    const paramsData: object = {};
     const mergeParams = Object.assign({}, this.validateForm.value);
     Object.keys(mergeParams).forEach((value) => {
       if (mergeParams[value]) {

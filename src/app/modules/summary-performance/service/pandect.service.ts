@@ -5,7 +5,7 @@ import { RequestService } from 'src/app/service/request.service';
   providedIn: 'root'
 })
 export class PandectService {
-  public loading: Boolean = false;
+  public loading = false;
   public day = new Date(new Date().getTime() - 24 * 3600 * 1000);
   public defaultFormData = {
     dept: [],
@@ -16,7 +16,7 @@ export class PandectService {
   };
 
 
-  public timeTypes: Array<Object> = [
+  public timeTypes: Array<object> = [
     { key: 'period_wid', value: '日' },
     { key: 'week_inyear', value: '周' },
     { key: 'period_month', value: '月' },
@@ -30,7 +30,7 @@ export class PandectService {
     { value: '3', label: '嘿嘿嘿' }
   ];
 
-  public indexItems: Array<Object> = [
+  public indexItems: Array<object> = [
     { key: '1', value: '流水' },
     { key: '2', value: '名片数' },
     { key: '3', value: '销售机会数' },
@@ -44,9 +44,9 @@ export class PandectService {
   ];
   constructor(private requestHttp: RequestService) { }
 
-   /**
+  /**
    * 获取业绩总览
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getIndexItem(params = {}) {
     return this.requestHttp.post('dms/view/indexItem', params);
@@ -54,7 +54,7 @@ export class PandectService {
 
   /**
    * 业绩总览导出
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   indexItemExport(params = {}) {
     return this.requestHttp.exportExcel('dms/flowExport/exportIndexItem', params);

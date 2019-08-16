@@ -148,9 +148,7 @@ export class SubonlineTableComponent implements OnInit, OnChanges, DoCheck, OnDe
 
 
 
-  /**
- * 设置getTargetNetSale() 参数
- */
+
   setTargetNetSaleParams() {
     this.onlineParams = Object.assign({}, this.formData);
   }
@@ -197,7 +195,7 @@ export class SubonlineTableComponent implements OnInit, OnChanges, DoCheck, OnDe
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 参数
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

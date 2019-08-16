@@ -14,24 +14,24 @@ import { CommonCustomService } from 'src/app/modules/common-custom/service/commo
 })
 export class SubonlineParationComponent implements OnInit, DoCheck {
   @Output() sentSearchData = new EventEmitter();
-  public departmentOptions: Array<Object> = [];
-  public userId: Array<Object>;
-  public cityNameOptions: Array<Object> = [];
-  public popularizationModeOptions: Array<Object> = [];
-  public rangePickerDisabledDate: Function = rangePickerDisabledDate;
+  public departmentOptions: Array<object> = [];
+  public userId: Array<object>;
+  public cityNameOptions: Array<object> = [];
+  public popularizationModeOptions: Array<object> = [];
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerDisabledDate;
 
-  public flowDataTypeOptions: Array<Object> = [];
+  public flowDataTypeOptions: Array<object> = [];
   public consultingProjectOptions: Array<object> = [];
-  public codeOptions: Array<Object> = [];
-  public carrier: Array<Object> = [];
+  public codeOptions: Array<object> = [];
+  public carrier: Array<object> = [];
 
   public validateForm: FormGroup;
-  public showTimePicker: Boolean = false;
+  public showTimePicker = false;
 
   public startTime: Date = null;
   public endTime: Date = null;
-  public loading: Boolean = false;
-  public optionsLoading: Boolean = false;
+  public loading = false;
+  public optionsLoading = false;
   public onlineDeptOptions: Array<any> = [];
   public onlineUserOptions: Array<any> = [];
   public allonlineDeptOptions: Array<any> = [];
@@ -123,7 +123,7 @@ export class SubonlineParationComponent implements OnInit, DoCheck {
     // this.onlineStatisticsService.flowDataType = this.formateFlowDataType(flowDataType)['optionName'];
   }
 
-  formateFlowDataType(flowDataType: String) {
+  formateFlowDataType(flowDataType: string) {
     return this.flowDataTypeOptions.find((item) => flowDataType === item['optionId']);
   }
 

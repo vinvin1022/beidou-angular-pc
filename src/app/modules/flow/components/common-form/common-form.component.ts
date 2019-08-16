@@ -24,9 +24,9 @@ export class CommonFormComponent implements OnInit, OnDestroy, DoCheck {
   // 是否显示维度
   @Input() isShowDimension = this.flowcommonform.isShowDimension;
   // 是否显示对比时间
-  @Input() isShowContrast: boolean = this.flowcommonform.isShowContrast;
+  @Input() isShowContrast = this.flowcommonform.isShowContrast;
   // 是否显示年条件
-  @Input() isShowYear: boolean = this.flowcommonform.isShowYear;
+  @Input() isShowYear = this.flowcommonform.isShowYear;
   // 是否显示查询包管理
   @Input() isShowMyQueryPacket = true;
 
@@ -41,20 +41,20 @@ export class CommonFormComponent implements OnInit, OnDestroy, DoCheck {
   public carrierOptions: Array<object> = [];   // 载体
   public size = 'defalut';
 
-  // public menAreaCodeOptions: Array<Object> = [];  // 城市名称
-  // public flConsultingProjectOptions: Array<Object> = [];   // 推广项目下拉选项
-  // public sourceOptions: Array<Object> = [];   // 推广来源下拉选项
-  // public codeOptions: Array<Object> = [];   // 推广渠道
-  // public advertisersTypeOptions: Array<Object> = [];   // 推广方式
-  // public webUidOptions: Array<Object> = [];    // 主域名
-  // public deptId1Options: Array<Object> = [];   // 流量军团下拉选项
-  // public deptId2Options: Array<Object> = [];   // 流量组下拉选项
-  // public userIdOptions: Array<Object> = [];   // 流量人员下拉选项
+  // public menAreaCodeOptions: Array<object> = [];  // 城市名称
+  // public flConsultingProjectOptions: Array<object> = [];   // 推广项目下拉选项
+  // public sourceOptions: Array<object> = [];   // 推广来源下拉选项
+  // public codeOptions: Array<object> = [];   // 推广渠道
+  // public advertisersTypeOptions: Array<object> = [];   // 推广方式
+  // public webUidOptions: Array<object> = [];    // 主域名
+  // public deptId1Options: Array<object> = [];   // 流量军团下拉选项
+  // public deptId2Options: Array<object> = [];   // 流量组下拉选项
+  // public userIdOptions: Array<object> = [];   // 流量人员下拉选项
   // public accountUidOptions = [];   // 推广账户下拉选项
   // public siteNumberOptions = [];   // 推广站点下拉选项
-  // public accountUidsOptions: Array<Object> = [];    // 推广账户包下拉选项
-  // public siteNumbersOptions: Array<Object> = [];    // 推广站点包下拉选项
-  // public cityNameOptions: Array<Object> = [];   // 推广城市下拉选项
+  // public accountUidsOptions: Array<object> = [];    // 推广账户包下拉选项
+  // public siteNumbersOptions: Array<object> = [];    // 推广站点包下拉选项
+  // public cityNameOptions: Array<object> = [];   // 推广城市下拉选项
 
   public queryDimensionOptions: Array<object> = [];   // 维度
   public isSubmit = true;
@@ -65,8 +65,8 @@ export class CommonFormComponent implements OnInit, OnDestroy, DoCheck {
   public accountUidPackageDisabled = false;   // 是否禁用推广账户选项
   public siteNumberPackageDisabled = false;   // 是否禁用推广站点选项
   public loading = false;
-  // public siteNumberParams: Object = { state: 0 };  // 推广站点查询参数
-  // public optionsLoading: Boolean = false;
+  // public siteNumberParams: object= { state: 0 };  // 推广站点查询参数
+  // public optionsLoading = false;
 
 
 
@@ -440,7 +440,7 @@ export class CommonFormComponent implements OnInit, OnDestroy, DoCheck {
    * 设置最终选择的form数据
    */
   setSelectedData() {
-    const paramsData: Object = {};
+    const paramsData: object = {};
     paramsData['isSubmit'] = this.isSubmit;
 
     // 显示维度
@@ -499,314 +499,6 @@ export class CommonFormComponent implements OnInit, OnDestroy, DoCheck {
   handleShowMore(): void {
     this.isShowMore = !this.isShowMore;
   }
-
-
-
-  // openQuerySourceNameChange(isOpen: boolean) {
-  //   if (isOpen && !this.sourceOptions.length) {
-  //     this.getQuerySourceName();
-  //   }
-  // }
-
-
-  // menAreaCodeValChange(val) {
-  //   this.menAreaCode = val;
-  // }
-
-
-  /**
-  * 推广站点变动事件
-  * @param siteNumber Array 推广站点
-  */
-  // siteNumberChange(siteNumber) {
-  //   if (siteNumber && siteNumber.length) {
-  //     this.siteNumberDisabled = false;
-  //     this.siteNumberPackageDisabled = true;
-  //   } else {
-  //     this.siteNumberPackageDisabled = false;
-  //   }
-  // }
-
-  /**
-   * 获取推广来源
-   */
-  // getQuerySourceName(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getQuerySourceName$'] = this.flowcommonform.getQuerySourceName({ searchVal }).subscribe(result => {
-  //     this.flowcommonform.sourceOptions = this.sourceOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-  /**
-   * 获取推广账户包
-   */
-  // getQueryAccountPackage() {
-  //   this.subscribeAll$['getQueryAccountPackage$'] = this.flowcommonform.getQueryAccountPackage().subscribe(result => {
-  //     this.accountUidsOptions = result.result;
-  //   });
-  // }
-
-  /**
-   * 获取推广站点包
-   */
-  // getQuerySitePackage() {
-  //   this.subscribeAll$['getQuerySitePackage$'] = this.flowcommonform.getQuerySitePackage().subscribe(result => {
-  //     this.siteNumbersOptions = result.result;
-  //   });
-  // }
-
-
-  // openCityNameChange(isOpen: boolean) {
-  //   if (isOpen && !this.cityNameOptions.length) {
-  //     this.getSpreadCitylist();
-  //   }
-  // }
-  /**
-   * 获取推广城市下拉列表
-   */
-  // getSpreadCitylist(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getSpreadCitylist$'] = this.flowcommonform.getSpreadCitylist({ searchVal }).subscribe(result => {
-  //     this.cityNameOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-
-
-
-
-
-  /**
-   * 推广账户下拉列表变化
-   */
-  // queryAccountChange(isOpen: boolean) {
-  //   if (isOpen) {
-  //     this.getQueryAccount();
-  //   }
-  // }
-  /**
-   * 获取推广账户下拉列表
-   */
-  // getQueryAccount(searchVal: String = '') {
-  //   this.optionsLoading = true;
-  //   const params = { userId: this.validateForm.get('userId').value, searchVal };
-  //   this.subscribeAll$['getQueryAccount$'] = this.flowcommonform.getQueryAccount(params).subscribe(result => {
-  //     this.accountUidOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-
-  /**
-   * 打开推广项目下拉选项
-   */
-  // flConsultingProjectChange(isOpen: boolean) {
-  //   if (isOpen && !this.flConsultingProjectOptions.length) {
-  //     this.getFlConsultingProjectOptions();
-  //   }
-  // }
-
-  /**
-   * 获取推广项目列表
-   */
-  // getFlConsultingProjectOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getFlConsultingProjectOptions$'] = this.flowcommonform.getFlConsultingProjectOptions({ searchVal })
-  //     .subscribe(result => {
-  //       this.flowcommonform.flConsultingProjectOptions = this.flConsultingProjectOptions = result.result;
-  //       this.optionsLoading = false;
-  //     });
-  // }
-
-
-  // openCodeChange(isOpen) {
-  //   if (isOpen && !this.codeOptions.length) {
-  //     this.getCodeOptions();
-  //   }
-  // }
-  /**
-   * 获取推广渠道
-   */
-  // getCodeOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getCodeOptions$'] = this.flowcommonform.getCodeOptions({ searchVal }).subscribe(result => {
-  //     this.flowcommonform.codeOptions = this.codeOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-  /**
-   * 打开推广站点下拉选项
-   */
-  // openSiteNumberChange(isOpen: boolean) {
-  //   if (isOpen && !this.siteNumberOptions.length) {
-  //     this.getSiteNumberOptions();
-  //   }
-  // }
-  /**
-   * 获取推广站点
-   */
-  // getSiteNumberOptions(searchVal: String = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getSiteNumberOptions$'] = this.flowcommonform.getSiteNumberOptions({ searchVal })
-  //     .subscribe(result => {
-  //       this.flowcommonform.siteNumberOptions = this.siteNumberOptions = result.result;
-  //       this.optionsLoading = false;
-  //     });
-  // }
-
-  /**
-   * 打开报名城市下拉选项
-   */
-  // menAreaCodeChange(isOpen: boolean) {
-  //   if (isOpen && !this.menAreaCodeOptions.length) {
-  //     this.getMenAreaCodeOptions();
-  //   }
-  // }
-
-  /**
-   * 获取报名城市
-   */
-  // getMenAreaCodeOptions(searchVal: String = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getMenAreaCodeOptions$'] = this.flowcommonform.getMenAreaCodeOptions({ searchVal }).subscribe(result => {
-  //     this.menAreaCodeOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-
-  // openAdvertisersTypeChange(isOpen: boolean) {
-  //   if (isOpen && !this.advertisersTypeOptions.length) {
-  //     this.getAdvertisersTypeOptions();
-  //   }
-  // }
-  /**
-   * 获取推广方式
-   */
-  // getAdvertisersTypeOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getAdvertisersTypeOptions$'] = this.flowcommonform.getAdvertisersTypeOptions({ searchVal })
-  //     .subscribe(result => {
-  //       this.advertisersTypeOptions = result.result;
-  //       this.optionsLoading = false;
-  //     });
-  // }
-
-
-
-  // openWebUidChange(isOpen: boolean) {
-  //   if (isOpen && !this.webUidOptions.length) {
-  //     this.getWebUidOptions();
-  //   }
-  // }
-  /**
-   * 获取主域名
-   */
-  // getWebUidOptions(searchVal = '') {
-  //   this.optionsLoading = true;
-  //   this.subscribeAll$['getWebUidOptions$'] = this.flowcommonform.getWebUidOptions({ searchVal }).subscribe(result => {
-  //     this.flowcommonform.webUidOptions = this.webUidOptions = result.result;
-  //     this.optionsLoading = false;
-  //   });
-  // }
-
-  /**
-   * 获取流量军团下拉选项
-   */
-  // getDeptOptions() {
-  //   this.subscribeAll$['getDeptOptions$'] = this.flowcommonform.getDeptOptions().subscribe(result => {
-  //     this.deptId1Options = result.result;
-  //   });
-  // }
-
-
-
-  // openGroupChange(isOpen) {
-  //   if (isOpen) {
-  //     this.getGroupOptions();
-  //   }
-  // }
-  /**
-   * 获取流量组下拉选项
-   */
-  // getGroupOptions(searchVal: string = '') {
-  //   const params = { searchVal };
-  //   const { deptId1 } = this.validateForm.value;
-  //   if (deptId1 && deptId1.length) {
-  //     params['dept'] = deptId1;
-  //   }
-  //   this.subscribeAll$['getGroupOptions$'] = this.flowcommonform.getGroupOptions(params).subscribe(result => {
-  //     this.deptId2Options = result.result;
-  //   });
-  // }
-
-
-
-  // openUserChange(isOpen) {
-  //   if (isOpen) {
-  //     this.getUserOptions();
-  //   }
-  // }
-
-  /**
-   * 获取流量人员下拉选项
-   */
-  // getUserOptions(searchVal: string = '') {
-  //   const params = {searchVal};
-  //   const { deptId1, deptId2 } = this.validateForm.value;
-  //   if (deptId1 && deptId1.length) {
-  //     params['dept'] = deptId1;
-  //   }
-  //   if (deptId2 && deptId2.length) {
-  //     params['legion'] = deptId2;
-  //   }
-  //   this.subscribeAll$['getUserOptions$'] = this.flowcommonform.getUserOptions(params).subscribe(result => {
-  //     this.userIdOptions = result.result;
-  //   });
-  // }
-
-  // deptId1Change() {
-  //   this.validateForm.patchValue({ deptId2: [], userId: [] });
-  //   this.deptId2Options = [];
-  //   this.userIdOptions = [];
-  // }
-
-  // deptId2Change() {
-  //   this.validateForm.patchValue({ userId: [] });
-  //   this.userIdOptions = [];
-  // }
-
-
-
-  /**
-   * 获取流量人员下拉选项
-   * @param parentId String 父ID 组织架构id
-   */
-  // getUserIdOptions(parentId) {
-  //   this.subscribeAll$['getUserIdOptions$'] = this.flowcommonform.getUserIdOptions({ parentId: parentId }).subscribe(result => {
-  //     this.userIdOptions = result.data;
-  //   });
-  // }
-
-
-  /**
-   * 流量组变动事件
-   * @param values Array
-   */
-  // public onCascaderChanges(values: any): void {
-  //   this.validateForm.patchValue({ userId: '' });
-  //   this.depOptions = [];
-  //   // 在线咨询师
-  //   if (!values.length) {
-  //     this.userIdOptions = [];
-  //   } else {
-  //     // 根据部门UID查询用户信息
-  //     this.getUserIdOptions(values[values.length - 1]);
-  //   }
-  // }
 
 
 

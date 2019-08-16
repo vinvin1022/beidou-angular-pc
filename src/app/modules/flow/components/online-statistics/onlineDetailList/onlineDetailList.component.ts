@@ -12,14 +12,14 @@ import { CustomColumnDialogService } from 'src/app/modules/common-custom/service
 })
 export class OnlineDetailListComponent implements OnInit {
   @Input() reportDimensionParams = {};
-  @Input() newFlowDataType: String = '电销';
-  @Input() rowData: Object = {};
+  @Input() newFlowDataType = '电销';
+  @Input() rowData: object = {};
   @Input() filterData;
   public displayData: Array<any> = [];
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public flowViewReport$;
   public isVisible = false;
   public filterFieldData: object = {};
@@ -29,9 +29,9 @@ export class OnlineDetailListComponent implements OnInit {
   public widthConfig: Array<string> = [
     '160px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px'
   ];
-  public scrollConfig: Object = { x: '1460px', y: '500px' };
+  public scrollConfig: object = { x: '1460px', y: '500px' };
   constructor(private onlineStatistics: OnlineStatisticsService, private flowService: FlowService,
-     private commonCustomService: CommonCustomService, private customColumnDialogService: CustomColumnDialogService) { }
+    private commonCustomService: CommonCustomService, private customColumnDialogService: CustomColumnDialogService) { }
 
   ngOnInit() {
     this.onlineStatisticsCustomFieldData = onlineStatisticsCustomFieldData.ctrolData.children;

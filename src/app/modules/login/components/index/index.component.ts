@@ -18,7 +18,7 @@ import { AppRoutingCache } from 'src/app/routes/app-routing-cache';
   styleUrls: ['./index.component.scss']
 })
 export class LoginIndexComponent implements OnInit {
-  public loading: Boolean = false;
+  public loading = false;
   validateForm: FormGroup;
   public buttonList: Array<any> = [];
   public paths: Array<any> = [];

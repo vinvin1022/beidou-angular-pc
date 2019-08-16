@@ -3,7 +3,7 @@ import { RequestService } from 'src/app/service/request.service';
 
 @Injectable()
 export class SituationBusinessFormService {
-  public loading: Boolean = false;
+  public loading = false;
   private serviceName = 'dms';
   public defalutData = {
     dept0: [],
@@ -15,9 +15,9 @@ export class SituationBusinessFormService {
   constructor(private requestHttp: RequestService) { }
 
   /**
- * 获取模式
- * @param params Object  请求参数
- */
+   * 获取模式
+   * @param params object  请求参数
+   */
   queryPattern(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/userDept/queryPattern`, params);
   }

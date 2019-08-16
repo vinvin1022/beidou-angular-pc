@@ -13,21 +13,21 @@ export class CostRatioComponent implements OnInit, AfterViewInit, AfterViewCheck
   @ViewChild('costRatioCharts', { static: false }) costRatioCharts: ElementRef;
   public echartsIntance = null;
   public echartsData = [];
-  public flowDataType: String = '0';
-  public isSpinning: Boolean = false;
-  private _clientWidth: number;
+  public flowDataType = '0';
+  public isSpinning = false;
+  private clientWidth: number;
 
   constructor(private homeService: HomeService) { }
 
   ngOnInit() { }
   ngAfterViewInit() {
-    this._clientWidth = this.costRatioCharts.nativeElement.clientWidth;
+    this.clientWidth = this.costRatioCharts.nativeElement.clientWidth;
     this.echartsIntance = echarts.init(this.costRatioCharts.nativeElement);
     this.getCostRatioData();
   }
   ngAfterViewChecked() {
-    if (this._clientWidth !== this.costRatioCharts.nativeElement.clientWidth) {
-      this._clientWidth = this.costRatioCharts.nativeElement.clientWidth;
+    if (this.clientWidth !== this.costRatioCharts.nativeElement.clientWidth) {
+      this.clientWidth = this.costRatioCharts.nativeElement.clientWidth;
       this.echartsIntance.resize({ width: this.costRatioCharts.nativeElement.clientWidth });
     }
   }
@@ -131,7 +131,7 @@ export class CostRatioComponent implements OnInit, AfterViewInit, AfterViewCheck
             textStyle: {
               color: '#555'
             },
-            formatter: function (value, index) {
+            formatter: (value, index) => {
               return `${(value * 100).toFixed(2)}%`;
             }
           }
@@ -148,7 +148,7 @@ export class CostRatioComponent implements OnInit, AfterViewInit, AfterViewCheck
               show: true,
               position: 'top',
               color: '#333',
-              formatter: function (params) {
+              formatter: (params) => {
                 const html = `${(params.value * 100).toFixed(2)}%`;
                 return html;
               }

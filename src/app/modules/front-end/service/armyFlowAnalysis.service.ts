@@ -10,17 +10,17 @@ export class ArmyFlowAnalysisService {
 
 
   /**
- *  中端军团流量统计接口
- * @param params Object  请求参数
- */
+   * @param params 中端军团流量统计接口
+   * @param params object  请求参数
+   */
   getMidLegionFlow(params = {}) {
     return this.requestHttp.post('dms/middler/midLegionFlow', params);
   }
 
   /**
- *  军团流量分析导出
- * @param params Object  请求参数
- */
+   * @param params 军团流量分析导出
+   * @param params object  请求参数
+   */
   exportMidLegionFlow(params = {}) {
     return this.requestHttp.exportExcel('dms/flowExport/exportMidLegionFlow', params);
   }

@@ -31,7 +31,6 @@ import { WorkOrderReportComponent } from './components/work-order-report/work-or
 import { WorkOrderReportService } from './service/work-order-report.service';
 import { TasksDuringServiceComponent } from './components/tasks-during-service/tasks-during-service.component';
 import { TasksDuringServiceService } from './service/tasks-during-service.service';
-import { DuringServiceTableComponent } from './components/tasks-during-service/during-service-table/during-service-table.component';
 import { AfterSalecategoryComponent } from './components/work-order-report/after-salecategory/after-salecategory.component';
 import { AfterSalesubcategoryComponent } from './components/work-order-report/after-salesubcategory/after-salesubcategory.component';
 
@@ -50,7 +49,7 @@ import { AfterSalesubcategoryComponent } from './components/work-order-report/af
   declarations: [SelfEmployedPerformanceComponent, DailyHoursComponent, SubdailyhoursTableComponent, PromotionFormComponent,
     CommonrearFormComponent, SubselfemployedTableComponent, SetMeetStandardComponent, RearendRealTimeReportComponent, SubrearendRealTableComponent,
     SubpromotionTableComponent, PromotionPerformanceComponent, DailyReachRateComponent, ReachOrderTasksFormComponent, ReachRateTableComponent,
-    WorkOrderReportComponent, TasksDuringServiceComponent, DuringServiceTableComponent, AfterSalecategoryComponent,
+    WorkOrderReportComponent, TasksDuringServiceComponent, AfterSalecategoryComponent,
     AfterSalesubcategoryComponent]
 })
 export class RearEndModule { }

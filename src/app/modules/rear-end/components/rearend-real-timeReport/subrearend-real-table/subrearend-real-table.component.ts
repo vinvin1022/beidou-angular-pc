@@ -11,12 +11,12 @@ import { setFinalFilterData } from 'src/app/tools';
 })
 export class SubrearendRealTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  public performanceParams: Object = {};
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public subscribeAll$: Object = {};
+  public performanceParams: object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public subscribeAll$: object = {};
 
   public displayData = [];
   constructor(private rearendRealTimeReportService: RearendRealTimeReportService,
@@ -39,8 +39,8 @@ export class SubrearendRealTableComponent implements OnInit, OnChanges, OnDestro
   }
 
   /**
-  * 设置查询参数
-  */
+   * 设置查询参数
+   */
   setPerformanceParams() {
     const performanceParams = setFinalFilterData(this.filterData);
     if (performanceParams['userId']) {
@@ -88,7 +88,7 @@ export class SubrearendRealTableComponent implements OnInit, OnChanges, OnDestro
         }
       }
     }
-    this.rearendRealTimeReportService.exportDaliyTimeACTVOs({...params});
+    this.rearendRealTimeReportService.exportDaliyTimeACTVOs({ ...params });
   }
 
 

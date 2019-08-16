@@ -11,32 +11,32 @@ import { rangePickerTodayDisabledDate, setDefaultDate } from 'src/app/tools';
 })
 export class CommonsearchFormComponent implements OnInit, DoCheck, OnDestroy {
   @Output() sendQueryData = new EventEmitter();
-  @Input() isShowPopularize: Boolean = true;
-  public loading: Boolean = false;
-  public rangePickerDisabledDate: Function = rangePickerTodayDisabledDate;
+  @Input() isShowPopularize = true;
+  public loading = false;
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
 
-  // public optionsLoading: Boolean = false;
-  // private subscribeAll$: Object = {};
-  // public deptIdOptions:  Array<Object> = []; // 军团下拉列表
-  // public groupIdOptions:  Array<Object> = []; // 咨询组下拉列表
-  // public userIdOptions:  Array<Object> = []; // 咨询师下拉列表
-  // public codeOptions:  Array<Object> = []; // 推广渠道下拉列表
-  // public extensionSourceOptions:  Array<Object> = []; // 推广来源下拉列表
-  // public cityNameOptions:  Array<Object> = []; // 推广城市下拉列表
-  // public advertisersTypeOptions:  Array<Object> = []; // 推广方式下拉列表
-  // public accountUidOptions:  Array<Object> = []; // 推广人下拉列表
+  // public optionsLoading = false;
+  // private subscribeAll$: object= {};
+  // public deptIdOptions:  Array<object> = []; // 军团下拉列表
+  // public groupIdOptions:  Array<object> = []; // 咨询组下拉列表
+  // public userIdOptions:  Array<object> = []; // 咨询师下拉列表
+  // public codeOptions:  Array<object> = []; // 推广渠道下拉列表
+  // public extensionSourceOptions:  Array<object> = []; // 推广来源下拉列表
+  // public cityNameOptions:  Array<object> = []; // 推广城市下拉列表
+  // public advertisersTypeOptions:  Array<object> = []; // 推广方式下拉列表
+  // public accountUidOptions:  Array<object> = []; // 推广人下拉列表
 
-  public timeTypes: Array<Object> = this.middleEndSearchFormService.timeTypes;
+  public timeTypes: Array<object> = this.middleEndSearchFormService.timeTypes;
 
   public paramsAll = {};
 
   public validateForm: FormGroup;
   constructor(private fb: FormBuilder, public flowcommonform: FlowcommonformService,
-     public middleEndSearchFormService: MiddleEndSearchFormService, public commonCustomService: CommonCustomService) { }
+    public middleEndSearchFormService: MiddleEndSearchFormService, public commonCustomService: CommonCustomService) { }
 
   ngOnInit(): void {
     this._initForm();
-   }
+  }
 
   ngDoCheck() {
     if (this.loading !== this.middleEndSearchFormService.loading) {
@@ -130,7 +130,7 @@ export class CommonsearchFormComponent implements OnInit, DoCheck, OnDestroy {
   periodTypeChange(periodType) {
     const nowDate = new Date();
     const startTime = setDefaultDate(periodType, true);
-    const rangePicker = periodType === 'period_wid' ?  [startTime, startTime] : [startTime, nowDate];
+    const rangePicker = periodType === 'period_wid' ? [startTime, startTime] : [startTime, nowDate];
     this.validateForm.get('rangePicker').patchValue(rangePicker);
   }
 
@@ -155,7 +155,7 @@ export class CommonsearchFormComponent implements OnInit, DoCheck, OnDestroy {
    * 获取军团
    * @param dept Array
    */
-  // getMiddleLegion(searchVal: String = '') {
+  // getMiddleLegion(searchVal = '') {
 
   //   this.optionsLoading = true;
   //   this.subscribeAll$['getLegion$'] = this.middleEndSearchFormService.getMiddleLegion({searchVal}).subscribe((res) => {
@@ -181,7 +181,7 @@ export class CommonsearchFormComponent implements OnInit, DoCheck, OnDestroy {
    * 获取咨询组
    * @param searchVal String
    */
-  // getMiddleGroup(searchVal: String = '') {
+  // getMiddleGroup(searchVal = '') {
   //   const params = { searchVal };
   //   const dept = this.validateForm.get('deptId').value;
   //   if (dept && dept.length) {
@@ -205,7 +205,7 @@ export class CommonsearchFormComponent implements OnInit, DoCheck, OnDestroy {
    * 获取咨询师
    * @param searchVal String
    */
-  // getMiddleUser(searchVal: String = '') {
+  // getMiddleUser(searchVal = '') {
   //   const params = { searchVal };
   //   const dept = this.validateForm.get('groupId').value;
   //   if (dept && dept.length) {

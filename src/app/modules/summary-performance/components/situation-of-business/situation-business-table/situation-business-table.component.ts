@@ -14,20 +14,20 @@ import { situationOfBusinessCustomFieldData } from '../../../service/situation-o
 })
 export class SituationBusinessTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public customColumnData: Object = {};
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public customColumnData: object = {};
   public filterFieldData;
-  public loading: Boolean = false;
-  public subscribeAll$: Object = {};
-  public targetNetSaleParams: Object = {};
-  public exportsParams: Object = {};
+  public loading = false;
+  public subscribeAll$: object = {};
+  public targetNetSaleParams: object = {};
+  public exportsParams: object = {};
 
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
   public sortParams = {};
   public showChart = false;
 
@@ -59,9 +59,8 @@ export class SituationBusinessTableComponent implements OnInit, OnChanges, OnDes
   }
 
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
+   * 获取自定义列过滤数据
+   */
   getFilterField() {
     const newData = this.customColumnDialogService.filterSelectColoumn(situationOfBusinessCustomFieldData);
     this.filterFieldData = newData.selectField;
@@ -154,7 +153,7 @@ export class SituationBusinessTableComponent implements OnInit, OnChanges, OnDes
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 参数
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

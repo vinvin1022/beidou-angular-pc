@@ -6,7 +6,7 @@ import { setDefaultDate } from 'src/app/tools';
   providedIn: 'root'
 })
 export class DropoutComplaintProcessFormService {
-  public loading: Boolean = false;
+  public loading = false;
   public startEndTime: Date = setDefaultDate('period_wid', true);
   public defalutData = {
     deptName: null,  // 部门 学院
@@ -17,16 +17,16 @@ export class DropoutComplaintProcessFormService {
   constructor(private requestHttp: RequestService) { }
 
   /**
-  *  获取部门学院
-  * @param params Object  请求参数
-  */
+   * 获取部门学院
+   * @param params 請求參數
+   */
   getTreeSxDept(params = {}) {
     return this.requestHttp.post('authentication/dept/treeSxDept', params);
   }
 
   /**
    *  获取班主任
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getUserByDeptId(params = {}) {
     return this.requestHttp.post('authentication/dept/getUserByDeptId', params);
@@ -34,7 +34,7 @@ export class DropoutComplaintProcessFormService {
 
   /**
    *  获取在岗状态
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getUserState(params = {}) {
     return this.requestHttp.post('dms/userDept/userState', params);

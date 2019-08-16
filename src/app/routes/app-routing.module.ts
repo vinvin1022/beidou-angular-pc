@@ -35,9 +35,11 @@ export const routers: Routes = [
           breadcrumb: '首页测试'
         }
       },
+
       {
         path: 'summaryperformance',
-        loadChildren: '../modules/summary-performance/summary-performance.module#SummaryPerformanceModule',
+        // loadChildren: '../modules/summary-performance/summary-performance.module#SummaryPerformanceModule'
+        loadChildren: () => import('../modules/summary-performance/summary-performance.module').then(m => m.SummaryPerformanceModule),
         canActivate: [LoginGuard],
         data: {
           name: '总览',
@@ -45,7 +47,10 @@ export const routers: Routes = [
         }
       },
       {
-        path: 'flow', loadChildren: '../modules/flow/flow.module#FlowModule', canActivate: [LoginGuard],
+        path: 'flow',
+        // loadChildren: '../modules/flow/flow.module#FlowModule',
+        loadChildren: () => import('../modules/flow/flow.module').then(m => m.FlowModule),
+        canActivate: [LoginGuard],
         data: {
           name: '流量',
           breadcrumb: '流量',
@@ -53,7 +58,10 @@ export const routers: Routes = [
         }
       },
       {
-        path: 'frontend', loadChildren: '../modules/front-end/front-end.module#FrontEndModule', canActivate: [LoginGuard],
+        path: 'frontend',
+        // loadChildren: '../modules/front-end/front-end.module#FrontEndModule',
+        loadChildren: () => import('../modules/front-end/front-end.module').then(m => m.FrontEndModule),
+        canActivate: [LoginGuard],
         data: {
           name: '前端',
           breadcrumb: '前端',
@@ -61,28 +69,40 @@ export const routers: Routes = [
         }
       },
       {
-        path: 'middleend', loadChildren: '../modules/middle-end/middle-end.module#MiddleEndModule', canActivate: [LoginGuard],
+        path: 'middleend',
+        // loadChildren: '../modules/middle-end/middle-end.module#MiddleEndModule',
+        loadChildren: () => import('../modules/middle-end/middle-end.module').then(m => m.MiddleEndModule),
+        canActivate: [LoginGuard],
         data: {
           name: '中端',
           breadcrumb: '中端'
         }
       },
       {
-        path: 'rearend', loadChildren: '../modules/rear-end/rear-end.module#RearEndModule', canActivate: [LoginGuard],
+        path: 'rearend',
+        // loadChildren: '../modules/rear-end/rear-end.module#RearEndModule',
+        loadChildren: () => import('../modules/rear-end/rear-end.module').then(m => m.RearEndModule),
+        canActivate: [LoginGuard],
         data: {
           name: '后端',
           breadcrumb: '后端'
         }
       },
       {
-        path: 'system', loadChildren: '../modules/system/system.module#SystemModule', canActivate: [LoginGuard],
+        path: 'system',
+        // loadChildren: '../modules/system/system.module#SystemModule',
+        loadChildren: () => import('../modules/system/system.module').then(m => m.SystemModule),
+        canActivate: [LoginGuard],
         data: {
           name: '系统',
           breadcrumb: '系统'
         }
       },
       {
-        path: 'customservice', loadChildren: '../modules/customservice/customservice.module#CustomserviceModule', canActivate: [LoginGuard],
+        path: 'customservice',
+        // loadChildren: '../modules/customservice/customservice.module#CustomserviceModule',
+        loadChildren: () => import('../modules/customservice/customservice.module').then(m => m.CustomserviceModule),
+        canActivate: [LoginGuard],
         data: {
           name: '客服&投诉',
           breadcrumb: '客服&投诉'
@@ -95,7 +115,10 @@ export const routers: Routes = [
     ]
   },
   {
-    path: 'login', loadChildren: '../modules/login/login.module#LoginModule',
+    path: 'login',
+    // loadChildren: '../modules/login/login.module#LoginModule',
+    loadChildren: () => import('../modules/login/login.module').then(m => m.LoginModule),
+
   },
   { path: '**', component: Code404Component }
 ];

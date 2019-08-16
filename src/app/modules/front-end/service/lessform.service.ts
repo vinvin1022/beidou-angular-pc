@@ -5,7 +5,7 @@ import { setDefaultDate } from '../../../tools';
   providedIn: 'root'
 })
 export class LessformService {
-  public loading: Boolean = false;
+  public loading = false;
   public NOWTIME = [setDefaultDate('period_wid', true), setDefaultDate('period_wid', true)];
   public defalutData = {
     business: null,  // 事业部
@@ -15,6 +15,6 @@ export class LessformService {
     periodType: 'period_wid',  // 时间类型
     rangePicker: this.NOWTIME,  // 时间范围
   };
-  public parameters: Object = this.defalutData;
+  public parameters: object = this.defalutData;
   constructor() { }
 }

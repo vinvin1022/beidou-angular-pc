@@ -9,8 +9,8 @@ import { FlowcommonformService } from '../../service/flowcommonform.service';
   styleUrls: ['./my-query-packet.component.scss']
 })
 export class MyQueryPacketComponent implements OnInit {
-  @Input() authority: Object;
-  public filterData: Object;
+  @Input() authority: object;
+  public filterData: object;
   constructor(private flowcommonform: FlowcommonformService,
     private myquerypacketService: MyquerypacketService) { }
 

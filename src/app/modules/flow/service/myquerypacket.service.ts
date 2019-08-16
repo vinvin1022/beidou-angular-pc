@@ -7,12 +7,12 @@ import { RequestService } from 'src/app/service/request.service';
 export class MyquerypacketService {
   constructor(private requestHttp: RequestService) { }
   public tableData: Array<any> = [];
-  public total: Number = 0;
+  public total = 0;
   public queryPackageFlag = false;  // 控制DoCheck钩子函数
-  public loading: Boolean = false;
-  public finallyParams: Object = {}; // 请求参数
-  public siteNumberOptionsAll: Object;
-  public accountUidOptionsAll: Object;
+  public loading = false;
+  public finallyParams: object = {}; // 请求参数
+  public siteNumberOptionsAll: object;
+  public accountUidOptionsAll: object;
 
 
   public dialogDefalutData = {
@@ -31,7 +31,7 @@ export class MyquerypacketService {
     pageNo: 1,
     pageSize: 10
   };
-  public typeIdValOptions: Array<Object> = [
+  public typeIdValOptions: Array<object> = [
     { typeId: '1', typeName: '推广站点' },
     { typeId: '2', typeName: '推广账户' }
   ];
@@ -55,15 +55,15 @@ export class MyquerypacketService {
 
   /**
    * 设置查询参数
-   * @param params Object
+   * @param params object
    */
   setParams() {
     const params = {};
     for (const key in this.finallyParams) {
       if (this.finallyParams.hasOwnProperty(key)) {
-        if ( this.finallyParams[key] !== null
-        && this.finallyParams[key] !== undefined
-        && this.finallyParams[key] !== '') {
+        if (this.finallyParams[key] !== null
+          && this.finallyParams[key] !== undefined
+          && this.finallyParams[key] !== '') {
           params[key] = this.finallyParams[key];
         }
       }
@@ -74,8 +74,8 @@ export class MyquerypacketService {
 
   /**
    * 新增查询包
-   * @param url String 请求地址
-   * @param params Object 请求参数
+   * @param params string 请求地址
+   * @param params object 请求参数
    */
   addQueryPackage(params = {}) {
     return this.requestHttp.post('dms/view/addQueryPackage', params);
@@ -83,8 +83,8 @@ export class MyquerypacketService {
 
   /**
    * 获取查询包
-   * @param url String 请求地址
-   * @param params Object 请求参数
+   * @param params string 请求地址
+   * @param params object 请求参数
    */
   getQueryPackage(params = {}) {
     return this.requestHttp.post('dms/view/getQueryPackage', params);
@@ -93,8 +93,8 @@ export class MyquerypacketService {
 
   /**
    * 修改查询包接口
-   * @param url String 请求地址
-   * @param params Object 请求参数
+   * @param params string 请求地址
+   * @param params object 请求参数
    */
   modQueryPackage(params = {}) {
     return this.requestHttp.post('dms/view/modQueryPackage', params);
@@ -102,8 +102,8 @@ export class MyquerypacketService {
 
   /**
    * 删除查询包接口
-   * @param url String 请求地址
-   * @param params Object 请求参数
+   * @param params string 请求地址
+   * @param params object 请求参数
    */
   delQueryPackage(params = {}) {
     return this.requestHttp.post('dms/view/delQueryPackage', params);

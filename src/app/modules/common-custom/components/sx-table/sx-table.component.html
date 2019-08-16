@@ -49,10 +49,16 @@
                     <span>
                       <ng-container
                         *ngIf="item.maFlag === '1' && !item.extChild && item.showName !== '合计'; else transusericon">
-                        <i style="color: rgb(82, 196, 26)" nz-icon nzType="user" nzTheme="outline"></i>
+                        <!-- <i style="color: rgb(82, 196, 26)" nz-icon [nzType]="'user'" theme="outline"></i> -->
+                        <!-- <i style="color: rgb(82, 196, 26)" nz-icon [nzType]="'smile'" [nzTheme]="'outline'"></i> -->
+                        <i style="color: rgb(82, 196, 26)" nz-icon [nzType]="'star'" [theme]="'fill'"></i>
                       </ng-container>
                       <ng-template #transusericon>
-                        <i style="color: transparent" nz-icon nzType="user" nzTheme="outline"></i>
+                        <!-- <i style="color: transparent" nz-icon nzType="user" theme="outline"></i> -->
+                        <!-- <i style="color: transparent" nz-icon [nzType]="'smile'" [nzTheme]="'outline'"></i> -->
+                        <i style="color: transparent" nz-icon [nzType]="'star'" [theme]="'fill'"></i>
+
+
                       </ng-template>
 
                       {{item.showName || '--'}}

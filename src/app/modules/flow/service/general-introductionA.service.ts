@@ -17,7 +17,7 @@ export class GeneralIntroductionAService {
 
   /**
    * 推广总览维度统计接口
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getGroupPromoteOverview(params = {}) {
     return this.requestHttp.post('dms/view/groupPromoteOverview', params);
@@ -25,7 +25,7 @@ export class GeneralIntroductionAService {
 
   /**
    * 推广总览维度明细接口
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getDetailPromoteOverview(params = {}) {
     return this.requestHttp.post('dms/view/detailPromoteOverview', params);
@@ -34,8 +34,8 @@ export class GeneralIntroductionAService {
 
   /**
    * 推广总览汇总统计接口
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   reportSummary(params = {}) {
     return this.requestHttp.post('dms/view/reportSummary', params);
@@ -44,8 +44,8 @@ export class GeneralIntroductionAService {
 
   /**
    * 推广总览维度统计接口
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   flowViewReport(params = {}) {
     return this.requestHttp.post('dms/view/report', params);
@@ -54,8 +54,8 @@ export class GeneralIntroductionAService {
 
   /**
    *  推广总览详细--维度详细统计
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   reportDimension(params = {}) {
     return this.requestHttp.post('dms/view/reportDimension', params);
@@ -63,8 +63,8 @@ export class GeneralIntroductionAService {
 
   /**
    * 推广总览导出
-   * @param url String   请求地址
-   * @param params Object  请求参数
+   * @param params string   请求地址
+   * @param params object  请求参数
    */
   generalIntroductionExportView(params = {}) {
     // return this.requestHttp.exportExcel('dms/flowExport/expPromotionOverview', params);

@@ -14,13 +14,13 @@ import { CommonrearformService } from 'src/app/modules/rear-end/service/commonre
 })
 export class DropoutComplaintProcessFormComponent implements OnInit, OnDestroy, DoCheck {
   @Output() sendQueryData = new EventEmitter();
-  @Input() isShowDutyState: Boolean = true;
-  @Input() isShowRangePicker: Boolean = true;
+  @Input() isShowDutyState = true;
+  @Input() isShowRangePicker = true;
   @ViewChild('deptNameCascader', { static: false }) deptNameCascader: NzCascaderComponent;
-  public loading: Boolean = false;
-  public rangePickerDisabledDate: Function = rangePickerTodayDisabledDate;
-  public subscribeAll$: Object = {};
-  public deptNameOptions: Array<Object> = [];  // 部门学院下拉列表
+  public loading = false;
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
+  public subscribeAll$: object = {};
+  public deptNameOptions: Array<object> = [];  // 部门学院下拉列表
   public paramsAll: object = { roleName: '班主任' };
   public validateForm: FormGroup;
 

@@ -10,8 +10,8 @@ import { NewquerypackageDialogComponent } from '../newquerypackage-dialog/newque
   encapsulation: ViewEncapsulation.None
 })
 export class SubpacketPanierComponent implements OnInit {
-  public condepartment: String = '';
-  public typeIdValOptions: Array<Object> = this.myquerypacketService.typeIdValOptions; // 类型下拉列表
+  public condepartment = '';
+  public typeIdValOptions: Array<object> = this.myquerypacketService.typeIdValOptions; // 类型下拉列表
 
   @Input() addBtnVal;
   public validateForm: FormGroup;
@@ -20,10 +20,7 @@ export class SubpacketPanierComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private myquerypacketService: MyquerypacketService) { }
 
-  /**
-   * 查询数据
-   * @param $event
-   */
+
   submitForm($event): void {
     $event.preventDefault();
     this.makeMarkAsDirty();

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class AuthSeachformService {
   public loading = false;
-  public defaultFormData: Object = {
+  public defaultFormData: object = {
     roleType: null, // 角色类型
     roleId: null, // 角色名称
     userName: null  // 用户名称
@@ -28,9 +28,9 @@ export class AuthSeachformService {
   // }
   /**
    *   查询相应类别下的角色
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getRoleByRoleType(params: Object = {}) {
+  getRoleByRoleType(params: object = {}) {
     return this.requestHttp.post('dms/costomMenu/getRoleByRoleType', params);
   }
 }

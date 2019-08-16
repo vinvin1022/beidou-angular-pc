@@ -7,11 +7,11 @@ import { SetMetricsPermissionService } from '../../service/set-metrics-permissio
   styleUrls: ['./authority-optional-field.component.scss']
 })
 export class AuthorityOptionalFieldComponent implements OnInit, OnChanges {
-  @Input() public syllable: Object = {};
+  @Input() public syllable: object = {};
   public keysArray: Array<any> = [];
   constructor(private setMetricsPermissionService: SetMetricsPermissionService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   ngOnChanges(changes: SimpleChanges): void {
     // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     // Add '${implements OnChanges}' to the class.

@@ -6,44 +6,44 @@ export const tasksDuringServiceCustomFieldData = {
     children: [
       {
         label: '总前置任务量',
-        value: 'snRate1',
+        value: 'preTask',
         checked: true
       },
       {
         label: '已经完成前置量',
-        value: 'snRate2',
+        value: 'completePreTask',
         checked: true
       },
       {
         label: '有效电话前置量',
-        value: 'snRate3',
+        value: 'effecPreTask',
         checked: true
       },
       {
         label: '未完成前置量',
-        value: 'snRate4',
+        value: 'uncompletePreTask',
         checked: true
       },
       {
         label: '服务期其他任务量',
-        value: 'snRate5',
+        value: 'otherTask',
         checked: true
       },
 
 
       {
-        label: '服务期其它任务完成量',
-        value: 'snRate1',
+        label: '服务期其他任务完成量',
+        value: 'completeOtherTask',
         checked: true
       },
       {
         label: '服务期其他任务量完成度(%)',
-        value: 'snRate2',
+        value: 'rate1',
         checked: true
       },
       {
         label: '平均前置时效',
-        value: 'snRate3',
+        value: 'completePreTime',
         checked: true
       }
     ]

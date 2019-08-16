@@ -12,13 +12,13 @@ import { WorkOrderReportService } from '../../../service/work-order-report.servi
 })
 export class AfterSalecategoryComponent implements OnInit, AfterViewInit, OnChanges, AfterViewChecked {
   @Input() private requestParams;
-  private _echartsIntance = null;
+  private echartsIntance = null;
   public echartsData = [];
-  public isSpinning: Boolean = false;
+  public isSpinning = false;
   @ViewChild('salecategory', { static: false }) salecategory: ElementRef;
   @Output() sendBigId: EventEmitter<any> = new EventEmitter();
-  private _clientWidth: number;
-  constructor(private _workOrderReportService: WorkOrderReportService) { }
+  private clientWidth: number;
+  constructor(private workOrderReportService: WorkOrderReportService) { }
 
   ngOnInit() { }
 
@@ -30,27 +30,26 @@ export class AfterSalecategoryComponent implements OnInit, AfterViewInit, OnChan
 
 
   ngAfterViewInit() {
-    this._clientWidth = this.salecategory.nativeElement.clientWidth;
-    this._echartsIntance = echarts.init(this.salecategory.nativeElement);
-    this._echartsIntance.on('click', 'series.pie', (params) => {
-      console.log(params, this.echartsData);
+    this.clientWidth = this.salecategory.nativeElement.clientWidth;
+    this.echartsIntance = echarts.init(this.salecategory.nativeElement);
+    this.echartsIntance.on('click', 'series.pie', (params) => {
       const bigId = this.echartsData.find(item => item.typeName === params.name).typeId;
       this.sendBigId.emit(bigId);
     });
   }
   ngAfterViewChecked() {
-    if (this._clientWidth !== this.salecategory.nativeElement.clientWidth) {
-      this._clientWidth = this.salecategory.nativeElement.clientWidth;
-      this._echartsIntance.resize({ width: this.salecategory.nativeElement.clientWidth });
+    if (this.clientWidth !== this.salecategory.nativeElement.clientWidth) {
+      this.clientWidth = this.salecategory.nativeElement.clientWidth;
+      this.echartsIntance.resize({ width: this.salecategory.nativeElement.clientWidth });
     }
   }
 
 
   queryBigTypeNum() {
     this.isSpinning = true;
-    this._workOrderReportService.queryBigTypeNum(this.requestParams).subscribe(res => {
+    this.workOrderReportService.queryBigTypeNum(this.requestParams).subscribe(res => {
       this.echartsData = res.result;
-      this._echartsIntance.setOption(this.setChartsOptions(res.result));
+      this.echartsIntance.setOption(this.setChartsOptions(res.result));
       this.isSpinning = false;
     });
   }
@@ -63,8 +62,7 @@ export class AfterSalecategoryComponent implements OnInit, AfterViewInit, OnChan
         textStyle: {
           fontSize: 12
         },
-        formatter: function (params) {
-          console.log(params);
+        formatter: (params) => {
           const html = `
           ${params['data']['name']}<br/>
           数量：${params['data']['typeNum']}<br/>

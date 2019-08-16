@@ -11,12 +11,12 @@ import { PromotionformService } from '../../../service/promotion-form.service';
 })
 export class SubpromotionTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  public performanceParams: Object = {};
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public subscribeAll$: Object = {};
+  public performanceParams: object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public subscribeAll$: object = {};
 
   public displayData = [];
 
@@ -43,8 +43,8 @@ export class SubpromotionTableComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   /**
-  * 设置查询参数
-  */
+   * 设置查询参数
+   */
   setPromotionParams() {
     this.performanceParams = setFinalFilterData(this.filterData);
     this.performanceParams['pageNo'] = this.pageIndex;

@@ -11,20 +11,20 @@ import { setFinalFilterData } from 'src/app/tools';
 })
 export class SubextensionTableComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
   @Input() filterData;
-  public extensionIndexParams: Object = {};
+  public extensionIndexParams: object = {};
   public extensionTarget$;   // 存储subscribe
   public pageInfo2: Array<any> = [];
   public pageInfo1: Array<any> = [];
   public pageInfo1Title: Array<any> = [];
   public pageInfo2Title: Array<any> = [];
-  public nz1ScrollData: Object = {};
-  public nz2ScrollData: Object = {};
+  public nz1ScrollData: object = {};
+  public nz2ScrollData: object = {};
   public pageInfo1List: Array<any> = [];
   public pageInfo2List: Array<any> = [];
   public nzWidthConfig1: Array<any> = [];
   public nzWidthConfig2: Array<any> = [];
 
-  public pageInfoLoading: Boolean = false;
+  public pageInfoLoading = false;
   public flowDataType = '1';
   public newFlowDataType = '1';
   public percents = ['rate1', 'rate12', 'rate4', 'rate5', 'rate6', 'rate9', 'rate15', 'rate10', 'rate13', 'rate20', 'rate21', 'rate22'];
@@ -83,9 +83,7 @@ export class SubextensionTableComponent implements OnInit, OnChanges, OnDestroy,
     this.extensionIndexService.flowExportExportExtension({ ...this.extensionIndexParams });
   }
 
-  /**
- * 设置pageInfo1Title
- */
+
   _setPageInfoTitle(infoTable) {
     // const delVal = '合计';
     const titles = Object.values(infoTable[0]);

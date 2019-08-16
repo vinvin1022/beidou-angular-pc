@@ -7,8 +7,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./extquery-packet.component.scss']
 })
 export class ExtQueryPacketComponent implements OnInit {
-  public authority: Object;
-  constructor(private activatedRoute: ActivatedRoute ) { }
+  public authority: object;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(data => {

@@ -8,11 +8,11 @@ import { HomeService } from '../../service/home.service';
   encapsulation: ViewEncapsulation.None
 })
 export class PerformanceRankingComponent implements OnInit, OnDestroy {
-  public achievementData: Array<Object> = [];
-  public isSpinning: Boolean = false;
-  public orderDate: String = 'day';
-  public topThree: Array<Object> = [];
-  public bottomThree: Array<Object> = [];
+  public achievementData: Array<object> = [];
+  public isSpinning = false;
+  public orderDate = 'day';
+  public topThree: Array<object> = [];
+  public bottomThree: Array<object> = [];
   public timer = null;
 
   constructor(private homeService: HomeService) { }

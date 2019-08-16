@@ -20,8 +20,8 @@ export class FrontRealFormComponent implements OnInit, DoCheck, OnDestroy {
   @Output() sendQueryData = new EventEmitter();
 
 
-  public rangePickerTodayDisabledDate: Function = rangePickerTodayDisabledDate;
-  public loading: Boolean = false;
+  public rangePickerTodayDisabledDate: (current: Date) => boolean = rangePickerTodayDisabledDate;
+  public loading = false;
 
   public customColumnData: object = {};
   public paramsAll = {};
@@ -70,10 +70,9 @@ export class FrontRealFormComponent implements OnInit, DoCheck, OnDestroy {
       rangePicker: [rangePicker]  // 时间范围
     });
   }
-
   /**
-  * 设置查询 事业部 军团 咨询组 咨询师查询参数
-  */
+   * 设置查询 事业部 军团 咨询组 咨询师查询参数
+   */
   private _setAssociationParams() {
     this.paramsAll = setFinalFilterData(this.validateForm.value);
   }

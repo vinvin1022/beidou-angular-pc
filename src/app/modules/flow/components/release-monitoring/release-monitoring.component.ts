@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./release-monitoring.component.scss']
 })
 export class ReleaseMonitoringComponent implements OnInit {
-  public packagePermissions: String = 'b030402';
+  public packagePermissions = 'b030402';
 
-  public filterData: Object;
+  public filterData: object;
   constructor() { }
 
   ngOnInit() {

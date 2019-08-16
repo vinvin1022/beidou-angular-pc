@@ -187,7 +187,7 @@ export class SubstatisticsTableComponent implements OnInit, OnChanges, OnDestroy
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 参数
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

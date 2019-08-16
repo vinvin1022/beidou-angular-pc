@@ -13,30 +13,30 @@ import { Router } from '@angular/router';
 })
 export class CommonmoreFormComponent implements OnInit, OnDestroy, DoCheck {
   @Output() sendQueryData = new EventEmitter();
-  @Input() isShowSource: Boolean = true;   // 是否显示推广来源
-  @Input() isShowWay: Boolean = true;  // 是否推广方式
-  public loading: Boolean = false;
-  public rangePickerDisabledDate: Function = rangePickerTodayDisabledDate;
-  // private subscribeAll$: Object = {};
-  // public optionsLoading: Boolean = false;
+  @Input() isShowSource = true;   // 是否显示推广来源
+  @Input() isShowWay = true;  // 是否推广方式
+  public loading = false;
+  public rangePickerDisabledDate: (current: Date) => void = rangePickerTodayDisabledDate;
+  // private subscribeAll$: object= {};
+  // public optionsLoading = false;
 
-  // public condepartment: String = '';
-  // public businessOptions: Array<Object> = [];  // 事业部下拉列表
-  // public deptId1Options: Array<Object> = [];   // 军团下拉选项
+  // public condepartment = '';
+  // public businessOptions: Array<object> = [];  // 事业部下拉列表
+  // public deptId1Options: Array<object> = [];   // 军团下拉选项
 
-  // public deptId2Options: Array<Object> = [];   // 咨询组下拉选项
-  // public userIdOptions: Array<Object> = [];  // 咨询师下拉选项
+  // public deptId2Options: Array<object> = [];   // 咨询组下拉选项
+  // public userIdOptions: Array<object> = [];  // 咨询师下拉选项
 
-  // public codeOptions: Array<Object> = [];   // 推广渠道
+  // public codeOptions: Array<object> = [];   // 推广渠道
 
-  // public advertisersTypeOptions: Array<Object> = [];   // 推广方式
-  // public cityNameOptions: Array<Object> = [];   // 推广城市
+  // public advertisersTypeOptions: Array<object> = [];   // 推广方式
+  // public cityNameOptions: Array<object> = [];   // 推广城市
 
   // public accountUidOptions = [];
 
-  // public extensionSourceOptions: Array<Object> = [];   // 推广来源
+  // public extensionSourceOptions: Array<object> = [];   // 推广来源
 
-  public flowDataType: String = '1';   // 1电销 2网销
+  public flowDataType = '1';   // 1电销 2网销
 
   public groupDimensionOptions = this.moreformService.groupDimensionOptions;
   public paramsAll = {};

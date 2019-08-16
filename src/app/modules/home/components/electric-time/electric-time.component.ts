@@ -19,7 +19,7 @@ export class ElectricTimeComponent implements OnInit, AfterViewInit, AfterViewCh
   public isSpinning = false;
   public optionsLoading = false;
   public deptIdsOptions: Array<object> = [];
-  private _clientWidth: number;
+  private clientWidth: number;
   @ViewChild('electricTimeCharts', { static: false }) electricTimeCharts: ElementRef;
   constructor(private homeService: HomeService, private commonCustomService: CommonCustomService) { }
 
@@ -28,13 +28,13 @@ export class ElectricTimeComponent implements OnInit, AfterViewInit, AfterViewCh
 
 
   ngAfterViewInit() {
-    this._clientWidth = this.electricTimeCharts.nativeElement.clientWidth;
+    this.clientWidth = this.electricTimeCharts.nativeElement.clientWidth;
     this.echartsIntance = echarts.init(this.electricTimeCharts.nativeElement);
     this.getElectricTimeData();
   }
   ngAfterViewChecked() {
-    if (this._clientWidth !== this.electricTimeCharts.nativeElement.clientWidth) {
-      this._clientWidth = this.electricTimeCharts.nativeElement.clientWidth;
+    if (this.clientWidth !== this.electricTimeCharts.nativeElement.clientWidth) {
+      this.clientWidth = this.electricTimeCharts.nativeElement.clientWidth;
       this.echartsIntance.resize({ width: this.electricTimeCharts.nativeElement.clientWidth });
     }
   }
@@ -87,7 +87,7 @@ export class ElectricTimeComponent implements OnInit, AfterViewInit, AfterViewCh
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
           type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         },
-        formatter: function (params) {
+        formatter: (params) => {
           const html = `
             ${params[0]['axisValue']}<br />
             ${params[0]['marker']} ${params[0]['seriesName']}:
@@ -155,7 +155,7 @@ export class ElectricTimeComponent implements OnInit, AfterViewInit, AfterViewCh
               show: true,
               position: 'top',
               color: '#333',
-              formatter: function (params) {
+              formatter: (params) => {
                 const html = `${formattingTime(params.value)}`;
                 return html;
               }

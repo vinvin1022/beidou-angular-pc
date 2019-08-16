@@ -12,13 +12,13 @@ import { AuthSeachformService } from '../../../service/auth-seachform.service';
 })
 export class AuthmanTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() searchData = {};
-  @ViewChild('operateRoleDialog', {static: false}) operateRoleDialog: OperateRoleDialogComponent;
-  public userRoleParams: Object = {};
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public subscribeAll$: Object = {};
+  @ViewChild('operateRoleDialog', { static: false }) operateRoleDialog: OperateRoleDialogComponent;
+  public userRoleParams: object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public subscribeAll$: object = {};
 
   public displayData = [];
 
@@ -53,8 +53,8 @@ export class AuthmanTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   /**
-  * 设置查询参数
-  */
+   * 设置查询参数
+   */
   setUserRoleParams() {
     this.userRoleParams['pageNo'] = this.pageIndex;
     this.userRoleParams['pageSize'] = this.pageSize;

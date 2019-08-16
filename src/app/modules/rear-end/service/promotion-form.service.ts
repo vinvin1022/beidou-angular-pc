@@ -6,7 +6,7 @@ import { setDefaultDate } from 'src/app/tools';
   providedIn: 'root'
 })
 export class PromotionformService {
-  public loading: Boolean = false;
+  public loading = false;
   public startEndTime: Date = setDefaultDate('period_wid', true);
   public defalutData = {
     deptNames: [],  // 部门
@@ -17,16 +17,16 @@ export class PromotionformService {
   constructor(private requestHttp: RequestService) { }
 
   /**
-  *  获取部门学院
-  * @param params Object  请求参数
-  */
+   * 获取部门学院
+   * @param params 請求參數
+   */
   querydeptName(params = {}) {
     return this.requestHttp.post('dms/back/promotion/querydeptName', params);
   }
 
   /**
    *  获取班主任
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   queryTeacher(params = {}) {
     return this.requestHttp.post('dms/back/promotion/queryTeacher', params);
@@ -34,7 +34,7 @@ export class PromotionformService {
 
   /**
    *  获取在岗状态
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   queryUserState(params = {}) {
     return this.requestHttp.post('dms/back/promotion/queryUserState', params);

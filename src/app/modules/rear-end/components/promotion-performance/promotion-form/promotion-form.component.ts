@@ -15,11 +15,11 @@ import { rangePickerTodayDisabledDate } from 'src/app/tools';
 })
 export class PromotionFormComponent implements OnInit, OnDestroy, DoCheck {
   @Output() sendQueryData = new EventEmitter();
-  @Input() isShowDutyState: Boolean = true;
-  @Input() isShowRangePicker: Boolean = true;
-  public loading: Boolean = false;
-  public rangePickerDisabledDate: Function = rangePickerTodayDisabledDate;
-  public subscribeAll$: Object = {};
+  @Input() isShowDutyState = true;
+  @Input() isShowRangePicker = true;
+  public loading = false;
+  public rangePickerDisabledDate: (current) => void = rangePickerTodayDisabledDate;
+  public subscribeAll$: object = {};
   public paramsAll: object = {};
   public validateForm: FormGroup;
 

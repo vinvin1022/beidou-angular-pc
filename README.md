@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## 打包生产环境 
+yarn run buildprod
+
+## 打包测试生产环境
+yarn run buildtest
+
+
+
+## 本地生产环境
+yarn run localprod
+
+## 本地测试环境
+yarn run localtest

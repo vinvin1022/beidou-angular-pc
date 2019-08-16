@@ -18,17 +18,17 @@ import { BusinessProcessingService } from '../../../service/business-processing.
 })
 export class ShowbusinessTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
-  public customColumnData: Object = {};
+  public customColumnData: object = {};
   public filterFieldData;
-  public loading: Boolean = false;
-  public subscribeAll$: Object = {};
-  public targetNetSaleParams: Object = {};
-  public exportsParams: Object = {};
+  public loading = false;
+  public subscribeAll$: object = {};
+  public targetNetSaleParams: object = {};
+  public exportsParams: object = {};
 
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
 
   tableTreeData = [];
@@ -50,10 +50,6 @@ export class ShowbusinessTableComponent implements OnInit, OnChanges, OnDestroy 
 
 
 
-  /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
   getFilterField() {
     const newData = this.customColumnDialogService.filterSelectColoumn(businessProcessingCustomFieldData);
     this.filterFieldData = newData.selectField;
@@ -136,7 +132,7 @@ export class ShowbusinessTableComponent implements OnInit, OnChanges, OnDestroy 
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 參數
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

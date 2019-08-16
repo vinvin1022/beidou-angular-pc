@@ -11,17 +11,17 @@ import { setFinalFilterData } from 'src/app/tools';
 export class SubsalesTableComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
   @Input() filterData;
   public dataTable = [];
-  public salesTargetParams: Object = {};
+  public salesTargetParams: object = {};
   public extensionTarget$;   // 存储subscribe
   public pageInfo2: Array<any> = [];
   public pageInfo1: Array<any> = [];
   public pageInfo1Title: Array<any> = [];
   public pageInfo2Title: Array<any> = [];
-  public pageInfoLoading: Boolean = false;
-  public nz1ScrollData: Object = {};
-  public nz2ScrollData: Object = {};
-  public nzWidthConfig1: Array<String> = [];
-  public nzWidthConfig2: Array<String> = [];
+  public pageInfoLoading = false;
+  public nz1ScrollData: object = {};
+  public nz2ScrollData: object = {};
+  public nzWidthConfig1: Array<string> = [];
+  public nzWidthConfig2: Array<string> = [];
   public pageInfo1List: Array<any> = [];
   public pageInfo2List: Array<any> = [];
   public flowDataType = '1';

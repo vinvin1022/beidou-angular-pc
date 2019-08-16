@@ -20,23 +20,23 @@ export class SxSelectComponent implements OnInit, OnChanges, OnDestroy {
   @Input() optionsService: object;  // 获取下拉选项的服务名称   bdServerSearch为true时必传
   @Input() methodName = 'a';    // 获取下拉选项的结构  bdServerSearch为true时必传
   @Input() requestParams: object = {};  // 获取下拉选项的请求参数
-  @Input() bdDisabled: Boolean = false;  // 是否禁用select
-  @Input() bdServerSearch: Boolean = true;  // 是否远程搜索
-  @Input() bdPlaceHolder: String = '请选择';  // 没有值时候的显示文字
-  @Input() optionsLoading: Boolean = false;  // 下拉选项是否正在加载中
+  @Input() bdDisabled = false;  // 是否禁用select
+  @Input() bdServerSearch = true;  // 是否远程搜索
+  @Input() bdPlaceHolder = '请选择';  // 没有值时候的显示文字
+  @Input() optionsLoading = false;  // 下拉选项是否正在加载中
   @Input() selectedValue: Array<string> = [];  // 选中的值
   @Input() storeOptionsData = [];             // 下拉选项的值  bdServerSearch为false时必传
-  @Input() bdMode: String = 'multiple';    // 下拉选项的模式  单选或者多选
-  @Input() isShowAll: Boolean = false;    // 是否显示全部选项
-  @Input() defaultLoad: Boolean = false;
-  @Input() bdAllowClear: Boolean = true;  // 是否支持清除
+  @Input() bdMode = 'multiple';    // 下拉选项的模式  单选或者多选
+  @Input() isShowAll = false;    // 是否显示全部选项
+  @Input() defaultLoad = false;
+  @Input() bdAllowClear = true;  // 是否支持清除
   @Output() selectedValueChange = new EventEmitter();  // 选中改变事件
   @Output() bdOpenChange = new EventEmitter();    // 下拉选项打开或者关闭事件
   @Output() bdOnSearch = new EventEmitter();     // 搜索事件
   @Output() bdIsAllcheckedChange = new EventEmitter();  // 全选事件
 
   public subscribeAll$: object = {};
-  public isAllchecked: Boolean = false;
+  public isAllchecked = false;
   public optionsData: Array<any> = [];
   public subject = new Subject();
 
@@ -88,7 +88,7 @@ export class SxSelectComponent implements OnInit, OnChanges, OnDestroy {
    * 获取下拉列表
    * @param searchVal string 查询参数
    */
-  getOptionsData(searchVal?: String) {
+  getOptionsData(searchVal?: string) {
     if (this.optionsService && this.bdServerSearch) {
       this.optionsLoading = true;
       const requestParams = { searchVal, ...this.requestParams };
@@ -128,7 +128,7 @@ export class SxSelectComponent implements OnInit, OnChanges, OnDestroy {
   searchOptions() {
     this.subject.pipe(debounceTime(300), distinctUntilChanged()).subscribe(searchVal => {
       if (this.bdServerSearch) {
-        this.getOptionsData(<string>searchVal);
+        this.getOptionsData(searchVal as string);
       } else {
         this.storeOptionsData = [...this.optionsData];
         if (searchVal) {
@@ -196,12 +196,19 @@ export class SxSelectComponent implements OnInit, OnChanges, OnDestroy {
   private _autoSelectedCheck(val: string[] = []): boolean {
     if (val && val.length) {
       let num = 0;
-      for (let index = 0; index < this.storeOptionsData.length; index++) {
-        const item = this.storeOptionsData[index];
+      // for (let index = 0; index < this.storeOptionsData.length; index++) {
+      //   const item = this.storeOptionsData[index];
+      //   if (val.includes(item['optionId'])) {
+      //     num++;
+      //   }
+      // }
+
+      for (const item of this.storeOptionsData) {
         if (val.includes(item['optionId'])) {
           num++;
         }
       }
+
       return num === this.storeOptionsData.length ? true : false;
     }
     return false;

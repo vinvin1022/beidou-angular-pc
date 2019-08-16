@@ -8,14 +8,14 @@ import { HomeService } from '../../service/home.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AchievementComponent implements OnInit, AfterViewInit, OnDestroy {
-  public achievementData: Array<Object> = [];
-  public isSpinning: Boolean = false;
-  public orderDate: String = 'day';
+  public achievementData: Array<object> = [];
+  public isSpinning = false;
+  public orderDate = 'day';
 
   public timer = null;
   public echartsIntance;
   @ViewChild('eyeAchievement', { static: false }) eyeAchievement: ElementRef;
-  public width: Number = 0;
+  public width = 0;
 
   constructor(private homeService: HomeService) { }
 
@@ -48,7 +48,7 @@ export class AchievementComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isSpinning = false;
       const financeAmounts = [];
       const periodWids = [];
-      const topNum = <Array<any>>res.result.slice(0, 11);
+      const topNum = res.result.slice(0, 11);
       const newData = topNum.filter(item => item['deptName']);
       newData.forEach(element => {
         financeAmounts.push(element.orderAmo);

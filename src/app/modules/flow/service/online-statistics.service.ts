@@ -8,7 +8,7 @@ import { setPurviewDefaultDate } from 'src/app/tools';
 })
 export class OnlineStatisticsService {
   public plusPercentage = ['rateX', 'rate1', 'rate2', 'rate3', 'rate4', 'rate5'];
-  public loading: Boolean = false;
+  public loading = false;
   // tslint:disable-next-line:no-inferrable-types
   public flowDataType: string = '1';
   public defaultFormData = {
@@ -35,18 +35,18 @@ export class OnlineStatisticsService {
   /**
    * 获取统计接口
    *
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getStatistics(url: string = 'dms/view/groupDeptOnline', params: Object = {}) {
+  getStatistics(url: string = 'dms/view/groupDeptOnline', params: object = {}) {
     return this.requestHttp.post(url, params);
   }
 
   /**
    * 获取详细接口
    *
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getDetail(url: string = 'dms/view/detailDeptOnline', params: Object = {}) {
+  getDetail(url: string = 'dms/view/detailDeptOnline', params: object = {}) {
     return this.requestHttp.post(url, params);
   }
 
@@ -54,33 +54,33 @@ export class OnlineStatisticsService {
   /**
    * 在线统计接口
    *
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getOnline(params: Object = {}) {
+  getOnline(params: object = {}) {
     return this.requestHttp.post('dms/view/online', params);
   }
   /**
    * 在线统计导出
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  exportOnline(params: Object = {}) {
+  exportOnline(params: object = {}) {
     return this.requestHttp.exportExcel('dms/flowExport/exportOnline', params);
   }
 
 
   /**
    * 获取在线部门
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getOnlineDept(params: Object = {}) {
+  getOnlineDept(params: object = {}) {
     return this.requestHttp.post('dms/userDept/onlineDept', params);
   }
 
   /**
    * 获取在线用户
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getOnlineUser(params: Object = {}) {
+  getOnlineUser(params: object = {}) {
     return this.requestHttp.post('dms/userDept/onlineUser', params);
   }
 }

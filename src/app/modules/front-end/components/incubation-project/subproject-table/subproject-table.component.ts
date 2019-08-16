@@ -19,19 +19,19 @@ import { incubationProjectFieldData } from '../../../service/incubation-projectF
 })
 export class SubprojectableComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
   @Input() filterData = {};
-  @ViewChild('customColumnDialog', {static: false}) customColumnDialog: CustomColumnDialogComponent;
+  @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
   public customColumnData;
   public filterFieldData = {};
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public dataTable = [];
-  public loading: Boolean = false;
-  public periodType: String = this.lessformService.defalutData.periodType;
+  public loading = false;
+  public periodType: string = this.lessformService.defalutData.periodType;
   public dateType = '1';
   public MDCParams = {};
-  public subscribeAll$: Object = {};
+  public subscribeAll$: object = {};
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
   public tableTreeData = [];
   public expandDataCache = {};
   public getMenuMsgParams: object = {};
@@ -67,7 +67,7 @@ export class SubprojectableComponent implements OnInit, OnChanges, OnDestroy, Do
     this.getMenuMsgParams['menuId'] = this.dateType === '1' ? 'electricControlday' : 'electricControlmonth';
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.customColumnDialogService.columnData = this.customColumnData = incubationProjectFieldData;
 
     // tslint:disable-next-line:no-unused-expression
@@ -99,7 +99,7 @@ export class SubprojectableComponent implements OnInit, OnChanges, OnDestroy, Do
   }
   /**
    * 获取自定义列过滤数据
-   * @param data
+   * @param data 參數
    */
   getFilterField(data) {
     const newData = this.customColumnDialogService.filterSelectColoumn(data);
@@ -207,7 +207,7 @@ export class SubprojectableComponent implements OnInit, OnChanges, OnDestroy, Do
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 參數
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

@@ -12,27 +12,27 @@ import { debounceTime } from 'rxjs/operators';
 export class FinancialConsumptionComponent implements OnInit, AfterViewInit, AfterViewChecked {
   public echartsIntance = null;
   public echartsData = [];
-  public flowDataType: String = '0';
-  public isSpinning: Boolean = false;
-  private _clientWidth: number;
+  public flowDataType = '0';
+  public isSpinning = false;
+  private clientWidth: number;
 
   @ViewChild('consumptionCharts', { static: false }) consumptionCharts: ElementRef;
 
   constructor(private homeService: HomeService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 
 
   ngAfterViewInit() {
-    this._clientWidth = this.consumptionCharts.nativeElement.clientWidth;
+    this.clientWidth = this.consumptionCharts.nativeElement.clientWidth;
     this.echartsIntance = echarts.init(this.consumptionCharts.nativeElement);
     this.getSevenDayFinance();
     // setTimeout(() => { this.reseteCharts(); }, 0);
   }
   ngAfterViewChecked() {
-    if (this._clientWidth !== this.consumptionCharts.nativeElement.clientWidth) {
-      this._clientWidth = this.consumptionCharts.nativeElement.clientWidth;
+    if (this.clientWidth !== this.consumptionCharts.nativeElement.clientWidth) {
+      this.clientWidth = this.consumptionCharts.nativeElement.clientWidth;
       this.echartsIntance.resize({ width: this.consumptionCharts.nativeElement.clientWidth });
     }
   }

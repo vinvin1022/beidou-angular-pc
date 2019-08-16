@@ -7,7 +7,7 @@ import { setDefaultDate } from 'src/app/tools';
 })
 export class ReachOrderTasksformService {
   private serviceName = 'dms';
-  public loading: Boolean = false;
+  public loading = false;
   public startEndTime: Date = setDefaultDate('period_wid', true);
   public defalutData = {
     deptId: null,  // 部门
@@ -20,34 +20,34 @@ export class ReachOrderTasksformService {
 
 
   /**
-  *  通过用户token查询用户可查询列表
-  * @param params Object  请求参数
-  */
+   * 通过用户token查询用户可查询列表
+   * @param params 請求參數
+   */
   getDeptQueryByToken(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/middler/getDeptQueryByToken`, params);
   }
 
   /**
-  *  通过选择的组织查询班主任管理员
-  * @param params Object  请求参数
-  */
+   * 通过选择的组织查询班主任管理员
+   * @param params 請求參數
+   */
   queryTeacheerMa(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/middler/queryTeacheerMa`, params);
   }
 
   /**
-  * 通过选择的组织查询班主任
-  * @param params Object  请求参数
-  */
+   * 通过选择的组织查询班主任
+   * @param params 請求參數
+   */
   queryTeacheer(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/middler/queryTeacheer`, params);
   }
 
 
   /**
-  * 查询售后分类
-  * @param params Object  请求参数
-  */
+   * 查询售后分类
+   * @param params 請求參數
+   */
   queryBigType(params = {}) {
     return this.requestHttp.post(`${this.serviceName}/middler/queryBigType`, params);
   }
@@ -57,16 +57,16 @@ export class ReachOrderTasksformService {
 
 
   /**
-  *  获取部门学院
-  * @param params Object  请求参数
-  */
+   * 获取部门学院
+   * @param params 請求參數
+   */
   getTreeSxDept(params = {}) {
     return this.requestHttp.post('authentication/dept/treeSxDept', params);
   }
 
   /**
    *  获取班主任
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getUserByDeptId(params = {}) {
     return this.requestHttp.post('authentication/dept/getUserByDeptId', params);
@@ -74,7 +74,7 @@ export class ReachOrderTasksformService {
 
   /**
    *  获取在岗状态
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
   getUserState(params = {}) {
     return this.requestHttp.post('dms/userDept/userState', params);

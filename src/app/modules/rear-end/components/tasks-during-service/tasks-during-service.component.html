@@ -1,7 +1,14 @@
 <div class="eye-net-index">
-  <app-reach-order-tasksform [showSaleCategory]="false" (sendQueryData)="getFilterData($event)">
+  <app-reach-order-tasksform [showTime]="true" [showSaleCategory]="false" (sendQueryData)="getFilterData($event)">
   </app-reach-order-tasksform>
   <div class="mar-top20">
-    <app-during-service-table [filterData]="filterData"></app-during-service-table>
+    <app-sx-table [cardTitle]="cardTitle" [serviceNameClass]="serviceNameClass" [methodName]="methodName"
+      [tableFields]="tableFields" [treeFields]="treeFields" [filterData]="filterData" [exportMethod]="exportMethod">
+    </app-sx-table>
   </div>
+  <ng-template #cardTitle>
+    <span>数据列表</span>
+    <span class="update-time" *ngIf="filterData">时间：{{filterData['startTime'] | date: 'yyyy/MM/dd'}} -
+      {{filterData['endTime'] | date: 'yyyy/MM/dd'}}</span>
+  </ng-template>
 </div>

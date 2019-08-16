@@ -15,22 +15,22 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
   @ViewChild('nzTable', { static: false }) overviewTableData: ElementRef;
   @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
-  public customColumnData: Object = {};
+  public customColumnData: object = {};
   public filterFieldData;
   public dataTable: Array<any> = [];
-  public loading: Boolean = false;
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public midLegionDataParams: Object = {};
+  public loading = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public midLegionDataParams: object = {};
   public midLegionDataSubscribe$;
-  public nzWidthConfig: Array<String> = [
+  public nzWidthConfig: Array<string> = [
     '50px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px',
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px',
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px',
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px',
     '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px', '100px'];
-  public nzScroll: Object = { x: '5350px', y: '500px' };
+  public nzScroll: object = { x: '5350px', y: '500px' };
 
   constructor(private middleEndSearchFormService: MiddleEndSearchFormService, private armyDataAnalysisService: ArmyDataAnalysisService,
     private commonCustomService: CommonCustomService) { }
@@ -57,7 +57,7 @@ export class SubarmydataTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * 获取自定义列过滤数据
-   * @param data
+   * @param data 參數
    */
   getFilterField(data) {
     const releasemonitoring = data.armyDataAnalysis;

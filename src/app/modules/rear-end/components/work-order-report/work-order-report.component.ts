@@ -15,10 +15,10 @@ export class WorkOrderReportComponent implements OnInit {
   public treeFields;
   public exportMethod;
   public bigId;
-  constructor(private _workOrderReportService: WorkOrderReportService) { }
+  constructor(private workOrderReportService: WorkOrderReportService) { }
 
   ngOnInit() {
-    this.serviceNameClass = this._workOrderReportService;
+    this.serviceNameClass = this.workOrderReportService;
     this.methodName = 'queryAfterSale';
     this.tableFields = workOrderReportCustomFieldData;
     this.treeFields = ['chooseId', 'chooseId', 'chooseId', 'chooseId'];
@@ -27,7 +27,6 @@ export class WorkOrderReportComponent implements OnInit {
   }
   getFilterData(data) {
     this.filterData = { ...data };
-    console.log(this.filterData);
   }
   getBigId(bigId) {
     this.bigId = bigId;

@@ -20,15 +20,15 @@ export class SubelectricstatTableComponent implements OnInit, OnChanges, OnDestr
   @Input() filterData;
   @ViewChild('elstatDetailList', { static: false }) elstatDetailList: ElstatDetailListComponent;
 
-  public customColumnData: Object = {};
+  public customColumnData: object = {};
 
 
   public dataTable = [];
   public flowDataType = '1';
   public loading = false;
-  // public pageIndex: Number = 1;
-  // public pageSize: Number = 10;
-  // public total: Number = 1;
+  // public pageIndex = 1;
+  // public pageSize = 10;
+  // public total = 1;
   public electricityCardParams = {};
   public subscribeAll$ = {};
   public widthConfig: Array<string> = [];

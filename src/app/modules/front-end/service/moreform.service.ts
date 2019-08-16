@@ -5,7 +5,7 @@ import { setDefaultDate } from 'src/app/tools';
   providedIn: 'root'
 })
 export class MoreformService {
-  public loading: Boolean = false;
+  public loading = false;
   public NOWTIME = [setDefaultDate('period_wid', true), setDefaultDate('period_wid', true)];
 
 
@@ -23,7 +23,7 @@ export class MoreformService {
     groupDimension: 'code',
   };
 
-  public groupDimensionOptions: Array<Object> = [
+  public groupDimensionOptions: Array<object> = [
     { key: 'code', value: '推广渠道' },
     { key: 'promoter_name', value: '推广人' },
     { key: 'advertisers_type', value: '推广方式' },

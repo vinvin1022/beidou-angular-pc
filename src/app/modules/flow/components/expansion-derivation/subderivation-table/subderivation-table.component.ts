@@ -10,12 +10,12 @@ import { ExpansionDerivationService } from '../../../service/expansion-derivatio
 export class SubderivationTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filterData;
   public dataTable = [];
-  public pageSizeList: Array<number> = [ 10, 20, 30, 40, 50 ];
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
-  public conditionsParams: Object = {};
+  public pageSizeList: Array<number> = [10, 20, 30, 40, 50];
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
+  public conditionsParams: object = {};
 
   constructor(private expansionDerivation: ExpansionDerivationService) { }
 

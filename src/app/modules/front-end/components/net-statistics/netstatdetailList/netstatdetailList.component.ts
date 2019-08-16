@@ -13,14 +13,14 @@ import { netStatisticsFieldData } from '../../../service/netStatisticscolFieldDa
 })
 export class NetstatDetailListComponent implements OnInit {
   @Input() reportDimensionParams = {};
-  @Input() newFlowDataType: String = '电销';
-  @Input() rowData: Object = {};
+  @Input() newFlowDataType = '电销';
+  @Input() rowData: object = {};
   @Input() filterData;
   public displayData: Array<any> = [];
-  public pageIndex: Number = 1;
-  public pageSize: Number = 10;
-  public total: Number = 1;
-  public loading: Boolean = false;
+  public pageIndex = 1;
+  public pageSize = 10;
+  public total = 1;
+  public loading = false;
   public flowViewReport$;
   public isVisible = false;
   public filterFieldData: object = {};
@@ -78,7 +78,7 @@ export class NetstatDetailListComponent implements OnInit {
       pageNo: this.pageIndex,
       pageSize: this.pageSize
     };
-    return Object.assign({}, this.reportDimensionParams, params, {...this.tableTreeService._getdlist(this.rowData)});
+    return Object.assign({}, this.reportDimensionParams, params, { ...this.tableTreeService._getdlist(this.rowData) });
   }
 
   showModal(rowData, filterFieldData, allChildren): void {

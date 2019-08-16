@@ -22,20 +22,20 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class SubelectricTableComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
   @Input() filterData = { periodType: 'period_wid' };
-  @ViewChild('customColumnDialog', {static: false}) customColumnDialog: CustomColumnDialogComponent;
-  @ViewChild('exdetailList', {static: false}) exdetailList: ExDetailListComponent;
+  @ViewChild('customColumnDialog', { static: false }) customColumnDialog: CustomColumnDialogComponent;
+  @ViewChild('exdetailList', { static: false }) exdetailList: ExDetailListComponent;
   public customColumnData;
   public filterFieldData = {};
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public dataTable = [];
-  public loading: Boolean = false;
-  public periodType: String = this.lessformService.defalutData.periodType;
+  public loading = false;
+  public periodType = this.lessformService.defalutData.periodType;
   public dateType = '1';
-  public electricityParams: Object = {};
-  public subscribeAll$: Object = {};
+  public electricityParams: object = {};
+  public subscribeAll$: object = {};
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
   public tableTreeData = [];
   public expandDataCache = {};
   public listDimension = [];
@@ -81,7 +81,7 @@ export class SubelectricTableComponent implements OnInit, OnChanges, OnDestroy, 
     this.getMenuMsgParams['menuId'] = this.dateType === '1' ? 'electricControlday' : 'electricControlmonth';
   }
 
-  getMenu(fn?: Function) {
+  getMenu(fn?: () => void) {
     this.setDateType(this.periodType);
     this.getMenuParams();
     this.customColumnDialogService.getMenu(this.getMenuMsgParams).subscribe(res => {
@@ -105,16 +105,13 @@ export class SubelectricTableComponent implements OnInit, OnChanges, OnDestroy, 
 
 
   serachData(data) {
-    const filterData = this.filterData || { 'dateType': '1' };
+    const filterData = this.filterData || { dateType: '1' };
     if (this.dateType !== filterData['dateType']) {
       return;
     }
     this.getFilterField(data);
   }
-  /**
-   * 获取自定义列过滤数据
-   * @param data
-   */
+
   getFilterField(data) {
     const newData = this.customColumnDialogService.filterSelectColoumn(data);
     this.filterFieldData = newData.selectField;
@@ -204,7 +201,7 @@ export class SubelectricTableComponent implements OnInit, OnChanges, OnDestroy, 
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 參數
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class DailyReportsService {
   public dailyReportsData: Array<any> = [];
-  public loading: Boolean = false;
+  public loading = false;
   constructor() { }
 }

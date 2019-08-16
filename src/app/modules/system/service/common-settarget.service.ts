@@ -76,26 +76,26 @@ export class CommonSettargetService {
 
   /**
    *   查询相应类别下的角色
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getRoleByRoleType(params: Object = {}) {
+  getRoleByRoleType(params: object = {}) {
     return this.requestHttp.post('dms/costomMenu/getRoleByRoleType', params);
   }
 
   /**
    *   保存角色自定义菜单
    *
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  saveRoleMenu(params: Object = {}) {
+  saveRoleMenu(params: object = {}) {
     return this.requestHttp.post('dms/costomMenu/saveRoleMenu', params);
   }
 
   /**
    *   查询角色自定义菜单
-   * @param params Object  请求参数
+   * @param params object  请求参数
    */
-  getRoleMenuByMenuId(params: Object = {}) {
+  getRoleMenuByMenuId(params: object = {}) {
     return this.requestHttp.post('dms/costomMenu/getRoleMenuByMenuId', params);
   }
 }

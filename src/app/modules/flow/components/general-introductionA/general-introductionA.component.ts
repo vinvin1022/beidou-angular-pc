@@ -7,11 +7,11 @@ import { GensearchCriteriaComponent } from './gensearch-criteria/gensearch-crite
   styleUrls: ['./general-introductionA.component.scss']
 })
 export class GeneralIntroductionAComponent implements OnInit {
-  public filterData: Object;
-  public packagePermissions: String = 'b030101';
+  public filterData: object;
+  public packagePermissions = 'b030101';
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getQueryData(data) {
     this.filterData = data;

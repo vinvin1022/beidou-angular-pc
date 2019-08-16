@@ -2,10 +2,6 @@ import { Component, OnInit, OnChanges, Input, OnDestroy } from '@angular/core';
 import { CommonCustomService } from 'src/app/modules/common-custom/service/common-custom.service';
 import { TableTreeService } from 'src/app/service/table-tree.service';
 import { CustomColumnDialogService } from 'src/app/modules/common-custom/service/custom-column-dialog.service';
-import { FrontRealReportService } from 'src/app/modules/front-end/service/front-real-report.service';
-import { FrontRealFormService } from 'src/app/modules/front-end/service/front-real-form.service';
-import { FrontendService } from 'src/app/modules/front-end/service/frontend.service';
-import { frontRealReportCustomFieldData } from 'src/app/modules/front-end/service/front-realCustomFieldData';
 import { timeWarReportFieldData } from '../../service/timeWarReportFieldData';
 import { TimeWarReportService } from '../../service/time-war-report.service';
 
@@ -19,17 +15,17 @@ import { TimeWarReportService } from '../../service/time-war-report.service';
 export class TimeReportTableComponent implements OnInit, OnDestroy {
   @Input() filterData;
   public bduploadFileUrl = 'dms/excl/import/warNewsImport';
-  public customColumnData: Object = {};
+  public customColumnData: object = {};
   public filterFieldData;
-  public loading: Boolean = false;
-  public subscribeAll$: Object = {};
-  public targetNetSaleParams: Object = {};
-  public exportsParams: Object = {};
+  public loading = false;
+  public subscribeAll$: object = {};
+  public targetNetSaleParams: object = {};
+  public exportsParams: object = {};
 
   public allChildren = [];
   public fieldKeys: Array<string> = [];
   public widthConfig: Array<string> = [];
-  public scrollConfig: Object = {};
+  public scrollConfig: object = {};
 
   public downloadTemplateUrl =
     `https://sx-silk-bag.oss-cn-shenzhen.aliyuncs.com/file/%E6%88%98%E6%8A%A5%E7%9B%AE%E6%A0%87%E4%B8%9A%E7%BB%A9%E6%A8%A1%E6%9D%BF.xlsx`;
@@ -52,9 +48,8 @@ export class TimeReportTableComponent implements OnInit, OnDestroy {
 
 
   /**
-  * 获取自定义列过滤数据
-  * @param data
-  */
+   * 获取自定义列过滤数据
+   */
   getFilterField() {
     const newData = this.customColumnDialogService.filterSelectColoumn(timeWarReportFieldData);
     this.filterFieldData = newData.selectField;
@@ -115,7 +110,7 @@ export class TimeReportTableComponent implements OnInit, OnDestroy {
 
   /**
    * 展开表格树形操作
-   * @param array
+   * @param array 参数
    * @param data object 当前行数据
    * @param $event boolean 是否展开标识
    */

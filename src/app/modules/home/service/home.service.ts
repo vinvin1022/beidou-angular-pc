@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class HomeService {
-  public indexDeptOptions: Object;
+  public indexDeptOptions: object;
   constructor(private requestHttp: RequestService) { }
 
   /**
    * (实时)首页接口
-   * @param params Object 请求参数
+   * @param params object 请求参数
    */
   getHomePage(params = {}): Observable<any> {
     const url = 'dms/frond/homePage';
@@ -18,7 +18,7 @@ export class HomeService {
 
   /**
    * 业绩排行接口
-   * @param params Object
+   * @param params object
    */
   getPerferRank(params = {}): Observable<any> {
     const url = 'dms/frond/perferRank';
@@ -28,7 +28,7 @@ export class HomeService {
 
   /**
    * 7日内消费接口
-   * @param params Object
+   * @param params object
    */
   getSevenDayFinance(params = {}): Observable<any> {
     const url = 'dms/frond/sevenDayFinance';
@@ -37,7 +37,7 @@ export class HomeService {
 
   /**
    * 7日内费比接口
-   * @param params Object
+   * @param params object
    */
   getSevenDayFeeRatio(params = {}): Observable<any> {
     const url = 'dms/frond/sevenDayFeeRatio';
@@ -46,7 +46,7 @@ export class HomeService {
 
   /**
    * 预约单记录接口
-   * @param params Object
+   * @param params object
    */
   getBookForm(params = {}): Observable<any> {
     const url = 'dms/frond/bookForm';
@@ -55,7 +55,7 @@ export class HomeService {
 
   /**
    * 平均通话接口
-   * @param params Object
+   * @param params object
    */
   getAverageCall(params = {}): Observable<any> {
     const url = 'dms/frond/averageCall';

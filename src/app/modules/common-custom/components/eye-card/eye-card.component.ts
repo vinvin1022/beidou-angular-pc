@@ -7,7 +7,7 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class EyeCardComponent implements OnInit {
-  @Input() nztitle: String = '实时看板x';
+  @Input() nztitle = '实时看板x';
   constructor() { }
 
   ngOnInit() {

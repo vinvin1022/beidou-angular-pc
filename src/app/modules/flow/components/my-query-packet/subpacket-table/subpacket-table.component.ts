@@ -12,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class SubpacketTableComponent implements OnInit, OnChanges, DoCheck {
   @ViewChild('nzTable', { static: false }) overviewTableData: ElementRef;
-  @Input() filterData: Object;
+  @Input() filterData: object;
   @Input() editBtnVal;
   @Input() delBtnVal;
   @ViewChild('newquerypackageDialog', { static: false }) newquerypackageDialog: NewquerypackageDialogComponent;
@@ -20,7 +20,7 @@ export class SubpacketTableComponent implements OnInit, OnChanges, DoCheck {
   public pageSizeList = [10, 20, 30, 40, 50];
   public pageNo = this.myquerypacketService.defalutData.pageNo;
   public pageSize = this.myquerypacketService.defalutData.pageSize;
-  public total: Number = 0;
+  public total = 0;
   public loading = this.myquerypacketService.loading;
   public rowData; // 行数据
 
@@ -102,7 +102,7 @@ export class SubpacketTableComponent implements OnInit, OnChanges, DoCheck {
 
   /**
    * 删除查询包
-   * @param qid
+   * @param qid id
    */
   deleteQueryPacket(qid) {
     const params = this.filterRowData(qid);
@@ -123,7 +123,7 @@ export class SubpacketTableComponent implements OnInit, OnChanges, DoCheck {
 
   /**
    * 编辑之后刷新表格
-   * @param data
+   * @param data 参数
    */
   refreshTable(data) {
     // const {pageNo, pageSize, typeId} =  this.myquerypacketService.defalutData;
