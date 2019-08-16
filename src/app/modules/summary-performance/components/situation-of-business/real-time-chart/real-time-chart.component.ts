@@ -40,11 +40,11 @@ export class RealTimeChartComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this._initForm();
-    fromEvent(window, 'resize').pipe(debounceTime(100)).subscribe(() => {
-      this.reseteCharts();
-    });
-    this.echartsIntance = echarts.init(this.electricTimeCharts.nativeElement);
-    this.getAdvertisersTypeOptions();
+    // fromEvent(window, 'resize').pipe(debounceTime(100)).subscribe(() => {
+    //   this.reseteCharts();
+    // });
+    // this.echartsIntance = echarts.init(this.electricTimeCharts.nativeElement);
+    // this.getAdvertisersTypeOptions();
   }
 
   /**
@@ -94,7 +94,9 @@ export class RealTimeChartComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => { this.reseteCharts(); }, 0);
+    // setTimeout(() => { this.reseteCharts(); }, 0);
+    this.echartsIntance = echarts.init(this.electricTimeCharts.nativeElement);
+    this.getAdvertisersTypeOptions();
   }
 
   getElectricTimeData() {
